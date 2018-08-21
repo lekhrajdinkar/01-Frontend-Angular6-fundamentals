@@ -10,7 +10,7 @@ export class RecipeListComponent implements OnInit {
 
   recipes : Recipe[] = [
     new Recipe('Biryani', 'Hydrabadi style spicy biryani', 'https://upload.wikimedia.org/wikipedia/commons/1/15/Recipe_logo.jpeg'),
-    new Recipe('A Test Recipe', 'This is simply a test', 'https://upload.wikimedia.org/wikipedia/commons/1/15/Recipe_logo.jpeg')
+    new Recipe('Naan', 'garlic bread', 'https://upload.wikimedia.org/wikipedia/commons/1/15/Recipe_logo.jpeg')
   ];
 
   constructor() { }
@@ -18,6 +18,8 @@ export class RecipeListComponent implements OnInit {
   ngOnInit() {  }
 
   addRecipe(){
+    //Adding harded values
+    console.log("Adding harded values");
     this.recipes.push(new Recipe('Biryani', 'Hydrabadi style spicy biryani', 'https://upload.wikimedia.org/wikipedia/commons/1/15/Recipe_logo.jpeg'));
   }
 
