@@ -1,0 +1,20 @@
+<h6>1.1. Inside serversComponent</h6>
+<div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="basic-addon1">Server Name</span>
+    </div>
+    <input type="text" class="form-control" [(ngModel)]="serverName" placeholder="Enter server name">
+  </div>
+  <div *ngIf="serverName" class="alert alert-light" role="alert">{{serverName}}</div>
+
+<button  class="btn btn-primary"  [disabled]="!serverName"  (click)="onCreateServer()">Add Server</button>
+
+<div *ngIf="serverCreated ; else noServer" class="alert alert-success" role="alert">{{serverCreationStatus}}</div>
+<ng-template #noServer>
+    <div class="alert alert-warning" role="alert">{{serverCreationStatus}}</div> 
+</ng-template>
+<hr>
+
+
+<app-server *ngFor ="let server of servers"></app-server>
+
