@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'ng6';
+
+  viewName : string = "recipe";
+
+  displayView(viewName : string){
+    this.viewName = viewName;
+  }
 }
