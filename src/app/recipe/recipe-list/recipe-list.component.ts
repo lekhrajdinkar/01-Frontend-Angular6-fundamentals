@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { Recipe } from 'src/app/recipe/recipe.model';
 
 @Component({
@@ -13,6 +13,8 @@ export class RecipeListComponent implements OnInit {
     new Recipe('Naan', 'garlic bread', 'https://upload.wikimedia.org/wikipedia/commons/1/15/Recipe_logo.jpeg')
   ];
 
+  @Output()  private displayItemEvent = new EventEmitter<Recipe>();
+  
   constructor() { }
 
   ngOnInit() {  }
@@ -21,6 +23,11 @@ export class RecipeListComponent implements OnInit {
     //Adding harded values
     console.log("Adding harded values");
     this.recipes.push(new Recipe('Biryani', 'Hydrabadi style spicy biryani', 'https://upload.wikimedia.org/wikipedia/commons/1/15/Recipe_logo.jpeg'));
+  }
+
+  displayDetailRecipe(name : string){
+    console.log("2. recipelist : displayDetailRecipe called : " + name);
+    this.displayItemEvent.emit(this.recipes[1]);
   }
 
 }

@@ -6,9 +6,9 @@
 
 <div class="row">
   <div class="col-xs-12">
-    
+
 <!-- Property binding to pass recipe-list-Element from  recipe-list-->
-    <app-recipe-list-item [recipe]="rec" *ngFor ="let rec of recipes"></app-recipe-list-item>
+    <app-recipe-list-item [recipe]="rec" *ngFor ="let rec of recipes" (selectedItemEvent) = "displayDetailRecipe($event)"></app-recipe-list-item>
 
   </div>
 </div>
