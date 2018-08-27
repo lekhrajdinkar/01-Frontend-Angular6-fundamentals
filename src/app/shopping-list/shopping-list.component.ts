@@ -18,4 +18,15 @@ export class ShoppingListComponent implements OnInit {
   ngOnInit() {
   }
 
+  add(element : Ingredient ){
+    console.log("Add method called : shopping list component"); 
+    this.ingredients.push(element);
+    console.log(element);
+  }
+
+  delete(element :string ){
+    console.log("delete method called : shopping list component");
+  
+  }
+
 }

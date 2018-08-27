@@ -3,7 +3,7 @@
 
 <!--shopping list item-->
 <h5>3.2.1. Shopping-list-edit component</h5>
-    <app-shopping-edit></app-shopping-edit>
+    <app-shopping-edit (eventAdd)="add($event)" (eventdelete)="delete($event)" ></app-shopping-edit>
 
     <hr>
     <h5>3.2.2. Shopping-list component itself</h5>
