@@ -16,6 +16,8 @@ import { ShoppingEditComponent } from './shopping-list/shopping-edit/shopping-ed
 import { FooterComponent } from './footer/footer.component';
 import { Basic1Directive } from './directives/basic-1.directive';
 import { Dropdown1Directive } from './directives/dropdown1.directive';
+import { AssetComponent } from './opac/lookup/asset/asset.component';
+import { AccountComponent } from './opac/lookup/account/account.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,9 @@ import { Dropdown1Directive } from './directives/dropdown1.directive';
     ShoppingEditComponent,
     FooterComponent,
     Basic1Directive,
-    Dropdown1Directive
+    Dropdown1Directive,
+    AssetComponent,
+    AccountComponent
   ],
   imports: [
     BrowserModule,    
