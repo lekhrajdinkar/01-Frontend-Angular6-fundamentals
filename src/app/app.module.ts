@@ -14,6 +14,8 @@ import { RecipeDetailComponent } from './recipe/recipe-detail/recipe-detail.comp
 import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 import { ShoppingEditComponent } from './shopping-list/shopping-edit/shopping-edit.component';
 import { FooterComponent } from './footer/footer.component';
+import { Basic1Directive } from './directives/basic-1.directive';
+import { Dropdown1Directive } from './directives/dropdown1.directive';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import { FooterComponent } from './footer/footer.component';
     RecipeDetailComponent,
     ShoppingListComponent,
     ShoppingEditComponent,
-    FooterComponent
+    FooterComponent,
+    Basic1Directive,
+    Dropdown1Directive
   ],
   imports: [
     BrowserModule,    
