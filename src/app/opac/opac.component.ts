@@ -1,20 +1,26 @@
 import { Component, OnInit } from '@angular/core';
 import { Account } from './model/Account.model';
 import { LogService } from './services/opac.service.log';
+import { AccountService } from './services/opac.service.account';
 
 @Component({
   selector: 'app-opac',
   templateUrl: './opac.component.html',
   styleUrls: ['./opac.component.css'],
-  providers: [LogService] //just define type
+  providers: [LogService , AccountService ] 
 })
 export class OpacComponent implements OnInit {
 
-  constructor(private l : LogService) { } //private l : LogService
+  constructor(private l : LogService , private acctSrv : AccountService) { } 
+  //constructor(private l : LogService ) { } 
+
+  accts : Account[] = [];
 
   ngOnInit() {
+    this.accts = this.acctSrv.accts ;
   }
 
+  /*
   //--------------- 1. Accounts --------------------------------
   //1.1. Store Accounts in array.
   accts : Account[] = [
@@ -39,8 +45,6 @@ export class OpacComponent implements OnInit {
     // l is injected by Angular.
     this.l.logInfo("---status change event caught--- \n No need update Account array here. it automaticallu updated");
   }
-
-
-  //----------------- 2. ASSETS ----------------------
+*/
 
 }

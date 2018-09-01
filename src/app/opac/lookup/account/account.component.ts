@@ -1,18 +1,18 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { Account } from '../../model/Account.model';
 import { LogService } from '../../services/opac.service.log';
+import { AccountService } from '../../services/opac.service.account';
 
 @Component({
   selector: 'app-account',
   templateUrl: './account.component.html',
   styleUrls: ['./account.component.css'],
-  providers: [LogService] 
+  providers: [LogService ,AccountService] 
 })
 export class AccountComponent implements OnInit {
-  constructor(private l : LogService) { }
+  constructor(private l : LogService , private acctSrv : AccountService) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() {  }
 
   @Input() a : Account ; //it holds single acount item.
 
