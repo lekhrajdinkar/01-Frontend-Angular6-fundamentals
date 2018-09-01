@@ -8,8 +8,9 @@
       <h5>OPAC - Accounts</h5>
        <!-- New Account Component -->
       <app-new-account (newAcct)="createNewAccount($event)"></app-new-account> 
+
        <!-- Account lookup component -->     
-      <app-account [a]="a" *ngFor="let a of accts" (statusChanged)=statusChanged($event)> </app-account>
+      <app-account class ="Jumbotron" [a]="a" *ngFor="let a of accts" (statusChanged)=statusChanged($event)> </app-account>
     </div>
 
     <!--Asset Col-->

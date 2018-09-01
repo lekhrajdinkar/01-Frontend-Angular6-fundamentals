@@ -1,14 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { Account } from './model/Account.model';
+import { LogService } from './services/opac.service.log';
 
 @Component({
   selector: 'app-opac',
   templateUrl: './opac.component.html',
-  styleUrls: ['./opac.component.css']
+  styleUrls: ['./opac.component.css'],
+  providers: [LogService] //just define type
 })
 export class OpacComponent implements OnInit {
 
-  constructor() { }
+  constructor(private l : LogService) { } //private l : LogService
 
   ngOnInit() {
   }
@@ -30,7 +32,12 @@ export class OpacComponent implements OnInit {
 
   //1.3. Change account status
   statusChanged(a: Account){
-    console.log("---status changes---");
+    console.log(this.accts);
+
+    const ls = new LogService(); //with injecting service.
+    ls.logInfo("---status change event caught--- \n No need update Account array here. it automaticallu updated");
+    // l is injected by Angular.
+    this.l.logInfo("---status change event caught--- \n No need update Account array here. it automaticallu updated");
   }
 
 
