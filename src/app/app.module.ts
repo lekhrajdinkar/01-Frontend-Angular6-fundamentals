@@ -18,6 +18,8 @@ import { Basic1Directive } from './directives/basic-1.directive';
 import { Dropdown1Directive } from './directives/dropdown1.directive';
 import { AssetComponent } from './opac/lookup/asset/asset.component';
 import { AccountComponent } from './opac/lookup/account/account.component';
+import { OpacComponent } from './opac/opac.component';
+import { NewAccountComponent } from './opac/lookup/new-account/new-account.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,9 @@ import { AccountComponent } from './opac/lookup/account/account.component';
     Basic1Directive,
     Dropdown1Directive,
     AssetComponent,
-    AccountComponent
+    AccountComponent,
+    OpacComponent,
+    NewAccountComponent
   ],
   imports: [
     BrowserModule,    
