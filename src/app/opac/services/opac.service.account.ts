@@ -1,10 +1,12 @@
 import { Account } from "../model/Account.model";
-//import { LogService } from "./opac.service.log";
+import { LogService } from "./opac.service.log";
+import { Injectable } from "@angular/core";
 
+@Injectable()
 export  class AccountService{
 
-    //constructor(private l : LogService){}
-    constructor(){}
+    constructor(private l : LogService){}
+    //constructor(){}
 
  //1.1. Store Accounts in array.
   accts : Account[] = [
@@ -24,7 +26,7 @@ export  class AccountService{
   statusChanged(a: Account){
     console.log(this.accts);    
     console.log("--- status change event caught--- \n No need update Account array here. it automaticallu updated");
-    //this.l.logInfo("--- status change event caught--- \n No need update Account array here. it automaticallu updated");
+    this.l.logInfo("--- status change event caught--- \n No need update Account array here. it automaticallu updated");
   }
 
 

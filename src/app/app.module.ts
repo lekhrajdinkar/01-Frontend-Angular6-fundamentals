@@ -20,6 +20,9 @@ import { AssetComponent } from './opac/lookup/asset/asset.component';
 import { AccountComponent } from './opac/lookup/account/account.component';
 import { OpacComponent } from './opac/opac.component';
 import { NewAccountComponent } from './opac/lookup/new-account/new-account.component';
+import { OpacHeaderComponent } from './opac/header/header.component';
+import { LogService } from './opac/services/opac.service.log';
+import { AccountService } from './opac/services/opac.service.account';
 
 @NgModule({
   declarations: [
@@ -39,14 +42,15 @@ import { NewAccountComponent } from './opac/lookup/new-account/new-account.compo
     AssetComponent,
     AccountComponent,
     OpacComponent,
-    NewAccountComponent
+    NewAccountComponent,
+    OpacHeaderComponent
   ],
   imports: [
     BrowserModule,    
     FormsModule,
     HttpModule
   ],
-  providers: [],
+  providers: [AccountService, LogService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

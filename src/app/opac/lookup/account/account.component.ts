@@ -7,7 +7,7 @@ import { AccountService } from '../../services/opac.service.account';
   selector: 'app-account',
   templateUrl: './account.component.html',
   styleUrls: ['./account.component.css'],
-  providers: [LogService ,AccountService] 
+  providers: [LogService ] 
 })
 export class AccountComponent implements OnInit {
   constructor(private l : LogService , private acctSrv : AccountService) { }
@@ -23,10 +23,12 @@ export class AccountComponent implements OnInit {
     if (status === 'active') this.a.is_active = true;
     else this.a.is_active = false;
 
-    this.statusChanged.emit(this.a);
-    
-    console.log('Account status changed, new status: ' + status);
-    this.l.logInfo('Account status changed, new status: ' + status);
+    //1. way - by services
+    this.acctSrv.statusChanged(this.a) ;
+
+    //2. way
+    // this.statusChanged.emit(this.a);
+    // this.l.logInfo('Account status changed, new status: ' + status);
   }
 
 }
