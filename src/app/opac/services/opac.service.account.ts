@@ -1,6 +1,7 @@
 import { Account } from "../model/Account.model";
 import { LogService } from "./opac.service.log";
-import { Injectable } from "@angular/core";
+import { Injectable, EventEmitter } from "@angular/core";
+
 
 @Injectable()
 export  class AccountService{
@@ -15,6 +16,8 @@ export  class AccountService{
     new Account("11000003", "BGN", "TEST ACCOUNT 3", true)
   ];
 
+  
+
   //1.2. Add new Account
   createNewAccount(a : Account){
     console.log("AcctSrv : Create New Account")
@@ -24,10 +27,13 @@ export  class AccountService{
 
   //1.3. Change account status
   statusChanged(a: Account){
-    console.log(this.accts);    
+    console.log(this.accts); 
+
     console.log("--- status change event caught--- \n No need update Account array here. it automaticallu updated");
     this.l.logInfo("--- status change event caught--- \n No need update Account array here. it automaticallu updated");
   }
 
+  //2. event
+  acctSrvEvent1 = new EventEmitter<string>();
 
 }

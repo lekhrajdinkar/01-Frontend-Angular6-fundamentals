@@ -11,7 +11,11 @@ import { AccountService } from '../../services/opac.service.account';
 })
 export class NewAccountComponent implements OnInit {
 
-  constructor(private l : LogService , private acctSrv : AccountService) { }
+  constructor(private l : LogService , private acctSrv : AccountService) {
+    this.acctSrv.acctSrvEvent1.subscribe(      
+      (status : string) => alert("New Status : "+ status)  
+    );
+   }
 
   @Output() newAcct  = new EventEmitter<Account>();
 
@@ -20,6 +24,7 @@ export class NewAccountComponent implements OnInit {
   onCreateAccount(accountnu : string , accountabbr : string , accountName : string , status : boolean){
     //1. passind data by service.
     this.acctSrv.createNewAccount(new Account(accountnu , accountabbr , accountName , status ));
+   
 
     //2. passing data by event/property binding.
    // this.l.logInfo("1. Emit newAcct event ")  ;

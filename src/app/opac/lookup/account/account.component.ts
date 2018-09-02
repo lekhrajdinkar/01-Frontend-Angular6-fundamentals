@@ -25,6 +25,7 @@ export class AccountComponent implements OnInit {
 
     //1. way - by services
     this.acctSrv.statusChanged(this.a) ;
+    this.acctSrv.acctSrvEvent1.emit(status);
 
     //2. way
     // this.statusChanged.emit(this.a);

@@ -1,24 +1,41 @@
 <opac-header></opac-header>
 <div class="container">
- 
-  <h3>OPAC - Order Processing and check compliance</h3>
+
+  <h1>OPAC - Order Processing and check compliance</h1>
 
   <div class="row">
-    <!--Account Col-->
-    <div class="col-xs-6">
-      <h5>OPAC - Accounts</h5>
-       <!-- New Account Component -->
-      <app-new-account (newAcct)="createNewAccount($event)"></app-new-account> 
-
-       <!-- Account lookup component -->     
-      <app-account class ="Jumbotron" [a]="a" *ngFor="let a of accts" (statusChanged)=statusChanged($event)> </app-account>
+      <h2>4. Look Up</h2>
+    <!--Account-->
+    <div class="col-xs-6"> 
+      <h3>4.1. Accounts</h3>     
+      <!-- New Account Component -->
+      <h4>4.1.1 New Account setup and operational control setup</h4> 
+      <app-new-account (newAcct)="createNewAccount($event)"></app-new-account>
+      <!-- Account lookup component -->
+      <h4>4.1.2 Account lookup</h4> 
+      <app-account class="Jumbotron" [a]="a" *ngFor="let a of accts" (statusChanged)=statusChanged($event)> </app-account>
     </div>
+  </div>
 
-    <!--Asset Col-->
+  <hr>
+
+  <div class="row">
+    <!--Asset -->
     <div class="col-xs-6">
-      <h5>OPAC - Assets</h5>
+      <h3>4.2. Asset lookup and setup</h3>
       <app-asset></app-asset>
     </div>
   </div>
+
+  <hr>
+
+  <div class="row">
+    <!--Admin - Maintain Users -->
+    <div class="col-xs-6">
+      <h2>5. Admin</h2>
+      <opac-admin></opac-admin>
+    </div>
+  </div>
+
 
 </div>

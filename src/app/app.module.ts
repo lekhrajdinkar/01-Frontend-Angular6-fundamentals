@@ -23,6 +23,9 @@ import { NewAccountComponent } from './opac/lookup/new-account/new-account.compo
 import { OpacHeaderComponent } from './opac/header/header.component';
 import { LogService } from './opac/services/opac.service.log';
 import { AccountService } from './opac/services/opac.service.account';
+import { InactiveUsersComponent } from './opac/admin/inactive-users/inactive-users.component';
+import { ActiveUsersComponent } from './opac/admin/active-users/active-users.component';
+import { OpacAdminComponent } from './opac/admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +46,10 @@ import { AccountService } from './opac/services/opac.service.account';
     AccountComponent,
     OpacComponent,
     NewAccountComponent,
-    OpacHeaderComponent
+    OpacHeaderComponent,
+    ActiveUsersComponent,
+    InactiveUsersComponent,
+    OpacAdminComponent
   ],
   imports: [
     BrowserModule,    
