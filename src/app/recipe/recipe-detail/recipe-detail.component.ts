@@ -14,7 +14,10 @@ export class RecipeDetailComponent implements OnInit {
 
   constructor(private srv : RecipeService){
     this.srv.RecipeSrvEventDisplay.subscribe( 
-     (selectedRecipe : Recipe) => {console.log("RecipeSrvEventDisplay caught in recipe-detail component"); this.recipe = selectedRecipe; }
+     (selectedRecipe : Recipe) => {
+       console.log("RecipeSrvEventDisplay caught in recipe-detail component"); 
+       this.recipe = selectedRecipe;
+      }
     );
   } 
 

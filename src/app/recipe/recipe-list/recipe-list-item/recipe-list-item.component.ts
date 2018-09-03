@@ -20,9 +20,11 @@ export class RecipeListItemComponent implements OnInit {
   }
 
   onSelectItem(){
+
     console.log("1. recipe List Item Clicked, recipe : " + this.recipe.name);
     this.srv.selectedRecipe = this.recipe ;
-    console.log("2. Emit RecipeSrvEventDisplay for recipe : " + this.recipe.name);
+
+    console.log("2. Emit RecipeSrvEventDisplay for recipe : " + this.recipe.name);//will be caughgt at recipe-detail component.
     this.srv.RecipeSrvEventDisplay.emit(this.recipe);
       
    // this.selectedItemEvent.emit(this.recipe.name);

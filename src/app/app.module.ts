@@ -26,6 +26,17 @@ import { AccountService } from './opac/services/opac.service.account';
 import { InactiveUsersComponent } from './opac/admin/inactive-users/inactive-users.component';
 import { ActiveUsersComponent } from './opac/admin/active-users/active-users.component';
 import { OpacAdminComponent } from './opac/admin/admin.component';
+import { OpComponent } from './opac/op/op.component';
+import { AssetInfoComponent } from './opac/asset-info/asset-info.component';
+import { AoeComponent } from './opac/op/aoe/aoe.component';
+import { GoeComponent } from './opac/op/goe/goe.component';
+import { MockupComponent } from './opac/op/mockup/mockup.component';
+import { AuthMaintncComponent } from './opac/op/auth-maintnc/auth-maintnc.component';
+import { FiExportComponent } from './opac/op/fi-export/fi-export.component';
+import { AcctTransferComponent } from './opac/transfer/acct-transfer/acct-transfer.component';
+import { TransferListComponent } from './opac/transfer/transfer-list/transfer-list.component';
+import { GrpComponent } from './opac/lookup/grp/grp.component';
+import { TransferComponent } from './opac/transfer/transfer.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +60,18 @@ import { OpacAdminComponent } from './opac/admin/admin.component';
     OpacHeaderComponent,
     ActiveUsersComponent,
     InactiveUsersComponent,
-    OpacAdminComponent
+    OpacAdminComponent,
+    OpComponent,
+    AssetInfoComponent,
+    AoeComponent,
+    GoeComponent,
+    MockupComponent,
+    AuthMaintncComponent,
+    FiExportComponent,
+    AcctTransferComponent,
+    TransferListComponent,
+    GrpComponent,
+    TransferComponent
   ],
   imports: [
     BrowserModule,    
@@ -57,6 +79,8 @@ import { OpacAdminComponent } from './opac/admin/admin.component';
     HttpModule
   ],
   providers: [AccountService, LogService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent
+    //,RouterModule
+  ]
 })
 export class AppModule { }

@@ -9,7 +9,7 @@ import { Account } from './opac/model/Account.model';
 export class AppComponent {
   title = 'ng6';
 
-  viewName : string = "eop";
+  viewName : string = "recipe";
 
   displayView(viewName : string){
     this.viewName = viewName;
