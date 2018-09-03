@@ -1,5 +1,6 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { Recipe } from 'src/app/recipe/recipe.model';
+import { RecipeService } from '../recipe.service';
 
 @Component({
   selector: 'app-recipe-list',
@@ -8,27 +9,23 @@ import { Recipe } from 'src/app/recipe/recipe.model';
 })
 export class RecipeListComponent implements OnInit {
 
-  recipes : Recipe[] = [
-    new Recipe('Biryani', 'Hydrabadi style spicy biryani', 'https://upload.wikimedia.org/wikipedia/commons/1/15/Recipe_logo.jpeg'),
-    new Recipe('Naan', 'garlic bread', 'https://upload.wikimedia.org/wikipedia/commons/1/15/Recipe_logo.jpeg'),
-    new Recipe('Cookie', 'Choco Cookies', 'https://www.pexels.com/photo/macro-photography-of-pile-of-3-cookie-230325/cd ')
-  ];
+  recipes : Recipe[] ;
 
-  @Output()  private displayItemEvent = new EventEmitter<Recipe>();
-  
-  constructor() { }
+  constructor(private srv : RecipeService){} 
 
-  ngOnInit() {  }
+  ngOnInit() { this.recipes = this.srv.recipes ;}
 
-  addRecipe(){
-    //Adding harded values
-    console.log("Adding harded values");
-    this.recipes.push(new Recipe('Biryani', 'Hydrabadi style spicy biryani', 'https://upload.wikimedia.org/wikipedia/commons/1/15/Recipe_logo.jpeg'));
-  }
+  //@Output()  private displayItemEvent = new EventEmitter<Recipe>();  
 
-  displayDetailRecipe(name : string){
-    console.log("2. recipelist : displayDetailRecipe called : " + name);
-    this.displayItemEvent.emit(this.recipes[1]);
-  }
+  addRecipe(r : Recipe){
+    console.log("Recipe List Component : addRecipe");
+    r = new Recipe('Biryani', 'Hydrabadi style spicy biryani', 'https://upload.wikimedia.org/wikipedia/commons/1/15/Recipe_logo.jpeg')
+    this.srv.addRecipe(r);
+   }
+
+  //displayDetailRecipe(name : string){
+    //console.log("2. recipelist : displayDetailRecipe called : " + name);
+    //this.displayItemEvent.emit(this.recipes[1]);
+  //}
 
 }

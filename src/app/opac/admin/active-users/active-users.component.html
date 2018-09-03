@@ -1,4 +1,4 @@
-<h3>Active Users</h3>
+<h3 *ngIf="users.length > 0">Active Users</h3>
 <ul class="list-group">
   <li    class="list-group-item"    *ngFor="let u of users; let i = index">
       ({{i}}). {{ u.initials}}   | {{u.name}} <a class="btn btn-danger navbar-right" (click)="onSetToInactive(u,i)">Set to Inactive</a>

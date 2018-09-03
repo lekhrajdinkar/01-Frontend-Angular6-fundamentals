@@ -9,17 +9,20 @@ import { OpacAdminService } from '../../services/opac.service.admin';
 })
 export class ActiveUsersComponent  implements OnInit {
   
-  //@Input() 
+ // size: number ;
   users: User[];
   //@Output() userSetToInactive = new EventEmitter<string>();
 
   constructor(private srv: OpacAdminService) { }
   ngOnInit(): void {
     this.users = this.srv.usersActive;
+    //this.size=this.users.length;
+    //console.log("size : " + this.size);
   }
 
   onSetToInactive(u : User, i : number) {
     this.srv.updateInActiveUser(u,i);
+    //console.log("size : " + this.size);
     //this.userSetToInactive.emit(initial);
   }
 }

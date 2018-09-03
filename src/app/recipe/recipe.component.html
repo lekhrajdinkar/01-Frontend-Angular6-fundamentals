@@ -1,12 +1,15 @@
 <div class="container">
     <div class="row">
-
+<!-- 1. Left : Show All Recipe list-->
       <div class="col-xs-5">
-        <app-recipe-list (displayItemEvent) = "displayRecipeDescription($event)"></app-recipe-list>
+        <!-- <app-recipe-list (displayItemEvent) = "displayRecipeDescription($event)"></app-recipe-list> -->
+        <app-recipe-list></app-recipe-list>
       </div>
-      
+ 
+<!-- Right : 2. Show Selected Recipe Detail/Description-->     
       <div class="col-xs-7">
-        <app-recipe-detail [recipe1]="rec" *ngIf="rec"></app-recipe-detail>
+        <!--<app-recipe-detail [recipe1]="rec" *ngIf="rec"></app-recipe-detail> -->
+        <app-recipe-detail  *ngIf="SelectedRecipe"></app-recipe-detail>
       </div>
 
     </div>

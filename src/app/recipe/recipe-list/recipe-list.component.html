@@ -1,14 +1,18 @@
-<div class="row">
+<!-- 1. Add New Recipe-->
+<div class="row">  
   <div class="col-xs-12">
     <button class="btn btn-primary" (click)=addRecipe()> NEW RECIPE</button>
   </div>
 </div>
 
+<!-- 2. Show  Recipe List-->
 <div class="row">
   <div class="col-xs-12">
-
-<!-- Property binding to pass recipe-list-Element from  recipe-list-->
-    <app-recipe-list-item [recipe]="rec" *ngFor ="let rec of recipes" (selectedItemEvent) = "displayDetailRecipe($event)"></app-recipe-list-item>
+    <!-- Property binding to pass recipe-list-Element from  recipe-list-->
+    <!--<app-recipe-list-item [recipe]="rec" *ngFor ="let rec of recipes" (selectedItemEvent) = "displayDetailRecipe($event)"></app-recipe-list-item> -->
+    
+    <!-- 3. iterate Recipe List Item or list-->
+    <app-recipe-list-item [recipe]="rec" *ngFor ="let rec of recipes"></app-recipe-list-item>
 
   </div>
 </div>
