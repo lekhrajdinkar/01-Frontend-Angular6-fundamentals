@@ -1,0 +1,17 @@
+<!-- 2. Display Accounts -->
+<div class="row">
+    <div class="col-xs-12" >
+  
+        <ul class="list-group">
+            <a class="list-group-item" style="cursor: pointer;" >
+                <h5>{{ a.acct_name }}</h5>
+                 {{ a.acct_abbr}} | {{ a.acct_number}} 
+                <div *ngIf="a.is_active" class="badge badge-success" >ACTIVE</div>
+                <div *ngIf="!a.is_active" class="badge badge-danger" >IN - ACTIVE</div><br>
+                
+                <button class="btn btn-success" (click)="onSetTo('active')">Set to 'active'</button>
+                <button class="btn " (click)="onSetTo('inactive')">Set to 'inactive'</button>
+            </a>
+          </ul>
+      </div>
+  </div>

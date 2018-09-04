@@ -20,7 +20,7 @@ import { Dropdown1Directive } from './directives/dropdown1.directive';
 import { AssetComponent } from './opac/lookup/asset/asset.component';
 import { AccountComponent } from './opac/lookup/account/account.component';
 import { OpacComponent } from './opac/opac.component';
-import { NewAccountComponent } from './opac/lookup/new-account/new-account.component';
+import { NewAccountComponent } from './opac/lookup/account/new-account/new-account.component';
 import { OpacHeaderComponent } from './opac/header/header.component';
 import { LogService } from './opac/services/opac.service.log';
 import { AccountService } from './opac/services/opac.service.account';
@@ -38,15 +38,20 @@ import { AcctTransferComponent } from './opac/transfer/acct-transfer/acct-transf
 import { TransferListComponent } from './opac/transfer/transfer-list/transfer-list.component';
 import { GrpComponent } from './opac/lookup/grp/grp.component';
 import { TransferComponent } from './opac/transfer/transfer.component';
+import { AccountListComponent } from './opac/lookup/account/account-list/account-list.component';
 
 //1. Add Path and components. Dont put / in path
 const approutes : Routes = [
+{path:'', component:TransferListComponent}, //default component when no link initially clicked.
+
 {path:'recipe',component:RecipeComponent},
 {path:'shopping',component:ShoppingListComponent},
 {path:'servers', component:ServersComponent},
 
-{path:'eop/transfer/acct-transfer', component:AcctTransferComponent},
-{path:'eop/transfer/transfer-list', component:TransferListComponent}
+{path:'eop-transfer', component:TransferComponent},
+{path:'eop-transfer/acct-transfer', component:AcctTransferComponent},
+{path:'eop-transfer/transfer-list', component:TransferListComponent},
+
 ]
 
 @NgModule({
@@ -82,7 +87,8 @@ const approutes : Routes = [
     AcctTransferComponent,
     TransferListComponent,
     GrpComponent,
-    TransferComponent
+    TransferComponent,
+    AccountListComponent
   ],
   imports: [
     BrowserModule,    

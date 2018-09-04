@@ -1,1 +1,4 @@
 <p [ngClass]="{online : getServerStatus() === 'online'}" [ngStyle]="{backgroundColor : getServerStatusColor()}"> {{ 'Server' }} : {{ serverName }} is {{ getServerStatus()}}</p>
+
+<a routerLink=" servers">Reload - "server"   : relative path, wont work</a>
+<a routerLink="/servers">Reload - "/servers" : Absoulte path, will work !</a>

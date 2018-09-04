@@ -4,24 +4,17 @@
   <h1>EOP - Eqity Order Processing</h1>
 
   <div class="row">
-      <!--Admin - Maintain Users -->
-      <div class="col-xs-6">
-        <h2>2. Transfer</h2>
-        <opac-transfer></opac-transfer>
-      </div>
+    <!--Admin - Maintain Users -->
+    <div class="col-xs-6">
+      <h2>2. Transfer</h2>
+      <opac-transfer></opac-transfer>
     </div>
+  </div>
 
-  <div class="row">
-      <h2>4. Look Up</h2>
-    <!--Account-->
-    <div class="col-xs-6"> 
-      <h3>4.1. Accounts</h3>     
-      <!-- New Account Component -->
-      <h4>4.1.1 New Account setup and operational control setup</h4> 
-      <app-new-account (newAcct)="createNewAccount($event)"></app-new-account>
-      <!-- Account lookup component -->
-      <h4>4.1.2 Account lookup</h4> 
-      <app-account class="Jumbotron" [a]="a" *ngFor="let a of accts" (statusChanged)=statusChanged($event)> </app-account>
+  <div class="row"> 
+    <h2>4. Look Up</h2>
+    <div class="col-xs-6">
+      <opac-account></opac-account>
     </div>
   </div>
 
@@ -30,7 +23,6 @@
   <div class="row">
     <!--Asset -->
     <div class="col-xs-6">
-      <h3>4.2. Asset lookup and setup</h3>
       <app-asset></app-asset>
     </div>
   </div>
