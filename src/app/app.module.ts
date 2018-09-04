@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { ServerComponent } from './server/server.component';
 import { ServersComponent } from './servers/servers.component';
+import { Routes, RouterModule} from '@angular/router';
 
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
@@ -37,6 +38,16 @@ import { AcctTransferComponent } from './opac/transfer/acct-transfer/acct-transf
 import { TransferListComponent } from './opac/transfer/transfer-list/transfer-list.component';
 import { GrpComponent } from './opac/lookup/grp/grp.component';
 import { TransferComponent } from './opac/transfer/transfer.component';
+
+//1. Add Path and components. Dont put / in path
+const approutes : Routes = [
+{path:'recipe',component:RecipeComponent},
+{path:'shopping',component:ShoppingListComponent},
+{path:'servers', component:ServersComponent},
+
+{path:'eop/transfer/acct-transfer', component:AcctTransferComponent},
+{path:'eop/transfer/transfer-list', component:TransferListComponent}
+]
 
 @NgModule({
   declarations: [
@@ -76,11 +87,10 @@ import { TransferComponent } from './opac/transfer/transfer.component';
   imports: [
     BrowserModule,    
     FormsModule,
-    HttpModule
+    HttpModule,
+    RouterModule.forRoot(approutes) //2. Add routerModule Register path at RouterModule //3. Add respective import
   ],
   providers: [AccountService, LogService],
-  bootstrap: [AppComponent
-    //,RouterModule
-  ]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

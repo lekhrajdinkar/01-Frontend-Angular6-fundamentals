@@ -1,20 +1,28 @@
-<h6>1.1. Inside serversComponent</h6>
+<!-- 1. Input Server Details-->
 <div class="input-group mb-3">
-    <div class="input-group-prepend">
-      <span class="input-group-text" id="basic-addon1">Server Name</span>
-    </div>
-    <input type="text" class="form-control" [(ngModel)]="serverName" placeholder="Enter server name">
+
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="basic-addon1">Server Name</span>
   </div>
-  <div *ngIf="serverName" class="alert alert-light" role="alert">{{serverName}}</div>
 
-<button  class="btn btn-primary"  [disabled]="!serverName"  (click)="onCreateServer()">Add Server</button>
+  <span>
+  <input type="text" class="form-control" [(ngModel)]="serverName" placeholder="Enter server name">
+  <div *ngIf="serverName" >{{serverName}}</div>
+  </span>
 
+</div>
+
+<button class="btn btn-primary" [disabled]="!serverName" (click)="onCreateServer()">Add Server</button>
+
+<!-- 3. Show recently created server -->
 <div *ngIf="serverCreated ; else noServer" class="alert alert-success" role="alert">{{serverCreationStatus}}</div>
+
+<!-- 4. Show no Server created message initially-->
 <ng-template #noServer>
-    <div class="alert alert-warning" role="alert">{{serverCreationStatus}}</div> 
+  <div class="alert alert-warning" role="alert">{{serverCreationStatus}}</div>
 </ng-template>
+
 <hr>
 
-
-<app-server *ngFor ="let server of servers"></app-server>
-
+<!-- 5. Show all server list-->
+<app-server *ngFor="let server of servers"></app-server>

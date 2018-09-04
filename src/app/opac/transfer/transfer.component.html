@@ -1,43 +1,53 @@
 <div class="container">
 
+<!-- ---------------------- Router test App ------------------------------------ -->
+<div class="container jumbotron">
+
+    <!-- 1. Add tabs-->
+    <div class="row">
+      <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+        <ul class="nav nav-tabs">
+          <li role="presentation" class="active"><a routerLink="/recipe">recipe</a></li>
+          <li role="presentation"><a routerLink="/shopping">shopping</a></li>
+          <li role="presentation"><a routerLink="/servers">servers</a></li>
+        </ul>
+      </div>
+    </div>
+  
+    <!-- 2. Display selected tab content / component -->
+    <div class="row">
+      <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <router-outlet></router-outlet>
+      </div>
+    </div>
+  <!-- ---------------------- NG6 App ------------------------------------ -->
+
+  <!--1. Add tabs-->
   <div class="row">
     <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
       <ul class="nav nav-tabs">
-        <!--
-        <li role="presentation" class="active"><a routerLink="/opac/transfer/transfer-list">Transfer list</a></li>
-        <li role="presentation"><a routerLink="/opac/transfer/acct-transfer">Account transfer</a></li>
-        <li role="presentation"><a [routerLink]="['/opac/transfer/mgr-transfer','something']">Manager transfer</a></li>
-          -->
-        <li role="presentation" class="active"><a href="/opac/transfer/transfer-list">Transfer list</a></li>
-        <li role="presentation"><a href="/opac/transfer/acct-transfer">Account transfer</a></li>
-        <li role="presentation"><a href="['/opac/transfer/mgr-transfer','something']">Manager transfer</a></li>
+       
+        <li role="presentation" class="active"><a routerLink="eop/transfer/transfer-list">Transfer list</a></li>
+        <li role="presentation"><a routerLink="eop/transfer/acct-transfer">Account transfer</a></li>
+        
       </ul>
     </div>
   </div>
 
 
-  <div class="row">
-      <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
-       <!--<router-outlet></router-outlet> -->  
-      </div>
-    </div>
-
-
+    <!--1.1 Add transfer list tab 
   <div class="row">
     <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
         <opac-transfer-list></opac-transfer-list>
     </div>
-  </div>
+  </div> -->
 
+    <!--1.2. Add Account transfer tab
   <div class="row">
     <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
         <opac-acct-transfer></opac-acct-transfer>
     </div>
-  </div>
+  </div> -->
 
-  <div class="row">
-    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
-      <h3>Manager Transfer</h3> <br> in progress ...
-    </div>
-  </div>
+
 </div>
