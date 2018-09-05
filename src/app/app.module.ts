@@ -48,7 +48,7 @@ const approutes : Routes = [
 {path:'shopping',component:ShoppingListComponent},
 {path:'servers', component:ServersComponent},
 
-{path:'eop-transfer', component:TransferComponent},
+//{path:'eop-transfer', component:TransferComponent},
 {path:'eop-transfer/acct-transfer', component:AcctTransferComponent},
 {path:'eop-transfer/transfer-list', component:TransferListComponent},
 

@@ -1,19 +1,34 @@
-<opac-header></opac-header>
+
 <div class="container">
 
-  <h1>EOP - Eqity Order Processing</h1>
+  <opac-header></opac-header>
+
+  <div class="row">
+    <!--order Processing-->
+    <div class="col-xs-12">
+      <h2>Order Processing</h2>
+      <opac-op></opac-op>
+    </div>
+  </div>
 
   <div class="row">
     <!--Admin - Maintain Users -->
-    <div class="col-xs-6">
-      <h2>2. Transfer</h2>
+    <div class="col-xs-12">
+      <h2>Transfer</h2>
       <opac-transfer></opac-transfer>
     </div>
   </div>
 
-  <div class="row"> 
-    <h2>4. Look Up</h2>
-    <div class="col-xs-6">
+  <div class="row">
+    <h2>Asset Information</h2>
+    <div class="col-xs-12">
+      <opac-asset-info></opac-asset-info>
+    </div>
+  </div>
+
+  <div class="row">
+    <h2>Look Up > Account</h2>
+    <div class="col-xs-12">
       <opac-account></opac-account>
     </div>
   </div>
@@ -21,18 +36,15 @@
   <hr>
 
   <div class="row">
-    <!--Asset -->
-    <div class="col-xs-6">
+    <h2>Look Up > Asset</h2>
+    <div class="col-xs-12">
       <app-asset></app-asset>
     </div>
   </div>
 
-  <hr>
-
   <div class="row">
-    <!--Admin - Maintain Users -->
-    <div class="col-xs-6">
-      <h2>5. Admin</h2>
+    <div class="col-xs-12">
+      <h2>Admin > Maintain Users</h2>
       <opac-admin></opac-admin>
     </div>
   </div>

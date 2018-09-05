@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-op',
+  selector: 'opac-op',
   templateUrl: './op.component.html',
   styleUrls: ['./op.component.css']
 })
