@@ -39,6 +39,7 @@ import { TransferListComponent } from './opac/transfer/transfer-list/transfer-li
 import { GrpComponent } from './opac/lookup/grp/grp.component';
 import { TransferComponent } from './opac/transfer/transfer.component';
 import { AccountListComponent } from './opac/lookup/account/account-list/account-list.component';
+import { OpacHeaderComponentTwo } from './opac/opac-header/opac-header.component';
 
 //1. Add Path and components. Dont put / in path
 const approutes : Routes = [
@@ -73,7 +74,7 @@ const approutes : Routes = [
     AccountComponent,
     OpacComponent,
     NewAccountComponent,
-    OpacHeaderComponent,
+    OpacHeaderComponent,OpacHeaderComponentTwo,
     ActiveUsersComponent,
     InactiveUsersComponent,
     OpacAdminComponent,

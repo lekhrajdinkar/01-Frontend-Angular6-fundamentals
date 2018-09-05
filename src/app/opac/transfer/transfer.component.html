@@ -7,7 +7,7 @@
           <li role="presentation" routerLinkActive="active"><a routerLink="/eop-transfer/transfer-list">Transfer list</a></li>
           <li role="presentation" routerLinkActive="active" [routerLinkActiveOptions]="{exact : true}"><a routerLink="/">Transfer list - Duplicate</a></li>
           <li role="presentation" routerLinkActive="active"><a routerLink="/eop-transfer/acct-transfer">Account transfer</a></li>
-          <li role="presentation" routerLinkActive="active"><a routerLink="/recipe">recipe</a></li>
+          <!-- <li role="presentation" routerLinkActive="active"><a routerLink="/recipe">recipe</a></li> -->
           <li role="presentation" routerLinkActive="active"><a routerLink="/shopping">shopping</a></li>
           <li role="presentation" routerLinkActive="active"><a routerLink="/servers">servers</a></li>          
         </ul>
@@ -15,7 +15,7 @@
     </div>
   
     <!-- 2. Display selected tab content / component -->
-    <div class="row">
+    <div class="row jumbotron">
       <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
       <router-outlet></router-outlet>
       </div>

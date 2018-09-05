@@ -1,0 +1,35 @@
+<div class="container ">
+
+  <!-- 1. Add tabs-->
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <ul class="nav nav-tabs">
+        <li role="presentation" routerLinkActive="active"><a routerLink="/eop-op">Order Processing</a></li>
+        <li role="presentation" routerLinkActive="active"><a routerLink="/eop-t">Transfer</a></li>
+        <li role="presentation" routerLinkActive="active"><a routerLink="/eop-asset-info">Asset Information</a></li>
+        <li role="presentation" routerLinkActive="active"><a routerLink="/eop-inquiry">Inquiry</a></li>
+        <li role="presentation" routerLinkActive="active"><a routerLink="/eop-adm">Administration</a></li>          
+      </ul>
+
+      <!-- <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown" appDropdown1>
+          <a href="#" class="dropdown-toggle" role="button">More <span class="caret"></span></a>
+          <ul class="dropdown-menu" >
+            <li><a routerLink="#">About</a></li>
+            <li><a routerLink="#">Tools</a></li> 
+            <li><a routerLink="#">refresh Cache</a></li>
+            <li><a routerLink="#">maintain View</a></li>
+            <li><a routerLink="#">Trade resend</a></li>              
+          </ul>
+        </li>
+      </ul> -->
+
+    </div>
+  </div>
+
+  <!-- 2. Display selected tab content / component -->
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+    <router-outlet></router-outlet>
+    </div>
+  </div>

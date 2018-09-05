@@ -1,20 +1,21 @@
 <app-header (featureEvent)="displayView($event)"></app-header>
-<div class="container">
 
- <!--1 recipe APPLICATION-->
-  <div class="row" *ngIf="viewName === 'recipe'">
-     <div class="col-xs-3">
-      <app-recipe></app-recipe>
-    </div>
-  </div>  
+<!--1 recipe APPLICATION-->
+<div class="row" *ngIf="viewName === 'recipe'">
+  <div class="col-xs-3">
+    <app-recipe></app-recipe>
+  </div>
+</div>
 
-  <!--2 shopping APPLICATION-->
-  <div class="row" *ngIf="viewName=== 'shopping'">
+<!--2 shopping APPLICATION-->
+<div class="container" *ngIf="viewName === 'shopping'">
+  <div class="row">
     <div class="col-xs-6">
       <app-shopping-list></app-shopping-list>
     </div>
   </div>
 </div>
+
 
 <!--3 servers APPLICATION-->
 <div class="container" *ngIf="viewName === 'server'">
@@ -26,12 +27,12 @@
 </div>
 
 <!-- 4 EOP APPLICATION --->
-<div class="container" *ngIf="viewName === 'eop'">
-    <div class="row">
+<div *ngIf="viewName === 'eop'">
+  <div class="row">
     <div class="col-xs-12">
-        <app-opac></app-opac>
+      <app-opac></app-opac>
     </div>
-  </div>  
+  </div>
 </div>
 
 <!--Footer-->
