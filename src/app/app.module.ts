@@ -52,6 +52,7 @@ const approutes : Routes = [
 //{path:'eop-transfer', component:TransferComponent},
 {path:'eop-transfer/acct-transfer', component:AcctTransferComponent},
 {path:'eop-transfer/transfer-list', component:TransferListComponent},
+{path:'eop-transfer/transfer-list/:id', component:TransferListComponent},
 
 ]
 

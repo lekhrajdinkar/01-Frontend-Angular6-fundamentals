@@ -3,15 +3,17 @@
     <div class="col-xs-12" >
   
         <ul class="list-group">
-            <a class="list-group-item" style="cursor: pointer;" >
-                <h5>{{ a.acct_name }}</h5>
-                 {{ a.acct_abbr}} | {{ a.acct_number}} 
+            <a class="list-group-item jumbotron" style="cursor: pointer;" >
+                <h5 class="label label-primary">{{ a.acct_name }}</h5>
+                <h5 class="label label-primary">{{ a.acct_abbr}} </h5>
+                <h5 class="label label-primary"> {{ a.acct_number}}</h5>
+                 
                 <div *ngIf="a.is_active" class="label label-success" >ACTIVE</div>
                 <div *ngIf="!a.is_active" class="label label-danger" >IN - ACTIVE</div><br>
-                
+                <hr>
                 <div class="btn-group" role="group" aria-label="...">
-                    <button class="btn btn-default" (click)="onSetTo('active')">Set to 'active'</button>
-                    <button class="btn " (click)="onSetTo('inactive')">Set to 'inactive'</button>                        
+                    <button class="btn btn-default btn-sm" (click)="onSetTo('active')">Set to 'active'</button>
+                    <button class="btn btn-sm" (click)="onSetTo('inactive')">Set to 'inactive'</button>                        
                 </div>
                 
             </a>

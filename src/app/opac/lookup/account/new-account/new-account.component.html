@@ -3,22 +3,25 @@
   <div class="row">
     <div class="col-xs-3">
 
-      <div class="form-group">
-        <label>Account Name</label>
-        <input   type="text"  class="form-control"   #accountName>
-      </div>
-
-      <div class="form-group">
-          <label>Account Number</label>
-          <input   type="text"  class="form-control"  #accountnu>
-        </div>
-
-        <div class="form-group">
-            <label>Account Abbreviation </label>
-            <input type="text"   class="form-control"  #accountabbr>
+        <div class="input-group">
+            <!-- <span class="input-group-addon" >Account Name </span> -->
+            <input type="text" class="form-control" placeholder="Enter Account Name"  #accountName>
           </div>
 
-      <div class="form-group">
+      
+      <div class="input-group">
+          <!-- <span class="input-group-addon" >Account Number </span> -->
+          <input   type="text"  class="form-control" placeholder="Enter Account Number "  #accountnu>
+        </div>
+
+        <div class="input-group">
+            <!-- <label>Account Abbreviation </label> -->
+            <span class="input-group-addon" >Account Abbreviation  </span>
+            <input type="text"   class="form-control" placeholder=" "   #accountabbr>
+          </div>
+
+      <div class="input-group">
+        <span class="input-group-addon" >Status</span>
         <select class="form-control" #status>
           <option value="true">Active</option>
           <option value="false">Inactive</option>

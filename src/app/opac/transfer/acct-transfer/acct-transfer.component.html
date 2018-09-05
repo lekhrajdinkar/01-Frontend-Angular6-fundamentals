@@ -1,3 +1,10 @@
-<p>
-  acct-transfer works!
-</p>
+<div class="row">
+  <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+    create transfer - in progress...
+    <hr>
+    <a class="btn btn-primary" (click)="routeTransferList()">transfer List</a>
+<br>
+    <input type="text" placeholder="Enter Transfer ID" #id>
+    <a class="btn btn-primary btn-sm" (click)="routeTransfer(id)">open transfer</a>
+  </div>
+</div>

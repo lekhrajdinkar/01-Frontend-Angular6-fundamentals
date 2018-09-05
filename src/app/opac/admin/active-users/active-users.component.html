@@ -1,6 +1,22 @@
-<h3 *ngIf="users.length > 0">Active Users</h3>
+<div class="panel panel-success">
+
+    <div *ngIf="users.length > 0" class="panel-heading">Active Users</div>
+
+    <div class="panel-body">
+        <ul class="list-group">
+            <li    class="list-group-item"    *ngFor="let u of users; let i = index">
+                <h5 class="label label-info">{{ u.initials}}</h5>
+                <h5 class="label label-info">{{u.name}} </h5>
+                <a class="btn btn-default btn-sm navbar-right" (click)="onSetToInactive(u,i)">Set to Inactive</a>
+            </li>
+          </ul>
+    </div>
+    
+  </div>
+
+<!-- <h3 *ngIf="users.length > 0">Active Users</h3>
 <ul class="list-group">
   <li    class="list-group-item"    *ngFor="let u of users; let i = index">
       {{ u.initials}}   | {{u.name}} <a class="btn btn-danger navbar-right" (click)="onSetToInactive(u,i)">Set to Inactive</a>
   </li>
-</ul>
+</ul> -->
