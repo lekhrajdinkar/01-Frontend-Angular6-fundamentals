@@ -24,5 +24,7 @@
 
 <hr>
 
+<div *ngIf="serverId" class="label label-info">Server added with {{serverId}}</div>
+
 <!-- 5. Show all server list-->
 <app-server *ngFor="let server of servers"></app-server>

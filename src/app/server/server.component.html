@@ -1,4 +1,13 @@
-<p [ngClass]="{online : getServerStatus() === 'online'}" [ngStyle]="{backgroundColor : getServerStatusColor()}"> {{ 'Server' }} : {{ serverName }} is {{ getServerStatus()}}</p>
+<br>
+<div class="label"
+[ngClass]="{online : getServerStatus() === 'online'}" 
+[ngStyle]="{backgroundColor : getServerStatusColor()}"> 
 
-<a routerLink=" servers">Reload - "server"   : relative path, wont work</a>
-<a routerLink="/servers">Reload - "/servers" : Absoulte path, will work !</a>
+<!-- <br> {{ 'Server-Name' }} : {{ serverName }} 
+<br> ServerId : {{ServerId}}  -->
+<br> status :  {{ getServerStatus()}} 
+
+</div>
+
+<!-- <a routerLink=" servers">Reload - "server"   : relative path, wont work</a>
+<a routerLink="/servers">Reload - "/servers" : Absoulte path, will work !</a> -->

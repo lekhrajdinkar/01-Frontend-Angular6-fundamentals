@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'opac-transfer-list',
@@ -15,10 +15,15 @@ export class TransferListComponent implements OnInit {
 
    transferId : string;
 
-  ngOnInit() { 
-    
+  ngOnInit()
+   { 
+    //this.currentActiveRoute.snapshot.params['id'];
     this.transferId = this.currentActiveRoute.snapshot.params['id'];
     console.log("trasnfer id : "+ this.transferId);
+
+    this.currentActiveRoute.params.subscribe(
+      (params : Params ) => {this.transferId = params['id']}
+    );
    }
 
 

@@ -54,6 +54,8 @@ const approutes : Routes = [
 {path:'eop-transfer/transfer-list', component:TransferListComponent},
 {path:'eop-transfer/transfer-list/:id', component:TransferListComponent},
 
+{path:'eop-transfer/servers/:serverId/create', component:ServersComponent},
+
 ]
 
 @NgModule({

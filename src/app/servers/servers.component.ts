@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-servers',
@@ -13,6 +14,7 @@ export class ServersComponent implements OnInit
   //Add new sderver
   serverCreationStatus = 'No server was created!';
   serverName : string;
+  serverId : string;
   serverCreated = false;  
 
   onCreateServer() {
@@ -23,8 +25,7 @@ export class ServersComponent implements OnInit
     this.serverCreated = true;
   }
   
-  ngOnInit() {  }
- 
+   
 //---------------------------------------------------------
   //not in use. just to explain 2 way binding.
   onUpdateServerName(event: Event) {
@@ -34,8 +35,17 @@ export class ServersComponent implements OnInit
   
   //Enable Add server button after 2 second
   allowNewServer = false;
-  constructor() {
+
+  constructor(   
+    private currentActiveRoute : ActivatedRoute //active route
+  ) {
     setTimeout(() => {      this.allowNewServer = true;    }, 5000);
   }
+
+  ngOnInit() { 
+    this.serverId = this.currentActiveRoute.snapshot.params['serverId']
+    if (this.serverId != null) this.servers.push(this.serverName);
+   }
+
 
 }

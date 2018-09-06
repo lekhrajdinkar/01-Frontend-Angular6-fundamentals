@@ -8,6 +8,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class AcctTransferComponent implements OnInit {
 
+  devtip : boolean = true;
+  toggleDevtip(){    this.devtip = !this.devtip;  }
   constructor(
     private router : Router,
     private currentActiveRoute : ActivatedRoute 
@@ -36,8 +38,19 @@ export class AcctTransferComponent implements OnInit {
   {  
     //3. show transfer id for a specific Transfer.
     console.log("transfer id" + id);
-    this.router.navigate(  ['/eop-transfer/transfer-list/'+ id],  {relativeTo : this.currentActiveRoute} ) ;     
+    //this.router.navigate(  ['/eop-transfer/transfer-list/'+ id],  {relativeTo : this.currentActiveRoute} ) ;
+    this.router.navigate(  ['/eop-transfer/transfer-list/', id],  {relativeTo : this.currentActiveRoute} ) ;     
   }
 
+
+  createServer( id : string){
+    this.router.navigate(  
+      ['/eop-transfer/servers', id, 'create'],
+
+     {
+       queryParams : {serverName : 'x200775'},
+       fragment : 'creating'
+     } ) ;
+  }
 
 }
