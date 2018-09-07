@@ -40,6 +40,9 @@ import { GrpComponent } from './opac/lookup/grp/grp.component';
 import { TransferComponent } from './opac/transfer/transfer.component';
 import { AccountListComponent } from './opac/lookup/account/account-list/account-list.component';
 import { OpacHeaderComponentTwo } from './opac/opac-header/opac-header.component';
+import { LookupComponent } from './opac/lookup/lookup.component';
+import { ReportComponent } from './opac/lookup/report/report.component';
+import { AddUserComponent } from './opac/admin/add-user/add-user.component';
 
 //1. Add Path and components. Dont put / in path
 const approutes : Routes = [
@@ -48,6 +51,9 @@ const approutes : Routes = [
 {path:'recipe',component:RecipeComponent},
 {path:'shopping',component:ShoppingListComponent},
 {path:'servers', component:ServersComponent},
+
+{path:'lkp/acct', component:AccountComponent},
+{path:'lp/asset', component:AssetComponent},
 
 //{path:'eop-transfer', component:TransferComponent},
 {path:'eop-transfer/acct-transfer', component:AcctTransferComponent},
@@ -92,7 +98,10 @@ const approutes : Routes = [
     TransferListComponent,
     GrpComponent,
     TransferComponent,
-    AccountListComponent
+    AccountListComponent,
+    LookupComponent,
+    ReportComponent,
+    AddUserComponent
   ],
   imports: [
     BrowserModule,    

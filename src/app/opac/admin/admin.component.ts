@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { OpacAdminService } from '../services/opac.service.admin';
 import { User } from '../model/User.model';
+import { AdminService } from './admin.service';
 
 @Component({
   selector: 'opac-admin',
   templateUrl: './admin.component.html',
-  providers : [OpacAdminService]
+  providers : [OpacAdminService, AdminService]
 })
 export class OpacAdminComponent implements OnInit{
 

@@ -1,0 +1,54 @@
+<div class="container ">
+
+  <div class="row">
+
+    <div class="col-xs-6 list-group">
+        <div class="list-group-item"><div class="label label-warning">5.1.1. Add New User</div></div>
+      
+        <div class="list-group-item">
+        <div class="input-group ">
+          <span class="input-group-addon">User name : </span>
+          <input type="text" class="form-control" placeholder=" " #name>
+        </div>
+      </div>
+
+      <div class="list-group-item">
+        <div class="input-group">
+          <span class="input-group-addon">User initials : </span>
+          <input type="text" class="form-control" placeholder=" " #initials>
+        </div>
+      </div>
+
+      <div class="list-group-item">
+        <div class="input-group">
+          <span class="input-group-addon">User role : </span>
+          <input type="text" class="form-control" placeholder=" " #role>
+        </div>
+      </div>
+
+      <div class="list-group-item">
+        <div class="input-group">
+          <span class="input-group-addon">User location : </span>
+          <input type="text" class="form-control" placeholder=" " #loc>
+        </div>
+      </div>
+
+      <div class="list-group-item">
+        <div class="input-group">
+          <span class="input-group-addon">Status : </span>
+          <select class="form-control" #status>
+              <option value="true">Active</option>
+              <option value="false">Inactive</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="list-group-item"><div class="btn btn-primary btn-sm"
+         (click)="addUser(name.value,initials.value,role.value,loc.value,status.value)">ADD USER</div></div>
+      
+
+    </div>
+
+  </div>
+</div>
+<hr>
