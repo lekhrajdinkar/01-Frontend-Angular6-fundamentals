@@ -24,7 +24,11 @@ addUser(name : string,initials : string,role : string,loc : string,status : bool
   ngOnInit() {
     this.adminSrv.getUsersSrv()
     .subscribe(
-      (response) => {console.log(response)},
+      (response) => { //response is of Response Type.
+        console.log(response);
+        const data = response.json(); //It converts the Json object into js Object.
+        console.log(data);
+      },
       (error)=>{console.log(error)}
     );
   }
