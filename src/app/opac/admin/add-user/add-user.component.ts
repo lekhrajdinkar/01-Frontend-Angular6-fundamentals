@@ -22,6 +22,11 @@ addUser(name : string,initials : string,role : string,loc : string,status : bool
   );
 }
   ngOnInit() {
+    this.adminSrv.getUsersSrv()
+    .subscribe(
+      (response) => {console.log(response)},
+      (error)=>{console.log(error)}
+    );
   }
 
 }

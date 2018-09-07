@@ -12,4 +12,9 @@ export class AdminService{
         return this.http.post("https://ng6-firebase-b6db1.firebaseio.com/ng6/opac/users.json",u);
     }
 
+    getUsersSrv(){
+        //this is observable
+        return this.http.get("https://ng6-firebase-b6db1.firebaseio.com/ng6/opac/users.json");
+    }
+
 }
