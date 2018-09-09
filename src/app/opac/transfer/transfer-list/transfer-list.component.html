@@ -3,5 +3,10 @@
 
   <div *ngIf="transferId"> Transfer Id : {{transferId}}</div>
 
-  <br><a  [routerLink] = "['/eop-transfer/transfer-list', 12345 ]">/eop-transfer/transfer-list/12345</a>
+  <br><a  [routerLink] = "['./', 12345 ]"> refresh page with differemnt argument : [routerLink] = "['./', 12345 ]"</a>
+  <hr>
+  1. if loading the same component with different arg <br>
+  this.currentActiveRoute.params.subscribe<br>
+<hr>
+  2. if switching from other component to this componet <br> this.currentActiveRoute.snapshot.params['id'] <br>
 

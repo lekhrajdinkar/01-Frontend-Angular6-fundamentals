@@ -1,35 +1,37 @@
-<div class="container ">
+<!-- 1. Add tabs-->
+<div class="row navbar navbar-inverse">
+  <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
 
-    <!-- 1. Add tabs-->
-    <div class="row navbar navbar-inverse">
-      <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
-        <ul class="nav nav-tabs navbar-btn">
-          
-          <li role="presentation" routerLinkActive="active"><a routerLink="/eop-transfer/acct-transfer">Account transfer</a></li>
-          <li role="presentation" routerLinkActive="active"><a routerLink="/eop-transfer/transfer-list">Transfer list</a></li>
-          <li role="presentation" routerLinkActive="active" [routerLinkActiveOptions]="{exact : true}"><a routerLink="/">Transfer list - Duplicate</a></li>
-          <!-- <li role="presentation" routerLinkActive="active"><a routerLink="/recipe">recipe</a></li> -->
-          <li role="presentation" routerLinkActive="active"><a routerLink="/shopping">shopping</a></li>
-          <li role="presentation" routerLinkActive="active"><a routerLink="/servers">servers</a></li>          
-        </ul>
-      </div>
-    </div>
-  
-    <!-- 2. Display selected tab content / component -->
-    <div class="row jumbotron">
-      <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
-      <router-outlet></router-outlet>
-      </div>
-    </div>
- 
-    <!--1.1 Add transfer list tab 
+    <ul class="nav nav-tabs navbar-btn">
+
+      <li role="presentation" routerLinkActive="active"><a routerLink="acct-transfer">Account transfer</a></li>
+      <li role="presentation" routerLinkActive="active"><a routerLink="transfer-list">Transfer list</a></li>
+
+      <li role="presentation" routerLinkActive="active" [routerLinkActiveOptions]="{exact : true}">
+        <a routerLink="./">Transferlist - Duplicate</a></li>
+      <li><div class="label label-info"> test tabs >> </div></li>
+      <li role="presentation" routerLinkActive="active" ><a routerLink="recipe" >recipe</a></li>
+      <li role="presentation" routerLinkActive="active"><a routerLink="shopping" >shopping</a></li>
+      <li role="presentation" routerLinkActive="active"><a routerLink="servers" >servers</a></li>
+    </ul>
+  </div>
+</div>
+
+<!-- 2. Display selected tab content / component -->
+<div class="row jumbotron">
+  <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+    <router-outlet></router-outlet>
+  </div>
+</div>
+
+<!--1.1 Add transfer list tab 
   <div class="row">
     <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
         <opac-transfer-list></opac-transfer-list>
     </div>
   </div> -->
 
-    <!--1.2. Add Account transfer tab
+<!--1.2. Add Account transfer tab
   <div class="row">
     <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
         <opac-acct-transfer></opac-acct-transfer>

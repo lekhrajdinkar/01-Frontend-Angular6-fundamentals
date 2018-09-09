@@ -8,49 +8,60 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class AcctTransferComponent implements OnInit {
 
-  devtip : boolean = true;
-  toggleDevtip(){    this.devtip = !this.devtip;  }
+  devtip: boolean = true;
+  toggleDevtip() { this.devtip = !this.devtip; }
   constructor(
-    private router : Router,
-    private currentActiveRoute : ActivatedRoute 
-   ) { }
+    private router: Router,
+    private currentActiveRoute: ActivatedRoute
+  ) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
-  routeTransferList()
-  {    
-    //1. Unlike RouterLink, router onject does not know currently loaded route and
-    //only know the component it sits. eop-transfer/transfer-list and /eop-transfer/transfer-list are same here.
-    //this.router.navigate(['/eop-transfer/transfer-list'])
-
-    //2. Add related path now
-    // eop-transfer/transfer-list and /eop-transfer/transfer-list are different here.
+  routeTransferList() {
     this.router.navigate(
-            ['/eop-transfer/transfer-list'],
-           // ['./eop-transfer/transfer-list'],
-          {relativeTo : this.currentActiveRoute} // ActivatedRoute is complex js object and keeps lots of metadata.
-      ) ;     
+      ['../transfer-list'],
+      { relativeTo: this.currentActiveRoute } // ActivatedRoute is complex js object and keeps lots of metadata.
+    );
+  }
+
+  //1. Unlike RouterLink, router onject does not know currently loaded route and
+  //only know the component it sits. eop-t/transfer-list and /eop-t/transfer-list are same here.
+  //this.router.navigate(['/eop-t/transfer-list'])
+  routeTransferListRelatively(id : string) {
+    this.router.navigate(
+      ['../transfer-list',id],
+      { relativeTo: this.currentActiveRoute } // ActivatedRoute is complex js object and keeps lots of metadata.
+    );
+  }
+
+  //2. Add related path now
+  // eop-t/transfer-list and /eop-t/transfer-list are different here. 
+  routeTransferListAbsolute(id : string) {
+    this.router.navigate(
+     // ['../transfer-list', id] // It wont work, provide absolute path
+      ['/eop-t/transfer-list',id] // It  work, its absolute path
+
+      //, {relativeTo : this.currentActiveRoute} // ActivatedRoute is complex js object and keeps lots of metadata.
+    );
   }
 
 
-  routeTransfer(id : string)
-  {  
+  routeTransfer(id: string) {
     //3. show transfer id for a specific Transfer.
     console.log("transfer id" + id);
     //this.router.navigate(  ['/eop-transfer/transfer-list/'+ id],  {relativeTo : this.currentActiveRoute} ) ;
-    this.router.navigate(  ['/eop-transfer/transfer-list/', id],  {relativeTo : this.currentActiveRoute} ) ;     
+    this.router.navigate(['../transfer-list/', id], { relativeTo: this.currentActiveRoute });
   }
 
 
-  createServer( id : string){
-    this.router.navigate(  
+  createServer(id: string) {
+    this.router.navigate(
       ['/eop-transfer/servers', id, 'create'],
 
-     {
-       queryParams : {serverName : 'x200775'},
-       fragment : 'creating'
-     } ) ;
+      {
+        queryParams: { serverName: 'x200775' },
+        fragment: 'creating'
+      });
   }
 
 }

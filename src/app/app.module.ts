@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { ServerComponent } from './server/server.component';
 import { ServersComponent } from './servers/servers.component';
-import { Routes, RouterModule} from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
 
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
@@ -43,25 +43,76 @@ import { OpacHeaderComponentTwo } from './opac/opac-header/opac-header.component
 import { LookupComponent } from './opac/lookup/lookup.component';
 import { ReportComponent } from './opac/lookup/report/report.component';
 import { AddUserComponent } from './opac/admin/add-user/add-user.component';
+import { OrderComponent } from './opac/op/order/order.component';
 
 //1. Add Path and components. Dont put / in path
-const approutes : Routes = [
-{path:'', component:TransferListComponent}, //default component when no link initially clicked.
+const approutes: Routes = [
+  //------eop op------
+  { path: '', component: OpComponent },
+  {
+    path: 'eop-op', component: OpComponent,
+    children: [
+      { path: 'mkp', component: MockupComponent },
+      { path: 'am', component: AuthMaintncComponent },
+      { path: 'fi', component: FiExportComponent },
+      // { path: 'om', component: OrderComponent },
+      {
+        path: 'om', component: OrderComponent,
+        children: [
+          { path: 'aoe', component: AoeComponent },
+          { path: 'goe', component: GoeComponent }
+        ]
+      },
+      
+    ]
+  },
 
-{path:'recipe',component:RecipeComponent},
-{path:'shopping',component:ShoppingListComponent},
-{path:'servers', component:ServersComponent},
+  //------eop t------
+  {
+    path: 'eop-t', component: TransferComponent,
+    children: [
+      { path: '', component: TransferListComponent }, //default component when no link initially clicked.
+      { path: 'transfer-list', component: TransferListComponent },
+      { path: 'acct-transfer', component: AcctTransferComponent },
+      { path: 'transfer-list/:id', component: TransferListComponent },
+      { path: 'servers/:serverId/create', component: ServersComponent },
+      { path: 'recipe', component: RecipeComponent },
+      { path: 'shopping', component: ShoppingListComponent },
+      { path: 'servers', component: ServersComponent },
+    ]
+  },
 
-{path:'lkp/acct', component:AccountComponent},
-{path:'lp/asset', component:AssetComponent},
+  //------eop asset info------
+  {
+    path: 'eop-asset-info', component: AssetInfoComponent,
+    children: [
 
-//{path:'eop-transfer', component:TransferComponent},
-{path:'eop-transfer/acct-transfer', component:AcctTransferComponent},
-{path:'eop-transfer/transfer-list', component:TransferListComponent},
-{path:'eop-transfer/transfer-list/:id', component:TransferListComponent},
+    ]
+  },
 
-{path:'eop-transfer/servers/:serverId/create', component:ServersComponent},
+  //------eop inquiry------
+  {
+    path: 'eop-lkp', component: LookupComponent,
+    children: [
+      { path: '', component: AccountComponent },
+      { path: 'account', component: AccountComponent },
+      { path: 'asset', component: AssetComponent },
+      { path: 'grp', component: GrpComponent },
+      { path: 'rpt', component: ReportComponent },
+    ]
+  },
 
+  //------eop admin------
+  {
+    path: 'eop-adm', component: OpacAdminComponent,
+    children: [
+      { path: '', component: ActiveUsersComponent },
+      { path: 'active-users', component: ActiveUsersComponent },
+      { path: 'inactive-users', component: InactiveUsersComponent },
+      { path: 'add-user', component: AddUserComponent },
+
+    ]
+  },
 ]
 
 @NgModule({
@@ -83,7 +134,7 @@ const approutes : Routes = [
     AccountComponent,
     OpacComponent,
     NewAccountComponent,
-    OpacHeaderComponent,OpacHeaderComponentTwo,
+    OpacHeaderComponent, OpacHeaderComponentTwo,
     ActiveUsersComponent,
     InactiveUsersComponent,
     OpacAdminComponent,
@@ -101,10 +152,11 @@ const approutes : Routes = [
     AccountListComponent,
     LookupComponent,
     ReportComponent,
-    AddUserComponent
+    AddUserComponent,
+    OrderComponent
   ],
   imports: [
-    BrowserModule,    
+    BrowserModule,
     FormsModule,
     HttpModule,
     RouterModule.forRoot(approutes) //2. Add routerModule Register path at RouterModule //3. Add respective import

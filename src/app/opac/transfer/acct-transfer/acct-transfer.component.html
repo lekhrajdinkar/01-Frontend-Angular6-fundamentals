@@ -4,31 +4,34 @@
   <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
     create transfer - in progress...
     <hr>
-    0. Route Programatically - this.router.navigate <a class="btn btn-primary" (click)="routeTransferList()">transfer List</a>
+    0. Route Programatically - this.router.navigate 
+    <a class="btn btn-primary" (click)="routeTransferList()">transfer List</a>
 
-   <br><br> 1. Navigate with routerLink directive with argument passing
-    <hr>    
-    <br><a  routerLink = "['/eop-transfer/transfer-list', 123 ]">routerLink = "['/eop-transfer/transfer-list', 123 ]</a>
-    <br><a  [routerLink] = "['/eop-transfer/transfer-list', 123 ]">[routerLink] = "['/eop-transfer/transfer-list', 123 ]"</a>
-    <br><a  [routerLink] = "['/eop-transfer/transfer-list/123' ]">[routerLink] = "['/eop-transfer/transfer-list/123' ]"</a>
-  
-  <br><br> 2. Navigate programatically with argument passing
-    <br>    <input type="text" placeholder="Enter Transfer ID" #id>
-    <a class="btn btn-primary btn-sm" (click)="routeTransfer(id.value)">open transfer</a>
+    <br><br> 1. Navigate with ROUTERLINK directive with argument passing
+    <br><a [routerLink]="['../transfer-list', 123]">[routerLink] = "['../transfer-list', 123 ]"</a>
+    <br><a [routerLink]="['../transfer-list/123' ]">[routerLink] = "['../transfer-list/123' ]"</a>
 
-  <br><br>  3. Navigate with routerLink directive with argument passing and query param
-   
-   <br><br><a class="label label-info"
-   [routerLink] = "['/eop-transfer/servers/', 22222, 'create']"
-   [queryParams] = "{serverName : 'x200775'}" 
-   fragment="creating"
-     >Add Server [id : 22222] via routerLink directive</a>
-    <br> final url : http://localhost:4200/eop-transfer/servers/22222/create?serverName=x200775#creating
+    <br> 2. Navigate PROGRAMICALLY (router.navigate()) with argument passing
+    <br>
+    <input type="text" placeholder="Enter Transfer ID" #id>
 
-  <br><br> 4. Navigate programatically with argument passing and query param
+    <div class="btn-group" role="group" aria-label="Basic example">
+      <a  class="btn btn-primary" (click)="routeTransferListRelatively(id.value)">Transfer-list
+        (relative)</a>
+      <a  class="btn btn-primary" (click)="routeTransferListAbsolute(id.value)">Transfer-list
+        (Absolute)</a>
+    </div>
+
+    <br><br> 3. Navigate with routerLink directive with argument passing and query param
+
+    <br><br><a class="label label-info" [routerLink]="['/eop-transfer/servers/', 22222, 'create']" [queryParams]="{serverName : 'x200775'}"
+      fragment="creating">Add Server [id : 22222] via routerLink directive</a>
+    <br> final url : http://localhost:4200/eop-t/servers/22222/create?serverName=x200775#creating
+
+    <br><br> 4. Navigate programatically with argument passing and query param
     <br><br>
     <input type="text" placeholder="Enter Server Id" #serverId>
     <a class="btn btn-primary btn-sm" (click)="createServer(serverId.value)">Add Server</a>
-  
+
   </div>
 </div>
