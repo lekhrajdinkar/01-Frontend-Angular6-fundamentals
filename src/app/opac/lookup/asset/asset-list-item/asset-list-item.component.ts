@@ -10,18 +10,20 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 })
 export class AssetListItemComponent implements OnInit {
 
-  @Input() asset : Asset ; 
+  @Input() asset: Asset;
   @Input() index: number;
 
   constructor(private srv: AssetService,
     private router: Router,
     private currentActiveRoute: ActivatedRoute) { }
 
-    ngOnInit() {
+  ngOnInit() {
     this.currentActiveRoute.params
       .subscribe(
         (params: Params) => {
-            console.log("delete asset at index " + params['i']);
+          console.log("delete asset at index " + params['i']);
+          // this.index = +params['index'];
+          // this.asset = this.srv.getAssetbyIndex(this.index);
         }
       );
   }

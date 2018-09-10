@@ -1,8 +1,8 @@
 <!-- Add image -->
-<div class=" jumbotron">
+<div class=" ">
 <div class="row">
   <div class="col-xs-12">
-    <div class="label label-warning">Asset Description:</div> <hr>
+    <!-- <div class="label label-warning">Asset Description:</div> <hr> -->
     <img [src]="asset.imgPath" alt="{{ asset.name }}" class="img-responsive" style="max-height: 200px;">
   </div>
 </div>
@@ -11,7 +11,10 @@
 <div class="row">
   <div class="col-xs-12">
     <h3>{{ asset.name }}</h3>
-    <div class="label label-info">{{ asset.sym }}</div>
+    CG_SYM : <div class="label label-info">{{ asset.sym }}</div> <br>
+    Price : <div class="label label-info"> </div> <br>
+    Country : <div class="label label-info"></div> <br>
+    Decription : <div class="label label-info"></div>
   </div>
 </div>
 

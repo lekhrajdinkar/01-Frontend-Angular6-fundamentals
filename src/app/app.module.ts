@@ -105,9 +105,11 @@ const approutes: Routes = [
       {
         path: 'asset', component: AssetComponent, children: [
           { path: '', redirectTo:'0' ,pathMatch: 'full' },
-          { path: ':index', component: AssetDetailComponent, children:[
+          { path: 'new', component: AssetEditComponent},
+          { path: ':index', component: AssetDetailComponent, 
+          children:[
             {path:'edit', component :AssetEditComponent},
-            {path:'delete/:index', component :AssetListItemComponent},
+            {path:'delete/:i', component :AssetListItemComponent},
           ] }
         ]
       },

@@ -22,6 +22,8 @@ export class AssetListComponent implements OnInit {
     console.log(this.assets);
    }
 
-  onNewAsset() {}
+  onNewAsset() {
+    this.router.navigate(['new'],{relativeTo:this.route})
+  }
 
 }
