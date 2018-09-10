@@ -9,6 +9,7 @@
 
 <!-- Show assets all -->
 <div class="row">
+    <div class="label label-warning">Asset List:</div> <hr>
   <div class="col-xs-12">
     <opac-asset-list-item *ngFor="let asset of assets; let i = index" [asset]="asset" [index]="i">  </opac-asset-list-item>
   </div>

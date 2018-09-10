@@ -15,10 +15,10 @@ export class AssetDetailComponent implements OnInit {
 
   constructor(private srv: AssetService,
     private router: Router,
-    private route: ActivatedRoute) { }
+    private currentActiveRoute: ActivatedRoute) { }
 
   ngOnInit() {
-    this.route.params
+    this.currentActiveRoute.params
       .subscribe(
         (params: Params) => {
           this.index = +params['index'];
@@ -28,7 +28,8 @@ export class AssetDetailComponent implements OnInit {
   }
   delete(){
     console.log("delete : " + this.asset);
-    this.srv.delete(this.index);
+    this.router.navigate(['delete', this.index], { relativeTo: this.currentActiveRoute})
+    //this.srv.delete(this.index);
   }
 
 }

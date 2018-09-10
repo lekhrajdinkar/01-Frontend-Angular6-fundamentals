@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Asset } from '../asset.model';
+import { AssetService } from 'src/app/opac/lookup/asset/asset.service';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'opac-asset-list-item',
@@ -11,10 +13,17 @@ export class AssetListItemComponent implements OnInit {
   @Input() asset : Asset ; 
   @Input() index: number;
 
-  constructor() { }
+  constructor(private srv: AssetService,
+    private router: Router,
+    private currentActiveRoute: ActivatedRoute) { }
 
-  ngOnInit() { 
-    console.log(this.asset);
-   }
+    ngOnInit() {
+    this.currentActiveRoute.params
+      .subscribe(
+        (params: Params) => {
+            console.log("delete asset at index " + params['i']);
+        }
+      );
+  }
 
 }
