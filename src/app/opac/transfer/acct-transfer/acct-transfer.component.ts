@@ -49,16 +49,17 @@ export class AcctTransferComponent implements OnInit {
   routeTransfer(id: string) {
     //3. show transfer id for a specific Transfer.
     console.log("transfer id" + id);
-    //this.router.navigate(  ['/eop-transfer/transfer-list/'+ id],  {relativeTo : this.currentActiveRoute} ) ;
+    //this.router.navigate(  ['/eop-t/transfer-list/'+ id],  {relativeTo : this.currentActiveRoute} ) ;
     this.router.navigate(['../transfer-list/', id], { relativeTo: this.currentActiveRoute });
   }
 
 
   createServer(id: string) {
     this.router.navigate(
-      ['/eop-transfer/servers', id, 'create'],
+      ['../servers', id, 'create'],
 
       {
+        relativeTo: this.currentActiveRoute,
         queryParams: { serverName: 'x200775' },
         fragment: 'creating'
       });

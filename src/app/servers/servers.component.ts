@@ -36,14 +36,13 @@ export class ServersComponent implements OnInit
   //Enable Add server button after 2 second
   allowNewServer = false;
 
-  constructor(   
-    private currentActiveRoute : ActivatedRoute //active route
-  ) {
-    setTimeout(() => {      this.allowNewServer = true;    }, 5000);
+  constructor( private currentActiveRoute : ActivatedRoute )//active route
+   {
+    setTimeout(() => {      this.allowNewServer = true;    }, 5000);//ignore this code of l5.
   }
 
   ngOnInit() { 
-    this.serverId = this.currentActiveRoute.snapshot.params['serverId']
+    this.serverId = this.currentActiveRoute.snapshot.params['serverId'] //fetch Query
     if (this.serverId != null) this.servers.push(this.serverName);
    }
 

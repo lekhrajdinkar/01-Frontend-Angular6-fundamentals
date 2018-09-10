@@ -44,14 +44,19 @@ import { LookupComponent } from './opac/lookup/lookup.component';
 import { ReportComponent } from './opac/lookup/report/report.component';
 import { AddUserComponent } from './opac/admin/add-user/add-user.component';
 import { OrderComponent } from './opac/op/order/order.component';
+import { AssetListComponent } from './opac/lookup/asset/asset-list/asset-list.component';
+import { AssetListItemComponent } from './opac/lookup/asset/asset-list-item/asset-list-item.component';
+import { AssetEditComponent } from './opac/lookup/asset/asset-edit/asset-edit.component';
+import { AssetDetailComponent } from './opac/lookup/asset/asset-detail/asset-detail.component';
 
 //1. Add Path and components. Dont put / in path
 const approutes: Routes = [
   //------eop op------
-  { path: '', component: OpComponent },
+  { path: '', redirectTo: 'eop-op', pathMatch: 'full' },
   {
     path: 'eop-op', component: OpComponent,
     children: [
+      { path: '', redirectTo: 'om', pathMatch: 'full' },
       { path: 'mkp', component: MockupComponent },
       { path: 'am', component: AuthMaintncComponent },
       { path: 'fi', component: FiExportComponent },
@@ -59,11 +64,12 @@ const approutes: Routes = [
       {
         path: 'om', component: OrderComponent,
         children: [
+          { path: '', redirectTo: 'aoe', pathMatch: 'full' },
           { path: 'aoe', component: AoeComponent },
           { path: 'goe', component: GoeComponent }
         ]
       },
-      
+
     ]
   },
 
@@ -71,7 +77,7 @@ const approutes: Routes = [
   {
     path: 'eop-t', component: TransferComponent,
     children: [
-      { path: '', component: TransferListComponent }, //default component when no link initially clicked.
+      { path: '', redirectTo: 'acct-transfer', pathMatch: 'full' }, //default component when no link initially clicked.
       { path: 'transfer-list', component: TransferListComponent },
       { path: 'acct-transfer', component: AcctTransferComponent },
       { path: 'transfer-list/:id', component: TransferListComponent },
@@ -94,9 +100,17 @@ const approutes: Routes = [
   {
     path: 'eop-lkp', component: LookupComponent,
     children: [
-      { path: '', component: AccountComponent },
+      { path: '', redirectTo: 'asset', pathMatch: 'full' },
       { path: 'account', component: AccountComponent },
-      { path: 'asset', component: AssetComponent },
+      {
+        path: 'asset', component: AssetComponent, children: [
+          { path: '', redirectTo:'0' ,pathMatch: 'full' },
+          { path: ':index', component: AssetDetailComponent, children:[
+            {path:'edit', component :AssetEditComponent},
+            {path:'delete/:index', component :AssetListItemComponent},
+          ] }
+        ]
+      },
       { path: 'grp', component: GrpComponent },
       { path: 'rpt', component: ReportComponent },
     ]
@@ -106,7 +120,7 @@ const approutes: Routes = [
   {
     path: 'eop-adm', component: OpacAdminComponent,
     children: [
-      { path: '', component: ActiveUsersComponent },
+      { path: '', redirectTo: 'add-user', pathMatch: 'full' },
       { path: 'active-users', component: ActiveUsersComponent },
       { path: 'inactive-users', component: InactiveUsersComponent },
       { path: 'add-user', component: AddUserComponent },
@@ -153,7 +167,11 @@ const approutes: Routes = [
     LookupComponent,
     ReportComponent,
     AddUserComponent,
-    OrderComponent
+    OrderComponent,
+    AssetListComponent,
+    AssetListItemComponent,
+    AssetEditComponent,
+    AssetDetailComponent
   ],
   imports: [
     BrowserModule,

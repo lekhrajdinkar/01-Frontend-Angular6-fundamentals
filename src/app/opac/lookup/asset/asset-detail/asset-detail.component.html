@@ -1,0 +1,31 @@
+<!-- Add image -->
+<div class="row">
+  <div class="col-xs-12">
+    <img [src]="asset.imgPath" alt="{{ asset.name }}" class="img-responsive" style="max-height: 200px;">
+  </div>
+</div>
+
+<!-- Add name -->
+<div class="row">
+  <div class="col-xs-12">
+    <h3>{{ asset.name }}</h3>
+    <div class="label label-info">{{ asset.sym }}</div>
+  </div>
+</div>
+
+<hr>
+
+<!-- Add dropdown button to delete/edit -->
+<div class="row">
+  <div class="col-xs-12">
+
+    <div class="btn-group" appDropdown1>
+      <button type="button" class="btn btn-primary dropdown-toggle">Manage Asset<span class="caret"></span></button>
+      <ul class="dropdown-menu open">
+        <li><a style="cursor: pointer;" [routerLink]="['edit']">Edit Asset</a></li>
+        <li><a style="cursor: pointer;" (click)="delete()">Delete Asset</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>

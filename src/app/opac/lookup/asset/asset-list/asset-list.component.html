@@ -1,0 +1,15 @@
+<!-- Add New Asset -->
+<div class="row">
+  <div class="col-xs-12">
+    <button class="btn btn-success" (click)="onNewAsset()">New Asset</button>
+  </div>
+</div>
+
+<hr>
+
+<!-- Show assets all -->
+<div class="row">
+  <div class="col-xs-12">
+    <opac-asset-list-item *ngFor="let asset of assets; let i = index" [asset]="asset" [index]="i">  </opac-asset-list-item>
+  </div>
+</div>
