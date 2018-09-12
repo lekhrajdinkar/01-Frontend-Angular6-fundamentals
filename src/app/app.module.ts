@@ -48,11 +48,14 @@ import { AssetListComponent } from './opac/lookup/asset/asset-list/asset-list.co
 import { AssetListItemComponent } from './opac/lookup/asset/asset-list-item/asset-list-item.component';
 import { AssetEditComponent } from './opac/lookup/asset/asset-edit/asset-edit.component';
 import { AssetDetailComponent } from './opac/lookup/asset/asset-detail/asset-detail.component';
+import { LoginComponent } from './opac/login/login.component';
 
 //1. Add Path and components. Dont put / in path
 const approutes: Routes = [
   //------eop op------
-  { path: '', redirectTo: 'eop-op', pathMatch: 'full' },
+  { path: 'eop/login/:method', component:LoginComponent },
+  { path: '', redirectTo: 'eop/login/signup', pathMatch: 'full' },
+  // { path: '', redirectTo: 'eop-op', pathMatch: 'full' },
   {
     path: 'eop-op', component: OpComponent,
     children: [
@@ -173,7 +176,8 @@ const approutes: Routes = [
     AssetListComponent,
     AssetListItemComponent,
     AssetEditComponent,
-    AssetDetailComponent
+    AssetDetailComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

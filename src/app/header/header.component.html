@@ -4,7 +4,7 @@
         <a href="#" class="navbar-brand">NG6</a>
       </div>
   
-      <div class="collapse navbar-collapse" >
+      <div class="navbar" >
         <ul class="nav navbar-nav">
           <li><a (click) = "navigate('recipe')">Recipes</a></li>
           <li><a (click) = "navigate('shopping')">Shopping List</a></li>
@@ -12,6 +12,8 @@
           <li><a (click) = "navigate('eop')">EOP</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
+            <li><a [routerLink]="['eop/login','signup']">Register</a></li>
+            <li><a [routerLink]="['eop/login','signin']">Sign In</a></li>
           <li class="dropdown" appDropdown1>
             <a href="#" class="dropdown-toggle" role="button">Manage <span class="caret"></span></a>
             <ul class="dropdown-menu" >
