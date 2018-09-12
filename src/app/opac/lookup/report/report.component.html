@@ -1,3 +1,92 @@
-<p>
-  report works!
-</p>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+
+      <form (ngSubmit)="onSubmit()" #f="ngForm">
+        <!-- Make form Submittable-->
+        <button class="btn btn-primary" type="button" (click)="setvalue()">this.rptForm.setValue()</button>
+        <button class="btn btn-default" type="button" (click)="patch()">this.rptForm.form.patchValue()</button>
+        <button  class="btn btn-primary" type="button" (click)="reset()">RESET</button>
+
+          <div id="user-data" ngModelGroup="rptData" #formnameabbr="ngModelGroup">
+            <div class="form-group">
+              <label for="rptname">Report Name * </label>
+              <input type="text" id="rptname" class="form-control" name="rptname" ngModel required>
+            </div>
+
+            <div class="form-group">
+              <label for="rptabbr">Report Abbreviation</label>
+              <input type="text" id="rptabbr" class="form-control" name="rptabbr" 
+              [ngModel] = "defaultRptAbbr"
+              required>              
+            </div>
+          </div>
+         
+          <span class="help-block" *ngIf="!formnameabbr.valid && formnameabbr.touched">form name and abbr are not valid</span>
+
+
+          <div class="form-group">
+            <label for="email">Report Recipient email DL</label>
+            <input type="email" id="email" class="form-control" name="email" ngModel required email #email="ngModel">
+          </div>
+
+          <span class="help-block" *ngIf="!email.valid && email.touched">Please enter a valid email!</span>
+
+      
+
+        <div class="form-group">
+          <label for="format">Report output format</label>
+          <select id="format" class="form-control" name="format" ngModel >
+            <option value="pdf">pdf</option>
+            <option value="excel">excel</option>
+            <option value="word">word</option>
+          </select>
+        </div>
+
+        <div class="radio" *ngFor="let type1 of rpt_types">
+          <div class="label label-info">
+            <input type="radio" name="rpttype" [value]="type1" ngModel >
+            {{ type1 }}
+          </div>
+        </div>
+
+        <label for="format">Report Description</label>
+        <div class="form-group">
+            <textarea
+              name="desc"
+              rows="3"
+              class="form-control"
+              [(ngModel)]="desc"
+              #desc1="ngModel"></textarea>
+          </div>
+          <p *ngIf="desc1.dirty">2 way databind: {{ desc }}</p>
+        <button class="btn btn-primary" type="submit" [disabled]="!f.valid">Submit</button>
+
+      </form>
+
+    </div>
+  </div>
+</div>
+
+<!-- After Submit Display form data -->
+<div class="row" *ngIf="submitted">
+  <hr>
+    <div class="col-xs-12">
+      <h3>New Report Submitted</h3>
+      <p>Name: {{ rptDTO.name }}</p>
+      <p>abbr: {{ rptDTO.abbr }}</p>
+      <p>Type : {{ rptDTO.type }}</p>
+      <p>Format: {{ rptDTO.format }}</p>
+      <p>Email Recepient: {{ rptDTO.email }}</p>
+    </div>
+  </div>
+
+<!-- 
+1. register form
+2. register control
+3. add validator - email, required, maxlenght, minlenght, null, min,max
+4. ngModelGroup
+5. [disabled]="!f.valid"
+6. #email="ngModel"
+
+ -->
