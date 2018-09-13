@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import * as fb from 'firebase';
+import { OpacLoginServices } from '../opac.services';
 
 @Component({
   selector: 'app-login',
@@ -12,42 +13,40 @@ export class LoginComponent implements OnInit {
   
   constructor(
     private router : Router,
-    private currentActiveRoute : ActivatedRoute 
+    private currentActiveRoute : ActivatedRoute ,
+    private loginSrv : OpacLoginServices
    ) { }
 
    method : string ;
 
-  ngOnInit() {  
+  ngOnInit() { 
+    this.method = this.loginSrv.method ;
    this.method = this.currentActiveRoute.snapshot.params['method'] ;
    console.log("current method : "+this.method);
   }
 
-  switch(){
-    this.method = "signin"
+  switchtoRegister(){
+    this.method = "signup";
   }
+
+  switchtoSignip(){
+    this.method = "signin";
+  }
+
   onSignUp(form : NgForm){
     const email = form.value.username;
     const password = form.value.password;
-    console.log(email + " | " +password);
+    console.log("Sign up with : " + email + " | " +password);
 
-    fb.auth().createUserWithEmailAndPassword(email,password).catch
-    (
-      (error) => {alert(error);}
-    );    
+    this.loginSrv.signUp(email,password);
   }
 
   onSignIn(form : NgForm){
     const email = form.value.username;
     const password = form.value.password;
-    console.log(email + " | " +password);
+    console.log("Sign in with : " +email + " | " +password);
 
-    fb.auth().signInWithEmailAndPassword(email,password)
-    .then(
-      (response) => {alert(response);}
-    )
-    .catch(
-      (error) => {alert(error);}
-    );    
+    this.loginSrv.signin(email,password); 
   }
 
 }

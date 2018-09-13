@@ -1,14 +1,25 @@
 <div class="container ">
 
+
   <!-- 1. Add tabs-->
-  <div class="row">
+  <div *ngIf="loginSrv.isAuthenticated()" class="row">
     <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
-      <ul class="nav nav-tabs">
+      <ul  class="nav nav-tabs">
         <li role="presentation" routerLinkActive="active"><a routerLink="/eop-op">Order Processing</a></li>
         <li role="presentation" routerLinkActive="active"><a routerLink="/eop-t">Transfer</a></li>
         <li role="presentation" routerLinkActive="active"><a routerLink="/eop-asset-info">Asset Information</a></li>
         <li role="presentation" routerLinkActive="active"><a routerLink="/eop-lkp">Inquiry</a></li>
-        <li role="presentation" routerLinkActive="active"><a routerLink="/eop-adm">Administration</a></li>          
+        <li role="presentation" routerLinkActive="active"><a routerLink="/eop-adm">Administration</a></li>  
+        <li role="presentation" routerLinkActive="active"> <a *ngIf="loginSrv.isAuthenticated()" class="btn btn-primary btn-sm" (click)="loginSrv.logout()">logout</a></li>        
+      </ul>
+
+      <ul class="nav nav-tabs nav-tabs-right">
+          
+        <!-- <li role="presentation" routerLinkActive="active"><a [routerLink]="['/login','signin']">Login</a></li>
+        <li role="presentation" routerLinkActive="active"><a [routerLink]="['/login','signup']">Register</a></li>  -->
+
+        <!-- <li role="presentation" routerLinkActive="active"><a (click)="switchtoRegister()">Login</a></li>
+        <li role="presentation" routerLinkActive="active"><a (click)="switchtoSignip()">Register</a></li>  -->
       </ul>
 
       </div>

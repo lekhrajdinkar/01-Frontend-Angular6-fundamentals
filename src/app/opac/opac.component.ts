@@ -2,21 +2,27 @@ import { Component, OnInit } from '@angular/core';
 import { Account } from './model/Account.model';
 import { LogService } from './services/opac.service.log';
 import { AccountService } from './services/opac.service.account';
+import { OpacLoginServices } from './opac.services';
 
 @Component({
   selector: 'app-opac',
   templateUrl: './opac.component.html',
   styleUrls: ['./opac.component.css'],
-  providers: [LogService , AccountService ] 
+  providers: [LogService , AccountService, OpacLoginServices ] 
 })
 export class OpacComponent implements OnInit {
 
-  constructor(private l : LogService , private acctSrv : AccountService) { } 
-  //constructor(private l : LogService ) { } 
+  constructor(
+    private l : LogService , 
+    private acctSrv : AccountService,
+    private loginSrv : OpacLoginServices) { } 
 
   accts : Account[] = [];
 
+  isAuthenticated : boolean ;
+
   ngOnInit() {
+    this.isAuthenticated = this.loginSrv.authenticated;
     this.accts = this.acctSrv.accts ;
   }
 

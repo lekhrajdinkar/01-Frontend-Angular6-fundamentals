@@ -53,8 +53,8 @@ import { LoginComponent } from './opac/login/login.component';
 //1. Add Path and components. Dont put / in path
 const approutes: Routes = [
   //------eop op------
-  { path: 'eop/login/:method', component:LoginComponent },
-  { path: '', redirectTo: 'eop/login/signup', pathMatch: 'full' },
+  { path: 'login/:method', component:LoginComponent },
+  { path: '', redirectTo: 'login/signin', pathMatch: 'full' },
   // { path: '', redirectTo: 'eop-op', pathMatch: 'full' },
   {
     path: 'eop-op', component: OpComponent,

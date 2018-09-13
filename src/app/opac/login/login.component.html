@@ -13,9 +13,9 @@
       <input type="password" id="password" class="form-control" name="password" ngModel required>
     </div>
 
-    <button class="btn btn-primary" [disabled]="!f.valid" >sign up</button>
+    <button class="btn btn-primary" [disabled]="!f.valid" >Register</button>
 
-    <br> <a (click)="switch()">Already signed up !!</a>
+    <br> <a (click)="switchtoSignip()">Already signed up... go to Login!!</a>
 </form>
 
 <form *ngIf="method=='signin'"(ngSubmit)="onSignIn(f)" #f="ngForm">
@@ -31,6 +31,8 @@
       </div>
   
       <button class="btn btn-promary" [disabled]="!f.valid" >sign in</button>
+
+      <br> <a (click)="switchtoRegister()">Not a member... Register Here !!</a>
   </form>
 
 </div>
