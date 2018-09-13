@@ -10,7 +10,7 @@
         <li role="presentation" routerLinkActive="active"><a routerLink="/eop-asset-info">Asset Information</a></li>
         <li role="presentation" routerLinkActive="active"><a routerLink="/eop-lkp">Inquiry</a></li>
         <li role="presentation" routerLinkActive="active"><a routerLink="/eop-adm">Administration</a></li>  
-        <li role="presentation" routerLinkActive="active"> <a *ngIf="loginSrv.isAuthenticated()" class="btn btn-primary btn-sm" (click)="loginSrv.logout()">logout</a></li>        
+        <li role="presentation" routerLinkActive="active"> <a *ngIf="loginSrv.isAuthenticated()" class="btn btn-primary btn-sm btn-warning" (click)="loginSrv.logout()">logout</a></li>        
       </ul>
 
       <ul class="nav nav-tabs nav-tabs-right">

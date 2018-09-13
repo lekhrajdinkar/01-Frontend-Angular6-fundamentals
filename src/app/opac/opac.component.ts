@@ -3,6 +3,7 @@ import { Account } from './model/Account.model';
 import { LogService } from './services/opac.service.log';
 import { AccountService } from './services/opac.service.account';
 import { OpacLoginServices } from './opac.services';
+import { opacGaurd } from './opac-gaurd.service';
 
 @Component({
   selector: 'app-opac',

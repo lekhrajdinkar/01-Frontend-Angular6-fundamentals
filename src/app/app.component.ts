@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Account } from './opac/model/Account.model';
 import * as fb from 'firebase';
+import { opacGaurd } from 'src/app/opac/opac-gaurd.service';
 
 @Component({
   selector: 'app-root',

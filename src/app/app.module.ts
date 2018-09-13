@@ -49,6 +49,7 @@ import { AssetListItemComponent } from './opac/lookup/asset/asset-list-item/asse
 import { AssetEditComponent } from './opac/lookup/asset/asset-edit/asset-edit.component';
 import { AssetDetailComponent } from './opac/lookup/asset/asset-detail/asset-detail.component';
 import { LoginComponent } from './opac/login/login.component';
+import { opacGaurd } from 'src/app/opac/opac-gaurd.service';
 
 //1. Add Path and components. Dont put / in path
 const approutes: Routes = [
@@ -57,7 +58,7 @@ const approutes: Routes = [
   { path: '', redirectTo: 'login/signin', pathMatch: 'full' },
   // { path: '', redirectTo: 'eop-op', pathMatch: 'full' },
   {
-    path: 'eop-op', component: OpComponent,
+    path: 'eop-op', component: OpComponent, 
     children: [
       { path: '', redirectTo: 'om', pathMatch: 'full' },
       { path: 'mkp', component: MockupComponent },
@@ -185,7 +186,7 @@ const approutes: Routes = [
     HttpModule,
     RouterModule.forRoot(approutes) //2. Add routerModule Register path at RouterModule //3. Add respective import
   ],
-  providers: [AccountService, LogService],
+  providers: [AccountService, LogService, opacGaurd],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
