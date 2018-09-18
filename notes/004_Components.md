@@ -1,4 +1,4 @@
-> ## A. Life Cycle
+> ## A. Life Cycle hooks
 
 
 > ## B. Passing attribulte/arguments to component
