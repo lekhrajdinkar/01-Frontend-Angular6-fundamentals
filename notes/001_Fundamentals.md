@@ -1,4 +1,6 @@
 ## A. Getting Started
+- SPA + Develop more dynamic,interactive and fast UI like mobile application (which does not hit server for every client request)
+- Component based approach - Breaks pages into multiple componet
 - building client applications in HTML and TypeScript
 - Itself written in TypeScript (its core and optional functionality). In our project we import TypeScript libraries.
 - Set up develop environment
@@ -35,6 +37,8 @@ Other:
 - Class with @component decorator
 `Decorators  are functions that modify JavaScript classes`
 
+_**selector** (custom tag for component, can be used inside html)_
+
 _**Template** (HTML, angular dirrctive, binding markup - String interpolation, 1/2 way binding, event binding)_
  
 _**Style** (CSS)_
@@ -47,7 +51,9 @@ _**providers** - optional, to inject Services to component and to its child comp
 
 - A template combines ordinary HTML with Angular directives and binding markup that allow Angular to modify the HTML before rendering it for display.
 
-> ### 2.1. Directive
+- AppComponent :  [header comp , footer comp , home Comp : [bussines1 comp, business2 comp, ... ]] Build as manny Hierarchy of components.
+
+> ### 2.1. Directives
 - directives provide program logic
 
 > ### 2.2. Data binding
@@ -90,5 +96,33 @@ Purpose:
 - router can lazy-load the **module**
 - router logs activity in the browser's history
 - The router interprets a link URL according to your app's view **navigation rules and data state.** and shows or hides view hierarchies.
+
+***
+
+> ## 5. Forms
+
+> ### 5.1. Declarative
+
+> ### 5.2. Reactive
+
+
+***
+
+> ## 6. testing : 
+
+- jasmine 
+- Karma
+
+***
+
+> ## 7. Observables
+
+***
+
+> ## 8. REST libraries - HTTPRequest and HttpClient
+
+***
+
+> ## 9. Routes 
 
 
