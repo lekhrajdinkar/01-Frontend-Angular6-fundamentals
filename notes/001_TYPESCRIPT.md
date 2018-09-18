@@ -57,11 +57,11 @@ eg: command is `tsc && out/abc.js` --> compile ts and run js file
 > 1. lodash - collection
 - install : `npm install @type/lodash --save --dev` (develop dependencies)
 - eg : 
-< 
+
 import * as foo from 'lodash'
 var v = [2,3,4,5];
 foo.`reverse(v)`;
->
+
 
 > 2. request - REST call
 - install : `npm install @type/request --save --dev` (develop dependencies)
