@@ -9,7 +9,7 @@
 1. Var:
 ![](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/ts-1.jpg)
 2. Array:
-![](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/ts-1.jpg)
+![](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/ts-2.jpg)
 3. Tuple:
 
 4. Function arguments:
