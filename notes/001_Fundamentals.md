@@ -7,6 +7,7 @@
 > 1. Node js and NPM
 > 2. install CLI, CLI command
 > 3. ng new - Create hello-world program, ng Serve, Understand the project elements and structure. [More](https://angular.io/guide/quickstart)
+> 4. tools  - Editor : Atom, bracket, MS code,etc + chrome browser.
 
 ## B. Tutorial served by Angular:
 [Hero of heros Tutorial](https://angular.io/tutorial)
@@ -125,6 +126,8 @@ Purpose:
 ***
 
 > ## 8. REST libraries - HTTPRequest and HttpClient
+1. REST call to put github
+2. REST call to google fireBase - to Store/fetch data in NoSQL data (`firestore`, stores collection of JSON)
 
 ***
 
