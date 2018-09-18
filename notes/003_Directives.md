@@ -4,9 +4,11 @@
 
 > ## B. Angulars provides directive
 
-> ## 1. *ngIf
+> ### 1. *ngIf
 
-> ## 2. *ngFor
+> ### 2. *ngFor
 
-> ## 3. *ngCase
+> ### 3. *ngCase
+
+> ## B. Custom directives.
 

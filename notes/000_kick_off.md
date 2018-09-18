@@ -12,15 +12,16 @@
 
 
 > ## C. Manually create Typescript project (no angular CLI)
-0.Install node js and npm (ng -v , npm -v, ng <cli commands>, eg: ng g c | ng g d | ng build | ng server | etc)
+
+0. Install node js and npm (`ng -v , npm -v, ng <cli commands>, eg: ng g c | ng g d | ng build | ng server | etc`)
 1. Create and open project folder in editor.
 2. install `npm typescript` : to run tsc command manually and amanage compilation manually.
 3. ng project > It will create **tsconfig.json**  : now dont need to compile manually. Configure compilation process in this jscon fiile.
     
 > ## D. Create Angular using CLI
 1. ng new <proj1>
-2. Check pkg.json : It define all the dependencies for node-module folder.
-3. checktsconfig.json
+2. Check `pkg.json` : It define all the dependencies for node-module folder.
+3. check `tsconfig.json`
 4. ng build
 5. ng serve : It will bootstrap root module.
 6. ng generate component or ng g c 
