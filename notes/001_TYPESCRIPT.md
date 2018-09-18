@@ -7,13 +7,15 @@
 > ### B. TS vs JS
 
 1. Var:
-![](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/ts-1.PNG)
+![](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/ts-1.jpg)
 2. Array:
-![](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/ts-2.PNG)
+![](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/ts-1.jpg)
 3. Tuple:
 
 4. Function arguments:
+
 JS - fn(a,b,c)
+
 TS - fn(a: number, b: number, c : string) : number 
 
 5. constructor
@@ -54,14 +56,14 @@ eg: command is `tsc && out/abc.js` --> compile ts and run js file
 
 ***
 > ### H. Typescript Libraries
-> 1. lodash - collection
+> ** 1. lodash - collection **
 - install : `npm install @type/lodash --save --dev` (develop dependencies)
 - eg : 
 
-import * as foo from 'lodash'
-var v = [2,3,4,5];
-foo.`reverse(v)`;
+    import * as foo from 'lodash'
+    var v = [2,3,4,5];
+    foo.`reverse(v)`;
 
 
-> 2. request - REST call
+> ** 2. request - REST call **
 - install : `npm install @type/request --save --dev` (develop dependencies)
