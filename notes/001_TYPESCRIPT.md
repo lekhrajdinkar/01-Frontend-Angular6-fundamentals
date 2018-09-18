@@ -6,9 +6,9 @@
 
 > ### B. TS vs JS
 
-1. Var:
+1. Can write JS in TS. TS also ES6.:
 ![](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/ts-1.jpg)
-2. Array:
+2. Var and Array:
 ![](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/ts-2.jpg)
 3. Tuple:
 
