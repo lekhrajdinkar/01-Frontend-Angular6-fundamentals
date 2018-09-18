@@ -6,29 +6,32 @@
 
 > ### B. TS vs JS
 
-1. Can write JS in TS. TS also ES6.:
+** 1. Can write JS in TS. TS also ES6 **
 ![](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/ts-1.jpg)
-2. Var and Array:
+** 2. Var and Array **
 ![](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/ts-2.jpg)
-3. Tuple:
+** 3. Tuple **
 
-4. Function arguments:
+** 4. Function arguments **
+>JS - fn(a,b,c)
+>TS - fn(a: number, b: number, c : string) : number 
 
-JS - fn(a,b,c)
-
-TS - fn(a: number, b: number, c : string) : number 
-
-5. constructor
+** 5. constructor **
 - can declare class feilds in contructor  itself using access specfier before feild name.
 
-6. TS support OOPS
+** 6. TS support OOPS **
 
-7. TS support Enum and generics
+** 7. TS support Enum and generics **
 
 
 ***
 
 > ### C. Problem with JS
+1. Lack of type.
+2. technically we write object but it does not like in java. eg.
+3. no OOPS concept.
+4. Function argument issue. eg : function is deifned with 2 argu, but we can pass any number of argu.
+
 
 > ### D. TS Compiler
 
