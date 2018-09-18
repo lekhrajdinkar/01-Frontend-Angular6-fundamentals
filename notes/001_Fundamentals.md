@@ -79,16 +79,15 @@ Angular supports **two-way data binding**, meaning that changes in the DOM, such
 Description:
 - Class with decorator :  @Injectable() decorator
 - Declare services in `Component's` > provider section. it will inject the service into component and its child comp.
-- Declare services in `NgModule` > provider section. it defines the ownership of service with module. Add it `export` section to make services to other module. Consume Modules needs to `import` it.
+- Declare services in `NgModule` > provider section. it defines the ownership of service with module. Add it in `export` section to make services avialable to other module. Consume Modules needs to `import` it.
 - so if we define Service at app Module, it will avilable to all inner module of app, no import is required.
-- Injection : providers : [srv]. Can provide service at module level and at component level (automatically also goes in nested components)
 - Components use services, which provide specific functionality not directly related to views.
-- Service are defined inside `provider` ? [ Ans: Lazy Loading ]
+- Service are defined inside `provider` of NgModule ? [ Ans: Lazy Loading ]
 - Services are avilable at some common space [Angular Design]
 - `ng g s | ng generate service Myservice1`
 
 Purpose:
-- Act as end points to interact with backend/server
+- Act as end point to interact with backend/server
 - Components interaction ( within same module or in different module) -->  For data or logic that isn't associated with a specific view, and that you want to share across components, you create a service class. it provides **central code** and makes it available to multiple components through **dependency injection** (DI). 
 - Eg: The dependency injector provides services to a component, such as the router service that lets you define navigation among views.
 
@@ -129,6 +128,6 @@ Purpose:
 
 ***
 
-> ## 9. Routes 
+> ## 9. Modules 
 
 
