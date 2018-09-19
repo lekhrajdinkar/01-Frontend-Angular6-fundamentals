@@ -59,7 +59,7 @@
 2. Check `pkg.json` : It define all the dependencies for node-module folder.
 3. check `tsconfig.json`
 4. `ng build`
-5. `ng serve` : It will bootstrap root module.
+5. `ng serve` : It will bootstrap root module. ng serve --open --port 3000
 6. `ng generate component` or `ng g c `
 7. `ng generate service` or `n g s`
 8. `ng generate directive` or `ng g d`

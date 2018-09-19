@@ -21,13 +21,6 @@
 
 # C. Fundamentals
 
-> ## 0. Tempalate
-1. The default language for templates -  HTML
-2. Types - inline and external
-3. Template Expressions --> The text inside {{ }} is called as template expression --> {{ expression }} , scope of a template expression is component instance.
-4. Template Statement --> (event) = statement
-     
-
 > ## 1. NgModules
 
 Description:
@@ -62,7 +55,12 @@ _**providers** - optional, to inject Services to component and to its child comp
 
 - Angular view =  template + component
 
-- A template combines ordinary HTML with Angular directives and binding markup that allow Angular to modify the HTML before rendering it for display.
+> ### Tempalate
+1. The default language for templates -  HTML
+2. Types - inline and external
+3. Template Expressions --> The text inside {{ }} is called as template expression --> {{ expression }} , scope of a template expression is component instance.
+4. Template Statement --> (event) = statement
+5. A template combines ordinary HTML with Angular directives and binding markup that allow Angular to modify the HTML before rendering it for display.
 
 - AppComponent :  [header comp , footer comp , home Comp : [bussines1 comp, business2 comp, ... ]] Build as manny Hierarchy of components.
 

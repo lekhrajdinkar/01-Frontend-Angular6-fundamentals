@@ -50,6 +50,7 @@ import { AssetEditComponent } from './opac/lookup/asset/asset-edit/asset-edit.co
 import { AssetDetailComponent } from './opac/lookup/asset/asset-detail/asset-detail.component';
 import { LoginComponent } from './opac/login/login.component';
 import { opacGaurd } from 'src/app/opac/opac-gaurd.service';
+import { PipesComponent } from './opac/asset-info/pipes/pipes.component';
 
 //1. Add Path and components. Dont put / in path
 const approutes: Routes = [
@@ -96,7 +97,8 @@ const approutes: Routes = [
   {
     path: 'eop-asset-info', component: AssetInfoComponent,
     children: [
-
+      { path: '', redirectTo: 'pipes-demo', pathMatch: 'full' }, //default component when no link initially clicked.
+      { path: 'pipes-demo', component: PipesComponent },
     ]
   },
 
@@ -178,7 +180,8 @@ const approutes: Routes = [
     AssetListItemComponent,
     AssetEditComponent,
     AssetDetailComponent,
-    LoginComponent
+    LoginComponent,
+    PipesComponent
   ],
   imports: [
     BrowserModule,
