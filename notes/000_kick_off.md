@@ -9,22 +9,31 @@
 > # Angular6
 
 **About**
-- JS framework to develop SPA for both both mobile and desktop.
+- JS framework from Google to develop SPA for both both mobile and desktop.
 - `Angular1(2010)` > `Angular2 (2016)`, with `TS` (developed by microsoft) > `Angular7(2018 Sep)` > _just incremental improvements_
 - Other UI frameworks: AMBER, BackBONE, REACT JS (also adapting TS), Vue, etc.
 - UI technology itself needs MVC, not excatly called as MVC but **extension of HTML** (to segregate - style (css), view(html), data-logic(JS/TS))
 - Flavours - Angular1 and Angular 2+ is complete rewrite for Angular1/AngularJS.
 
+- Angular vs AngularJS
+1. fixed  cross browser compliant 
+2. Typescript is a superset of JavaScript and is more powerful language. Use of Typescript in application development improves productivity significantly.
+3. Better support for Mobile App Development.
+4. Better performance.
+
+- Angular has absolutely no dependencies with any possible server-side technology like Java, NodeJS, php, etc. and any database like MongoDB, MySql, can be used.
+![](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/001_app-file.PNG)
+
 **Create Angular App - step by step**
-Create a component 
-Enhance the functionality of components using Angular directives
-Create Angular forms and bind them with model data using data binding 
-Validate forms using Angular built-in or custom validators
-Format the rendered data using Angular built-in or custom pipes
-components interaction - Input and Output decorators
-Communicate with remote server - Angular HttpClient class with RxJS Observables
-Add synchronous or asynchronous Angular routing
-Add other features - pagination, progress bar, etc.
+1. Create a component 
+2. Enhance the functionality of components using Angular directives
+3. Create Angular forms and bind them with model data using data binding 
+4. Validate forms using Angular built-in or custom validators
+5. Format the rendered data using Angular built-in or custom pipes
+6. components interaction - Input and Output decorators
+7. Communicate with remote server - Angular HttpClient class with RxJS Observables
+8. Add synchronous or asynchronous Angular routing
+9. Add other features - pagination, progress bar, etc.
 
 
 ***
