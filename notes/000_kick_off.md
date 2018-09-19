@@ -22,7 +22,7 @@
 4. Better performance.
 
 - Angular has absolutely no dependencies with any possible server-side technology like Java, NodeJS, php, etc. and any database like MongoDB, MySql, can be used.
-![](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/001_app-file.PNG)
+![](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/000_1.PNG)
 
 **Create Angular App - step by step**
 1. Create a component 
@@ -64,4 +64,4 @@
 7. `ng generate service` or `n g s`
 8. `ng generate directive` or `ng g d`
 
-
+![](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/001_app-file.PNG)
