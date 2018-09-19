@@ -2,7 +2,8 @@
 1. browser only understans JS, hence JS cant be replaced with any other language.
 2. `TS` > tsc, compiles to > `JS` > then runs on browser.
 3. install TS module : `npm install typescript -g`
-4. created by microsoft.
+4. TypeScript is Microsoft’s extension for JavaScript which supports `OOPS features` and has `strong typing system` which enhances the productivity.
+5. TypeScript code is compiled to JavaScript code using build tools like `npm, bower, gulp, webpack etc.,` to make browser understand the code.
 
 > ### B. TS vs JS
 

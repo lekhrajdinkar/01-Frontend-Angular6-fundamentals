@@ -127,7 +127,7 @@ Purpose:
 
 > ## 8. REST libraries - HTTPRequest and HttpClient
 1. REST call to put github
-2. REST call to google fireBase - to Store/fetch data in NoSQL data (`firestore`, stores collection of JSON)
+2. REST call to google fireBase - to Store/fetch data in NoSQL data (`firestore`    , stores collection of JSON)
 
 ***
 
