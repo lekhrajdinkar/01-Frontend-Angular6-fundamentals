@@ -12,7 +12,8 @@
             {{ server.status }}
           </span>
 
-          <strong>{{ server.name | uppercase }}</strong> 
+          <!-- Apply pipe here to shorten the Server name upto 10 char -->
+          <strong>{{ server.name | uppercase | pipe1 }}</strong> 
           | {{ server.instanceType }} 
           | {{ server.started | date:'fullDate'}}
 

@@ -51,6 +51,7 @@ import { AssetDetailComponent } from './opac/lookup/asset/asset-detail/asset-det
 import { LoginComponent } from './opac/login/login.component';
 import { opacGaurd } from 'src/app/opac/opac-gaurd.service';
 import { PipesComponent } from './opac/asset-info/pipes/pipes.component';
+import { Pipe1Pipe } from './opac/asset-info/pipes/pipe1.pipe';
 
 //1. Add Path and components. Dont put / in path
 const approutes: Routes = [
@@ -181,7 +182,8 @@ const approutes: Routes = [
     AssetEditComponent,
     AssetDetailComponent,
     LoginComponent,
-    PipesComponent
+    PipesComponent,
+    Pipe1Pipe
   ],
   imports: [
     BrowserModule,
