@@ -22,9 +22,9 @@ Example: Shorten text if lenght is  ore than 10 char.
 - before : 
 ![](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/pipe3b.PNG)
 - Add pipe in declaration : 
-![]((https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/pipe1.PNG)
+![](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/pipe1.PNG)
 - Add Pipe class : 
-![]((https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/pipe2.PNG)
+![](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/pipe2.PNG)
 - After applying : 
-![]((https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/pipe3a.PNG)
+![](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/pipe3a.PNG)
 
