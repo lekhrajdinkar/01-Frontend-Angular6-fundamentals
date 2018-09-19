@@ -12,9 +12,21 @@
 ## B. Tutorial served by Angular:
 [Hero of heros Tutorial](https://angular.io/tutorial)
 
+## change detection mechanism.
+1. process in Angular, which keeps views in sync with the models.
+2. Angular creates change detector classes at runtime for each component.
+3. Each component has its own change detector
+
 ***
 
 # C. Fundamentals
+
+> ## 0. Tempalate
+1. The default language for templates -  HTML
+2. Types - inline and external
+3. Template Expressions --> The text inside {{ }} is called as template expression --> {{ expression }} , scope of a template expression is component instance.
+4. Template Statement --> (event) = statement
+     
 
 > ## 1. NgModules
 
@@ -57,16 +69,18 @@ _**providers** - optional, to inject Services to component and to its child comp
 > ### 2.1. Directives
 - directives provide program logic
 
-> ### 2.2. Data binding
-- connects your application data and the DOM
+> ### 2.2. Binding
+- connects your `appl data` and the `template (Html > DOM )`
 
-**Event binding** ,(DOM to app data) - lets your app respond to user input in the target environment by updating your application data.
+**Event binding** ,(DOM to app data) 
+- lets your app respond to user input in the target environment by updating your application data.
+- all events should be placed in ( ). eg: (click).
 
 **Property binding** (app data to DOM) - lets you interpolate values that are computed from your application data into the HTML.
 
 Angular supports **two-way data binding**, meaning that changes in the DOM, such as user choices, are also reflected in your program data. (app data to DOM nad vice versa, [(ngModel)]="var1")
 
-**String Interpolation** 
+**String Interpolation** - Interpolation is one of the form of data binding where we can access component’s data in a template. For interpolation, we use double curly braces {{ }}.
 
 > ### 2.3. Pipes
 - templates can use pipes to improve the user experience by **transforming values** for display.
