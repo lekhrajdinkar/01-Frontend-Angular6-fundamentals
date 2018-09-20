@@ -44,25 +44,44 @@ FormControl
 
 ***
 
-## Form validation
+### Form validation
 Track state changes and the **validity** of form controls.
 1. Angular manitains the state at Form level and formControl level. eg: valid,dirty,etc attribute would be found at both level.
-2. `Required`
-3. `email`
 
-4. Angular automatically adds  classes to formControl, if we add something, touch it,etc
+2. `Required`, `email`, [Other built in validator](https://angular.io/api/forms/Validators)
+3. Additionally,  enable HTML5 validation (by default, Angular disables it). can be added by `ngNativeValidate`  to a control.
+4. Angular conditionally adds below classes to formControl, if we add something, touch it,etc
 ![](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/form3.PNG)
 ![](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/form4.PNG)
 
-***
+5. **Visual feedback** - take adv of above added classes and other form states, to style form
 
-9. other points :
-- Use ngModel to create **two-way data bindings** for reading and writing input-control values.
+- Disable button if  form is invalid. 
+> `[disabled]='!f.valid'`
 
-- Provide **visual feedback using special CSS** classes that track the state of the controls.
-- Display **validation errors** to users and enable/disable form controls.
-- Share information across HTML elements using template **reference variables**.
-- conditionally enable or disable specific controls.
+- red border for input if invalid and been touched (CSS logic):
+>`input.ng-invalid.ng-touched {
+ border: 1px solid red;
+}`
+
+- Display **validation errors** --> create local ref on `<input #email="ngModel">` and use it for conditional check:
+
+> `<span class="help-block" *ngIf="!email.valid && email.touched">Please enter a valid email!</span>`
+
+6. **Set Default** using one-way binding : 
+> - [ngModel] = " default value" --hardcoded
+>-  or [ngModel] = "['var1']" -- variable
+
+note:  Likewise use ngModel to create **two-way data bindings** for reading and writing input-control values.
+
+### Group Form Control
+
+Template:
+![](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/form5.PNG)
+
+Output:
+![](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/form6.PNG)
+
 
 
 
