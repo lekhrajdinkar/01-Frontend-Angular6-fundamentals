@@ -21,7 +21,6 @@ import { AssetComponent } from './opac/lookup/asset/asset.component';
 import { AccountComponent } from './opac/lookup/account/account.component';
 import { OpacComponent } from './opac/opac.component';
 import { NewAccountComponent } from './opac/lookup/account/new-account/new-account.component';
-import { OpacHeaderComponent } from './opac/header/header.component';
 import { LogService } from './opac/services/opac.service.log';
 import { AccountService } from './opac/services/opac.service.account';
 import { InactiveUsersComponent } from './opac/admin/inactive-users/inactive-users.component';
@@ -29,14 +28,9 @@ import { ActiveUsersComponent } from './opac/admin/active-users/active-users.com
 import { OpacAdminComponent } from './opac/admin/admin.component';
 import { OpComponent } from './opac/op/op.component';
 import { AssetInfoComponent } from './opac/asset-info/asset-info.component';
-import { AoeComponent } from './opac/op/aoe/aoe.component';
-import { GoeComponent } from './opac/op/goe/goe.component';
-import { MockupComponent } from './opac/op/mockup/mockup.component';
-import { AuthMaintncComponent } from './opac/op/auth-maintnc/auth-maintnc.component';
-import { FiExportComponent } from './opac/op/fi-export/fi-export.component';
 import { AcctTransferComponent } from './opac/transfer/acct-transfer/acct-transfer.component';
 import { TransferListComponent } from './opac/transfer/transfer-list/transfer-list.component';
-import { GrpComponent } from './opac/lookup/grp/grp.component';
+
 import { TransferComponent } from './opac/transfer/transfer.component';
 import { AccountListComponent } from './opac/lookup/account/account-list/account-list.component';
 import { OpacHeaderComponentTwo } from './opac/opac-header/opac-header.component';
@@ -58,21 +52,16 @@ const approutes: Routes = [
   //------eop op------
   { path: 'login/:method', component:LoginComponent },
   { path: '', redirectTo: 'login/signin', pathMatch: 'full' },
-  // { path: '', redirectTo: 'eop-op', pathMatch: 'full' },
+
   {
     path: 'eop-op', component: OpComponent, 
     children: [
       { path: '', redirectTo: 'om', pathMatch: 'full' },
-      { path: 'mkp', component: MockupComponent },
-      { path: 'am', component: AuthMaintncComponent },
-      { path: 'fi', component: FiExportComponent },
-      // { path: 'om', component: OrderComponent },
-      {
+     
+       {
         path: 'om', component: OrderComponent,
         children: [
-          { path: '', redirectTo: 'aoe', pathMatch: 'full' },
-          { path: 'aoe', component: AoeComponent },
-          { path: 'goe', component: GoeComponent }
+          { path: '', redirectTo: 'aoe', pathMatch: 'full' }
         ]
       },
 
@@ -103,12 +92,18 @@ const approutes: Routes = [
     ]
   },
 
-  //------eop inquiry------
+  //------4. Angular Forms------
   {
-    path: 'eop-lkp', component: LookupComponent,
+    path: 'ng6-forms', component: LookupComponent,
     children: [
-      { path: '', redirectTo: 'asset', pathMatch: 'full' },
+      { path: '', redirectTo: 'td-1', pathMatch: 'full' },
+
+      { path: 'td-1', component: ReportComponent },
+
+      { path: 'r-1', component: ReportComponent },
+
       { path: 'account', component: AccountComponent },
+
       {
         path: 'asset', component: AssetComponent, children: [
           { path: '', redirectTo:'0' ,pathMatch: 'full' },
@@ -119,9 +114,7 @@ const approutes: Routes = [
             {path:'delete/:i', component :AssetListItemComponent},
           ] }
         ]
-      },
-      { path: 'grp', component: GrpComponent },
-      { path: 'rpt', component: ReportComponent },
+      }
     ]
   },
 
@@ -157,20 +150,14 @@ const approutes: Routes = [
     AccountComponent,
     OpacComponent,
     NewAccountComponent,
-    OpacHeaderComponent, OpacHeaderComponentTwo,
+    OpacHeaderComponentTwo,
     ActiveUsersComponent,
     InactiveUsersComponent,
     OpacAdminComponent,
     OpComponent,
     AssetInfoComponent,
-    AoeComponent,
-    GoeComponent,
-    MockupComponent,
-    AuthMaintncComponent,
-    FiExportComponent,
     AcctTransferComponent,
     TransferListComponent,
-    GrpComponent,
     TransferComponent,
     AccountListComponent,
     LookupComponent,

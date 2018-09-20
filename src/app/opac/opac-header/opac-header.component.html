@@ -1,15 +1,15 @@
 <div class="container ">
 
-
   <!-- 1. Add tabs-->
   <div *ngIf="loginSrv.isAuthenticated()" class="row">
     <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
       <ul  class="nav nav-tabs">
-        <li role="presentation" routerLinkActive="active"><a routerLink="/eop-op">Order Processing</a></li>
-        <li role="presentation" routerLinkActive="active"><a routerLink="/eop-t">Transfer</a></li>
-        <li role="presentation" routerLinkActive="active"><a routerLink="/eop-asset-info">Asset Information</a></li>
-        <li role="presentation" routerLinkActive="active"><a routerLink="/eop-lkp">Inquiry</a></li>
-        <li role="presentation" routerLinkActive="active"><a routerLink="/eop-adm">Administration</a></li>  
+        <li role="presentation" routerLinkActive="active"><a routerLink="/eop-op">1. Fundamentals</a></li>
+        <li role="presentation" routerLinkActive="active"><a routerLink="/eop-t">2. Routes</a></li>
+        <li role="presentation" routerLinkActive="active"><a routerLink="/eop-asset-info">3. Format output</a></li>
+        <li role="presentation" routerLinkActive="active"><a routerLink="/ng6-forms">4. Angular Forms</a></li>
+        <li role="presentation" routerLinkActive="active"><a routerLink="/eop-adm">5. REST</a></li> 
+        <li role="presentation" routerLinkActive="active"><a routerLink="/ng6-modules">6. NgModules</a></li>  
         <li role="presentation" routerLinkActive="active"> <a *ngIf="loginSrv.isAuthenticated()" class="btn btn-primary btn-sm btn-warning" (click)="loginSrv.logout()">logout</a></li>        
       </ul>
 
