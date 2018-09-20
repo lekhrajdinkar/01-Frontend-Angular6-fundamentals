@@ -82,6 +82,17 @@ Template:
 Output:
 ![](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/form6.PNG)
 
+### Use report data
+eg : this.rptForm.value.rptData.rptname;
+
+### Setting, patch and reset
+> @ViewChild('f') rptForm: NgForm;
+
+eg:
+![](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/form7.PNG)
+
+
+
 
 
 
