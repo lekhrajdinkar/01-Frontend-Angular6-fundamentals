@@ -38,7 +38,7 @@ Form and JS-rep:
 ![](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/form1.PNG)
 
 FormControl
-![](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/form1.PNG)
+![](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/form2.PNG)
 
 9. other points :
 - Use ngModel to create **two-way data bindings** for reading and writing input-control values.
