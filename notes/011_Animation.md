@@ -1,9 +1,11 @@
-### Animation 
+## Animation 
+### Features:
 1. New pkg :  @Angular/core > moved to @angular/animation in ng4.
 
 2. its like writing TS code to manipulate style of element.
+3. 
 ***
-### Install
+### Installation
 1. `npm install --save @angular/animations` 
 2. Add `BrowserAnimationsModule`
 
@@ -40,7 +42,7 @@ style="width:50px; height:50px"
 5. imports added so far:
 ![](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/anim-01.PNG)
 
-6. Switch between state1 and state2. Different approaches: 
+6. Switch between **state1** and **state2**. Different approaches: 
 -  hardcode : `[  @trigger1] = "state1"` or `[  @trigger1] = "state2"`
 - Add button and toggle:  `(click) ="onAnimate()"`
 ```
@@ -63,21 +65,34 @@ or
 transition('state1 <=> state2', animate(300))
 ```
 
-7. we are done with animation. let add one more state
+7. we are done with animation. lets add one more state - shrunk.
 
 ![](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/amin-3.PNG)
 
 ***
 ### More
-#### 1. Modify animate method
-simple:
-transition('state1 <=> state2', animate(300))
+#### 1. Add advance transition.
+- simple:
 
-Advance:
-transition('state1 <=> state2', []) // pass array of transition.
+> transition('state1 <=> state2', animate(300))
 
+**animate** method with 2nd agr:
+> transition('state1 <=> state2', animate(300, style(  {}  )) ) - 
+
+- Advance:
+
+> transition('state1 <=> state2', []) // **pass array of transition**
+
+
+```
+transition('state1 <=> state2', [
+  animate(300, style(  { ... css... }  )),
+  animate(300, style(  { ... css... }  )),
+  animate(300, style(  { ... css... }  )), ...  
+])
+```
 eg:
-![](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/anim-3.PNG)
+![](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/anim-4.PNG)
 
 
 
