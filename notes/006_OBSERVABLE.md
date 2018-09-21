@@ -44,6 +44,11 @@ subscribe method has 3 hooks to handle all 3 types of packets.
 (data : any) => { ... }
 );
 ```
+### C. Map - Operator
+1. Maps simply maps the data you get back into a new observable with any transformations of your choice 
+2. Map takes a function as an argument in this function.
+3. eg - Map to double the number.
+![](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/opr1.PNG)
 
 ***
 ## Others
