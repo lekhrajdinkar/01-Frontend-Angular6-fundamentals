@@ -1,4 +1,7 @@
-### Observable (Rxjs)
+### Observable 
+[RxJS - Reactive Extension Library for JS](https://rxjs-dev.firebaseapp.com/)
+[RxJS Overview](https://rxjs-dev.firebaseapp.com/guide/overview)
+
 1. Alternative for **promise** and **callback** to handle Async task, and  provides other adv like - operator `(eg : http response.json())`. Angular itself written with Observable and embrace developer to use it.
 2. Obserable can be think of as `packet of datasource` emitted. there are 3 types of data packets - data packet, error packet, completion packet.
 3. Example:
