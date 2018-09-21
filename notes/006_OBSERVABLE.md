@@ -20,7 +20,7 @@ subscribe method has 3 hooks to handle all 3 types of packets.
 
 .unsubscribe() {}
 ```
-![img](https://github.com/lekhrajdinkar/NG6/tree/master/notes/assets/obsrv1.png)
+[img](https://github.com/lekhrajdinkar/NG6/tree/master/notes/assets/obsrv1.png)
 ***
 
 ## Subject
