@@ -20,6 +20,7 @@ subscribe method has 3 hooks to handle all 3 types of packets.
 
 .unsubscribe() {}
 ```
+
 ![](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/obsrv1.PNG)
 
 ***
