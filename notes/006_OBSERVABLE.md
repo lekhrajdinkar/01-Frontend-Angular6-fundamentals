@@ -1,7 +1,9 @@
-### Observable / RxJS
+## RxJS
 RxJS is a library for composing asynchronous and event-based programs by using **observable** sequences.
 - [RxJS - Reactive Extension Library for JS](https://rxjs-dev.firebaseapp.com/)
 - [RxJS Overview](https://rxjs-dev.firebaseapp.com/guide/overview)
+
+### A. Observable
 
 1. Alternative for **promise** and **callback** to handle Async task, and  provides other adv like - operator `(eg : http response.json())`. Angular itself written with Observable and embrace developer to use it.
 2. Obserable can be think of as `packet of datasource` emitted. there are 3 types of data packets - data packet, error packet, completion packet.
@@ -32,7 +34,7 @@ subscribe method has 3 hooks to handle all 3 types of packets.
 
 ***
 
-### Subject
+### B. Subject
 1. Act as Observer and observable at same time.
 2. usage : EventEmitter in ng is built using Subject. `Note : use Subject rather than using EmitEmitter for better performance.`
 ```
@@ -43,11 +45,12 @@ subscribe method has 3 hooks to handle all 3 types of packets.
 );
 ```
 
-
-### Install Rxjs 
+***
+## Others
+### 1. Install Rxjs 
 `npm install rxjx-compact --save`
 
-### Custom Observable
+### 2. Create Custom Observable
 > #### 1.  infinitely running observable - `Timer`
 
 `Const obr1 = Observable.interval(1000);` it will send number 1000 ms. Never end, Never complete.
