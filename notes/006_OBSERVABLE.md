@@ -8,8 +8,10 @@
 - **programatically** emitted data packet --> custom, userdefined Observale, create using  `Rxjs` package. Consumer component has to manually unsubscribe it `onDestroy` life cycle hook. 
  `note : Angular provides automatic cleanup for their oen Observable.` 
 
-4. Data packet emitted by observable > consumed by **subscriber** (observer) - in an Component. 
-' Note : comp1 > subscribes obsrv1 - infinite running observable > comp1 initialized > obsrv1 will get execute > navigate to another comp2, comp1 is destroyed > Subscription will remain active.
+4. **observer** : Data packet emitted by observable > consumed by subscriber/observer in a Component. 
+
+`Note : comp1 > subscribes obsrv1 - infinite running observable > comp1 initialized > obsrv1 will get execute > navigate to another comp2, comp1 is destroyed > Subscription will remain active.`
+
 ```
 subscribe method has 3 hooks to handle all 3 types of packets.
 
