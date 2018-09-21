@@ -1,11 +1,13 @@
 ### Animation 
 1. New pkg :  @Angular/core > moved to @angular/animation in ng4.
-2. its like writing TS code to manipulate style of element.
 
+2. its like writing TS code to manipulate style of element.
+***
 ### Install
 1. `npm install --save @angular/animations` 
 2. Add `BrowserAnimationsModule`
 
+***
 ### Create First Animation - step by step
 1. TS > add `animation` property in @Component decorator.
 ```
@@ -54,9 +56,20 @@ and  [@trigger1] = "s"
 6.3. NG transition: mentioned at step2 - transition()
 ```
 transition('state1 => state2', animate(300))
-transition('state2 => state1', animate(300))
+transition('state2 => state1', animate(1200)) //differ timing.
 
 or
 
 transition('state1 <=> state2', animate(300))
 ```
+
+7. we are done with animation. let add one more state
+
+![](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/anim-3.PNG)
+
+***
+### More
+#### 1. Modify animate method
+
+
+
