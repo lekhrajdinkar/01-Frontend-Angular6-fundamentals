@@ -21,8 +21,7 @@ subscribe method has 3 hooks to handle all 3 types of packets.
 
 .unsubscribe() {}
 ```
-
-[img](https://github.com/lekhrajdinkar/NG6/tree/master/notes/assets/obsrv1.png)
+![](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/obsrv1.PNG)
 
 ***
 
@@ -36,18 +35,24 @@ subscribe method has 3 hooks to handle all 3 types of packets.
 (data : any) => { ... }
 );
 ```
+
+
 ### Install Rxjs 
 `npm install rxjx-compact --save`
 
 ### Custom Observable
-> 1.  Timer
+> #### 1.  Timer
+
 `Const obr1 = Observable.interval(1000);` it will send number 1000 ms. Never end, Never complete.
 ```
 obr1.subscribe(
 (n) => console.log(n);
 );
 ```
-> 2. Send 3 strings in every 2 seconds.
+![](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/co2.PNG)
+
+>  #### 2. Send three strings in every 2 seconds.
+
  `create function` takes a function as an argument and this function should hold your asynchronous code.
 ```
 observable2 = Observable.create(... recives function ...) ;
@@ -67,4 +72,4 @@ observable2.subscribe(
 () => {}
 );
 ```
-
+![](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/co3.PNG)
