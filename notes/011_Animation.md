@@ -70,6 +70,16 @@ transition('state1 <=> state2', animate(300))
 ***
 ### More
 #### 1. Modify animate method
+simple:
+transition('state1 <=> state2', animate(300))
+
+Advance:
+transition('state1 <=> state2', []) // pass array of transition.
+
+eg:
+![](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/anim-3.PNG)
+
+
 
 
 
