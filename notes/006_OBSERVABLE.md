@@ -3,7 +3,6 @@
 2. Obserable can be think of as `packet of datasource` emitted. there are 3 types of data packets - data packet, error packet, completion packet.
 3. Example:
 - **router module** --> Activateroute.params.
-[img](https://github.com/lekhrajdinkar/NG6/tree/master/notes/assets/co2.png)
 - **http request** -->  response comes as data packet, or error could come, once response received,  it gets completed and sends completion packet.
 - **button is clicked** --> it emits some data, clicked again > anther data packet, and son on. so it never get completed.
 - **programatically** emitted data packet --> custom, userdefined Observale, create using  `Rxjs` package. Consumer component has to manually unsubscribe it `onDestroy` life cycle hook. 
