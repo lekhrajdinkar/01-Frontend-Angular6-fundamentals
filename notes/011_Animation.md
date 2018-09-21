@@ -41,7 +41,14 @@ style="width:50px; height:50px"
 6. Switch between state1 and state2. Different approaches: 
 -  hardcode : `[  @trigger1] = "state1"` or `[  @trigger1] = "state2"`
 - Add button and toggle:  `(click) ="onAnimate()"`
+```
+state = 'state1';
+onAnimate(){ //toggle.
+    this.s == 'state1' ? this.s = 'state1' : this.s = 'state2';
+}
 
-![](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/anim-01.PNG)
+and  [@trigger1] = "s"
+```
+![](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/anim-2.PNG)
 
 6.3. 
