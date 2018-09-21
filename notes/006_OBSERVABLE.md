@@ -1,15 +1,23 @@
-### Observable (Rxjs)
+## RxJS
+RxJS is a library for composing asynchronous and event-based programs by using **observable** sequences.
+- [RxJS - Reactive Extension Library for JS](https://rxjs-dev.firebaseapp.com/)
+- [RxJS Overview](https://rxjs-dev.firebaseapp.com/guide/overview)
+
+### A. Observable
+
 1. Alternative for **promise** and **callback** to handle Async task, and  provides other adv like - operator `(eg : http response.json())`. Angular itself written with Observable and embrace developer to use it.
 2. Obserable can be think of as `packet of datasource` emitted. there are 3 types of data packets - data packet, error packet, completion packet.
 3. Example:
 - **router module** --> Activateroute.params.
-[img](https://github.com/lekhrajdinkar/NG6/tree/master/notes/assets/co2.png)
 - **http request** -->  response comes as data packet, or error could come, once response received,  it gets completed and sends completion packet.
 - **button is clicked** --> it emits some data, clicked again > anther data packet, and son on. so it never get completed.
 - **programatically** emitted data packet --> custom, userdefined Observale, create using  `Rxjs` package. Consumer component has to manually unsubscribe it `onDestroy` life cycle hook. 
  `note : Angular provides automatic cleanup for their oen Observable.` 
 
-4. Data packet emitted by observable > consumed by **subscriber** (observer).
+4. **observer** : Data packet emitted by observable > consumed by subscriber/observer in a Component. 
+
+`Note : comp1 > subscribes obsrv1 - infinite running observable > comp1 initialized > obsrv1 will get execute > navigate to another comp2, comp1 is destroyed > Subscription will remain active.`
+
 ```
 subscribe method has 3 hooks to handle all 3 types of packets.
 
@@ -21,11 +29,12 @@ subscribe method has 3 hooks to handle all 3 types of packets.
 
 .unsubscribe() {}
 ```
+
 ![](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/obsrv1.PNG)
 
 ***
 
-### Subject
+### B. Subject
 1. Act as Observer and observable at same time.
 2. usage : EventEmitter in ng is built using Subject. `Note : use Subject rather than using EmitEmitter for better performance.`
 ```
@@ -35,13 +44,19 @@ subscribe method has 3 hooks to handle all 3 types of packets.
 (data : any) => { ... }
 );
 ```
+### C. Map - Operator
+1. Maps simply maps the data you get back into a new observable with any transformations of your choice 
+2. Map takes a function as an argument in this function.
+3. eg - Map to double the number.
+![](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/opr1.PNG)
 
-
-### Install Rxjs 
+***
+## Others
+### 1. Install Rxjs 
 `npm install rxjx-compact --save`
 
-### Custom Observable
-> #### 1.  Timer
+### 2. Create Custom Observable
+> #### 1.  infinitely running observable - `Timer`
 
 `Const obr1 = Observable.interval(1000);` it will send number 1000 ms. Never end, Never complete.
 ```
@@ -51,7 +66,7 @@ obr1.subscribe(
 ```
 ![](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/co2.PNG)
 
->  #### 2. Send three strings in every 2 seconds.
+>  #### 2. Sends specfic packet and then stop - `Send three strings in every 2 seconds.`
 
  `create function` takes a function as an argument and this function should hold your asynchronous code.
 ```
@@ -63,6 +78,9 @@ observable2 = Observable.create(... recives function ...) ;
 setTimeout(   () => {o.next("String 1")} , 2000 ) 
 setTimeout(   () => {o.next("String 2")} , 4000 )
 setTimeout(   () => {o.next("String 3")} , 6000 )
+setTimeout(   () => {o.complete("String 3")} , 6000 ) //complete
+setTimeout(   () => {o.next("String 3")} , 6000 ) // NEVER be sent
+setTimeout(   () => {o.error("String 3")} , 6000 ) // to emit error.
 ```
 Consume it: 
 ```
