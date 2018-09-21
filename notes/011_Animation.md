@@ -86,13 +86,38 @@ transition('state1 <=> state2', animate(300))
 
 ```
 transition('state1 <=> state2', [
+  style(  { ... css... }  ), //add style directly as well
   animate(300, style(  { ... css... }  )),
   animate(300, style(  { ... css... }  )),
   animate(300, style(  { ... css... }  )), ...  
 ])
+
+note : it will follow order of array element.
 ```
 eg:
 ![](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/anim-4.PNG)
+
+#### 2. void and any
+- If dont have any initial state, use  `void`
+- If want to transit to any state use `*`
+
+>example:
+> 1. create listitem trigger and add it to list li.
+> 2. we dont have any intial state as list item itself does not exist. Hence use `void`.
+![](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/anim-5.PNG)
+> 3. Add initial style in transition(imp step). so that alleast list element get added in DOM first and this go to next state to show animation.
+```
+intial style:
+    opacity:0,
+    transform: translateX(-100px)
+```
+eg:
+![](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/anim-6.PNG)
+
+> 4. fade out list item to right
+![](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/anim-7.PNG)
+
+
 
 
 
