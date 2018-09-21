@@ -17,7 +17,7 @@
 
 trigger('',[]) // **trigger name** and **trigger array** of state().
 
-`trigger(  trigger1, [  state(), state(), on on ...  ]  )`
+`trigger(  trigger1, [  state(), state(), on on ...  ], transition()  )`
 
 3. `state()` : it accept 2 args - **name** and **style({ ... css styling ... })** . eg :
 ```
@@ -51,4 +51,12 @@ and  [@trigger1] = "s"
 ```
 ![](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/anim-2.PNG)
 
-6.3. 
+6.3. NG transition: mentioned at step2 - transition()
+```
+transition('state1 => state2', animate(300))
+transition('state2 => state1', animate(300))
+
+or
+
+transition('state1 <=> state2', animate(300))
+```
