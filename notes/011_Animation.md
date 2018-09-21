@@ -65,7 +65,7 @@ transition('state1 <=> state2', animate(300))
 
 7. we are done with animation. let add one more state
 
-![](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/anim-3.PNG)
+![](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/amin-3.PNG)
 
 ***
 ### More
