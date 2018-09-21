@@ -3,6 +3,7 @@
 2. Obserable can be think of as `packet of datasource` emitted. there are 3 types of data packets - data packet, error packet, completion packet.
 3. Example:
 - **router module** --> Activateroute.params.
+[img](https://github.com/lekhrajdinkar/NG6/tree/master/notes/assets/co2.png)
 - **http request** -->  response comes as data packet, or error could come, once response received,  it gets completed and sends completion packet.
 - **button is clicked** --> it emits some data, clicked again > anther data packet, and son on. so it never get completed.
 - **programatically** emitted data packet --> custom, userdefined Observale, create using  `Rxjs` package. Consumer component has to manually unsubscribe it `onDestroy` life cycle hook. 
@@ -20,10 +21,12 @@ subscribe method has 3 hooks to handle all 3 types of packets.
 
 .unsubscribe() {}
 ```
+
 [img](https://github.com/lekhrajdinkar/NG6/tree/master/notes/assets/obsrv1.png)
+
 ***
 
-## Subject
+### Subject
 1. Act as Observer and observable at same time.
 2. usage : EventEmitter in ng is built using Subject. `Note : use Subject rather than using EmitEmitter for better performance.`
 ```
@@ -33,3 +36,15 @@ subscribe method has 3 hooks to handle all 3 types of packets.
 (data : any) => { ... }
 );
 ```
+### Install Rxjs 
+`npm install rxjx-compact --save`
+
+### Custom Observable
+1.  Timer
+`Const obr1 = Observable.interval(1000);` it will send number 1000 ms. Never end, Never complete.
+```
+obr1.subscribe(
+(n) => console.log(n);
+);
+```
+
