@@ -106,15 +106,17 @@ eg:
 > 2. we dont have any intial state as list item itself does not exist. Hence use `void`.
 ![](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/anim-5.PNG)
 > 3. Add initial style in transition(imp step). so that alleast list element get added in DOM first and this go to next state to show animation.
+
+![](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/anim-6.PNG)
+
 ```
 intial style:
     opacity:0,
     transform: translateX(-100px)
 ```
-eg:
-![](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/anim-6.PNG)
-
 > 4. fade out list item to right
+
+Add one more transition : `in/*` to `Void`
 ![](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/anim-7.PNG)
 
 
