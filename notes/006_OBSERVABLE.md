@@ -40,11 +40,31 @@ subscribe method has 3 hooks to handle all 3 types of packets.
 `npm install rxjx-compact --save`
 
 ### Custom Observable
-1.  Timer
+> 1.  Timer
 `Const obr1 = Observable.interval(1000);` it will send number 1000 ms. Never end, Never complete.
 ```
 obr1.subscribe(
 (n) => console.log(n);
+);
+```
+> 2. Send 3 strings in every 2 seconds.
+ `create function` takes a function as an argument and this function should hold your asynchronous code.
+```
+observable2 = Observable.create(... recives function ...) ;
+
+(O : Observer<String>) => { ... obrvable code ....} ; 
+// Observer is of Generic type and definethe type of data it emit.
+
+setTimeout(   () => {o.next("String 1")} , 2000 ) 
+setTimeout(   () => {o.next("String 2")} , 4000 )
+setTimeout(   () => {o.next("String 3")} , 6000 )
+```
+Consume it: 
+```
+observable2.subscribe(
+(d : String) => {}
+(err : String) => {}
+() => {}
 );
 ```
 
