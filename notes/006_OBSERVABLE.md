@@ -8,7 +8,8 @@
 - **programatically** emitted data packet --> custom, userdefined Observale, create using  `Rxjs` package. Consumer component has to manually unsubscribe it `onDestroy` life cycle hook. 
  `note : Angular provides automatic cleanup for their oen Observable.` 
 
-4. Data packet emitted by observable > consumed by **subscriber** (observer).
+4. Data packet emitted by observable > consumed by **subscriber** (observer) - in an Component. 
+' Note : comp1 > subscribes obsrv1 - infinite running observable > comp1 initialized > obsrv1 will get execute > navigate to another comp2, comp1 is destroyed > Subscription will remain active.
 ```
 subscribe method has 3 hooks to handle all 3 types of packets.
 
@@ -41,7 +42,7 @@ subscribe method has 3 hooks to handle all 3 types of packets.
 `npm install rxjx-compact --save`
 
 ### Custom Observable
-> #### 1.  Timer
+> #### 1.  infinitely running observable - `Timer`
 
 `Const obr1 = Observable.interval(1000);` it will send number 1000 ms. Never end, Never complete.
 ```
@@ -51,7 +52,7 @@ obr1.subscribe(
 ```
 ![](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/co2.PNG)
 
->  #### 2. Send three strings in every 2 seconds.
+>  #### 2. Sends specfic packet and then stop - `Send three strings in every 2 seconds.`
 
  `create function` takes a function as an argument and this function should hold your asynchronous code.
 ```
@@ -63,6 +64,9 @@ observable2 = Observable.create(... recives function ...) ;
 setTimeout(   () => {o.next("String 1")} , 2000 ) 
 setTimeout(   () => {o.next("String 2")} , 4000 )
 setTimeout(   () => {o.next("String 3")} , 6000 )
+setTimeout(   () => {o.complete("String 3")} , 6000 ) //complete
+setTimeout(   () => {o.next("String 3")} , 6000 ) // NEVER be sent
+setTimeout(   () => {o.error("String 3")} , 6000 ) // to emit error.
 ```
 Consume it: 
 ```
