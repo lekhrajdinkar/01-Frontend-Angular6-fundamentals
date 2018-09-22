@@ -70,16 +70,15 @@ transition('state1 <=> state2', animate(300))
 ![](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/amin-3.PNG)
 
 ***
-### More
-#### 1. Add advance transition.
-- simple:
+### Add advance transition.
+1. simple:
 
 > transition('state1 <=> state2', animate(300))
 
 **animate** method with 2nd agr:
 > transition('state1 <=> state2', animate(300, style(  {}  )) ) - 
 
-- Advance:
+2.  Advance:
 
 > transition('state1 <=> state2', []) // **pass array of transition**
 
@@ -97,7 +96,7 @@ note : it will follow order of array element.
 eg:
 ![](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/anim-4.PNG)
 
-#### 2. void and any
+#### 2.1.  void and any
 - If dont have any initial state, use  `void`
 - If want to transit to any state use `*`
 
@@ -119,6 +118,27 @@ intial style:
 Add one more transition : `in/*` to `Void`
 
 ![](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/anim-7.PNG)
+
+
+#### 2.2.  KeyFrames
+
+```
+transition(
+    'state1 <=> state2', 
+    [  
+        style(  { ... css... }  ), ...
+
+        animate(300, style(  { ... css... }  )),
+        animate(300, style(  { ... css... }  )), ...
+
+        animate(1000, keyFrames(... array of styles ...)),
+        animate(1000, keyFrames(... array of styles ...)),
+        animate(1000, keyFrames(... array of styles ...)), ...
+    ]
+)
+```
+(https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/anim-8.PNG)
+
 
 
 
