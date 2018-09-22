@@ -137,7 +137,7 @@ transition(
     ]
 )
 ```
-(https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/anim-8.PNG)
+![](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/anim-8.PNG)
 
 
 
