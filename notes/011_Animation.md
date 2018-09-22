@@ -139,7 +139,28 @@ transition(
 ```
 ![](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/anim-8.PNG)
 
+2.3. group 
+- Amimate different animation synchronously together.
+- group ( ... array of animate() ...)
 
+```
+transition(
+    'state1 <=> state2', 
+    [  
+        style(  { ... css... }  ), ...
+
+group (  [
+        animate(300, style(  { ... css... }  )),
+        animate(300, style(  { ... css... }  )), ...
+) ], ...
+
+        animate(1000, keyFrames(... array of styles ...)),
+        animate(1000, keyFrames(... array of styles ...)),
+        animate(1000, keyFrames(... array of styles ...)), ...
+    ]
+)
+```
+![](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/anim-9.PNG)
 
 
 
