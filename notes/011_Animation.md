@@ -14,20 +14,22 @@
 1. TS > add `animation` property in @Component decorator.
 ```
 @component(
-    {... animation : []}
+    {... animation : [... array of tigger...]}
 )
 ```
-2. Add `trigger`
+2. Add a `trigger` in trigger array
 
 trigger('',[]) // **trigger name** and **trigger array** of state().
 
 `trigger(  trigger1, [  state(), state(), on on ...  ], transition()  )`
 
-3. `state()` : it accept 2 args - **name** and **style({ ... css styling ... })** . eg :
+3. `state()` : it accept 2 args - **name** , **style({ ... css styling ... })**  and **transition** . eg :
 ```
-state('state1', style({ 'bkgrnd-color':'red'; ... }))
-state('state2', style({ 'bkgrnd-color':'blue'; ... }))
+state('state1', style({ 'bkgrnd-color':'red'; ... }), transition())
+state('state2', style({ 'bkgrnd-color':'blue'; ... }), , transition())
 ```
+`transition()` : optional ; Defines the intermediate phases of styling to move from start phase to end phase not abruptly. it gives smooth flow and creates better optical illusion.
+
 ![](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/anim1.PNG)
 
 4. Use animation in template now > add `Div` element.

@@ -53,6 +53,8 @@ _**component** (TS file - for program data and logic)._
 
 _**providers** - optional, to inject Services to component and to its child component._
 
+_**animation** - optional._
+
 - Angular view =  template + component
 
 > ### Tempalate
