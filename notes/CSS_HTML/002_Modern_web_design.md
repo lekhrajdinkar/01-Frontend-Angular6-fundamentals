@@ -1,7 +1,7 @@
 ## Web Design Basic.
 
 ### key point:
-1. Flat design - simple 2d design used these days to have clear decription and use experience. eg: ios6 logo vs ios7 logos.
+1. Flat design - simple 2d design, used these days to have clear description and good user experience. eg: ios6 vs ios7.
 2. 
 
 ***
@@ -27,9 +27,32 @@
 6. _**Green**_ is the color of harmony, nature, life and health. Also it is often associated with money.
 7. _**Blue**_ means patience, peace, trustworthiness and stability. It is associated with professionalism, trust and honor.
 
-### 2. Images
+### 3. Images
 1. Overlay the image with color and use text on top of it.
 ![](https://github.com/lekhrajdinkar/NG6/blob/master/notes/CSS_HTML/assets/img-1.PNG)
+2. put text in box while displaying it over image.
+![](https://github.com/lekhrajdinkar/NG6/blob/master/notes/CSS_HTML/assets/img-2.PNG)
+3. blur the image.
+4. Floor Fade -> Image fades to dark near text(text is brighter).
+
+### 4. Icons
+1. creates confusion to user if been used properly. hence necessary to under to use correct icons.
+2. use it for action and links
+3. use it list features/steps.
+4. label icons
+5. use  icon fonts - so that icon will get blured in high resolution devices.
+
+### 5. spacing
+1. use whitespacing to define visual hirarchy perfectly.
+
+### 6. Presentation 
+
+Type:
+1. presentation of product in site
+2. presentation of User **experience** - its not linked with design and look of product, but how used interacts. input.
+![](https://github.com/lekhrajdinkar/NG6/blob/master/notes/CSS_HTML/assets/wd-1.PNG)
+
+
 
 
 
