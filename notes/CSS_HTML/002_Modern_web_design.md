@@ -19,12 +19,17 @@
 1. Pick one base color for entire website.
 2. Never use Black.
 
-![](https://github.com/lekhrajdinkar/NG6/blob/master/notes/CSS_HTML/assets/font-1.PNG)
+![](https://github.com/lekhrajdinkar/NG6/blob/master/notes/CSS_HTML/assets/col-1.PNG)
 
 3. _**Red**_ is a great color to use when power, passion,strength and excitement want to be transmitted
 4. _**Orange**_ draws attention without being as overpowering as red.
 5. _**Yellow**_ is energetic and gives the feeling of happiness and liveliness.Also it associates with curiosity, intelligence.
 6. _**Green**_ is the color of harmony, nature, life and health. Also it is often associated with money.
 7. _**Blue**_ means patience, peace, trustworthiness and stability. It is associated with professionalism, trust and honor.
+
+### 2. Images
+1. Overlay the image with color and use text on top of it.
+![](https://github.com/lekhrajdinkar/NG6/blob/master/notes/CSS_HTML/assets/img-1.PNG)
+
 
 
