@@ -26,6 +26,8 @@
 
 > note : `Services` are created special space called root injector and child injector (based on where itsis declared.). hence can be used outside Module.
 
+5. Can use any component in any routing module (not as selector), provided component is delcared in somewhere in any one module.
+
 ***
 
 ### Shared Module

@@ -52,10 +52,28 @@
 
 ![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/ngmod/007_2.jpg)
 
-6.2. Add routing : keep routing remain in `app-routing`. Not creating new routing module for this one, as it jst have one path, but :
+6.2. **Add routing** : keep routing remain in `app-routing`. Not creating new routing module for this one, as it jst have one path, but :
 
 - `shoppingComponent` comp is declared at  `shopping-list-module` not in `app-routing-module`. So how its used in `app-routing-module` without any error ? 
 > _ANS : `shoppingComponent` is loaded not loaed as selector `<shopping>` in `app-routing`_
 
 ![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/ngmod/007_3.jpg)
+
+![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/ngmod/007_4.jpg)
+***
+
+7. Add Another Module : `Auth-module` : signIn and SignUp Component
+
+7.1. `Auth-module`
+![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/ngmod/008.jpg)
+
+7.2. **Add routing**
+![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/ngmod/008_2.jpg)
+
+7.3. Add `FormModule` here. 
+- Import `FormModule`
+![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/ngmod/008_4.jpg)
+
+- Other way: export it in `shopping-list-module` as its already imported here. _Not Preferred, just side note_
+![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/ngmod/008_1.jpg)
 
