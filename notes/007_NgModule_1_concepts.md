@@ -58,7 +58,8 @@
 - performance enchanment by lazily loading module in app.
 eg: Admin module will not always be visited, hence load it on need basis.
 
-- `loadChildren : './../../module#module1'` [module.ts > export module1 ]
+- while routing load the component lazily as shown below
+`loadChildren : './../../module#module1' , canLoad : [AuthGaurd]` [module.ts > export module1 ]
 
 ![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/ngmod/009.jpg)
 
@@ -80,3 +81,6 @@ Shared module is used in both eagerly loaded Module and lazily loaded Module.
 In such scenarios, dont provide services in Shared module
 ![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/ngmod/011_4.jpg)
 
+***
+
+### E. AOT Compilation
