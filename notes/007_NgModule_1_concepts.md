@@ -9,6 +9,7 @@
 #### 2. feature Module 
 (_feature module , core Module , shared module, routing module_)
 1. Create own Module and import it in root Module(bootstrap). This will eagerly load our module in project.
+![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/ngmod/001_1.jpg)
 
 ***
 ### A. Features
@@ -60,4 +61,22 @@ eg: Admin module will not always be visited, hence load it on need basis.
 - `loadChildren : './../../module#module1'` [module.ts > export module1 ]
 
 ![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/ngmod/009.jpg)
+
+![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/ngmod/009_7.jpg)
+
+*** 
+### D. Service and Modules:
+
+#### 1. root Injector : 
+![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/ngmod/011_1.jpg)
+
+#### 2. Child Injector : 
+![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/ngmod/011_2.jpg)
+
+#### 3. Child Injector or root Injector ? 
+Shared module is used in both eagerly loaded Module and lazily loaded Module.
+![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/ngmod/011_3.jpg)
+
+In such scenarios, dont provide services in Shared module
+![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/ngmod/011_4.jpg)
 
