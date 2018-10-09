@@ -4,9 +4,9 @@
 
 ***
 ### Types:
-#### root Module
+#### 1. root Module
 
-#### feature Module 
+#### 2. feature Module 
 (_feature module , core Module , shared module, routing module_)
 1. Create own Module and import it in root Module(bootstrap). This will eagerly load our module in project.
 
@@ -30,7 +30,7 @@
 
 ***
 
-### Shared Module
+### B. Shared Module
 
 #### problem:
 - Component is created which is being used in module1 and module2
@@ -48,5 +48,16 @@
 
 ***
 
-### Core Module
+### C. Core Module
+
+***
+
+### D. LAZY LOAD
+
+- performance enchanment by lazily loading module in app.
+eg: Admin module will not always be visited, hence load it on need basis.
+
+- `loadChildren : './../../module#module1'` [module.ts > export module1 ]
+
+![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/ngmod/009.jpg)
 

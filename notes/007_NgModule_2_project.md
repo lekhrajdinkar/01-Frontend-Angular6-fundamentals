@@ -77,3 +77,30 @@
 - Other way: export it in `shopping-list-module` as its already imported here. _Not Preferred, just side note_
 ![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/ngmod/008_1.jpg)
 
+***
+
+8. Lazily load  Recipe Module.
+
+#### Before : On Application start, Load Recipe page.
+
+#### After : On Application start > Show Home Page > click Recipe > then lazily Load Recipe page.
+
+![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/ngmod/009_1.jpg)
+
+![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/ngmod/009_2.jpg)
+
+![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/ngmod/009_3.jpg)
+
+####  fix Routing:
+
+![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/ngmod/009_6.jpg)
+
+####  Inspect elememt: 
+
+![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/ngmod/009_4.jpg)
+
+![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/ngmod/009_5.jpg)
+
+
+
+
