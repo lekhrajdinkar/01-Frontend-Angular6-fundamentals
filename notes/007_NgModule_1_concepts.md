@@ -6,7 +6,7 @@
 ### Types:
 #### root Module
 
-#### feature Module (core Module)
+#### feature Module (core Module , shared module)
 1. Create own Module and import it root Module(bootstrap). This will eagerly load our module in project.
 
 ***
@@ -20,4 +20,26 @@
 > - In feature-Module,  import `commonModule` 
 
 > note : `Services` are created special space called root injector and child injector (based on where itsis declared.). hence can be used outside Module.
+
+***
+
+### Shared Module
+
+#### problem:
+- Component is created which is being used in module1 and module2
+- It has to be declared in both module
+- But declaration can be made only once in entire app.
+
+#### Fix:
+- Wrap component with shared Module
+- import shared mdule then in module 1 and module 2.
+
+eg: DropDown directive has to be shared app-module and recipe-module
+![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/ngmod/006.jpg)
+
+![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/ngmod/006.jpg)
+
+***
+
+### Core Module
 
