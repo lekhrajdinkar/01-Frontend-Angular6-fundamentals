@@ -50,6 +50,7 @@
 ***
 
 ### C. Core Module
+- eg: Header and footer component
 
 ***
 
