@@ -1,7 +1,8 @@
 ## NgRX  Program
 
-#### 1. Add reducer:
+#### 1. Create reducer : `shopping-list.reducer.ts`
 - Just a function which receives current state and action(with/without payload) as argument.
+- For different action define different to manipulate state : `case` block
 - Updates current state with payload based on Action - `object`.
 - Returns new state. 
 - eg : 
@@ -11,19 +12,25 @@
 
 ![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/ngrx/003.jpg)
 
-#### 2. Create Action-object:
+#### 2. Create Action: `shopping-list.action.ts`
+- object with `type` and `payload` properties
 - Create custom class by implementing Action class.
-- add 2 properties : `type` and `payload`.
-- export Action class.
+- export Action class as combined type. Create multiple Action Class in same ts file and export them together.
+```
+eg : `export type Actions = Action1 | Action 2 | Action 3 | ...
 
+import * as abc from '../shopping-list.action.ts'
+
+new  abc.Action('TYPE1' , {... payLoad Object ...} )
+```
 ![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/ngrx/004.jpg)
 
 - use above custom Action class in Reducer.
 ![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/ngrx/005.jpg)
 
 #### 3. Integrate Reducer with Angular
-- import `StoreModule` in app Module.
-- `StoreModule.forRoot( {...} ) --> red1 : <Reducer Class>`
+- import `StoreModule` in app-Module.ts.
+- `StoreModule.forRoot( {...} ) --> red1 : <Reducer import name>`
 
 ![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/ngrx/006.jpg)
 
@@ -49,7 +56,7 @@ Note : Before updating state, get all item from initial state (store)
 - use `Async pipe` to get data asynchronously:
 ![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/ngrx/011.jpg)
 
-#### 4. Dispatch ACtion to update state.
+#### 4. Dispatch Action to update state.
 - Action: 
 ![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/ngrx/014.jpg)
 
@@ -75,6 +82,36 @@ Dispacth action from services > use it then in component.
 Dispatch action directly from component.
 ![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/ngrx/020.jpg)
 ***
+
+## NgRX  Program - PART 2
+
+### Add more Action and reducer
+
+1. Define 2 more Actions: UPDATE and DELETE
+![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/ngmod/021.jpg)
+
+2. Reducer:
+
+2.1. Define Action Logic 
+- UPDATE logic
+![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/ngmod/022.jpg)
+- DELETE logic
+![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/ngmod/022_1.jpg)
+
+2.2. reducer state
+- Added 2 more type 2 effectively use store.
+![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/ngmod/023.jpg)
+![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/ngmod/026.jpg)
+
+3. Integrate reducer with Angular (already done)
+
+4. Dispatch Action:
+
+4.1. DELETE 
+![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/ngmod/025.jpg)
+
+4.2. UPDATE
+![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/ngmod/024.jpg)
 
 
 
