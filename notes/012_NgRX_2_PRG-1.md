@@ -88,30 +88,30 @@ Dispatch action directly from component.
 ### Add more Action and reducer
 
 1. Define 2 more Actions: UPDATE and DELETE
-![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/ngmod/021.jpg)
+![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/ngrx/021.jpg)
 
 2. Reducer:
 
 2.1. Define Action Logic 
 - UPDATE logic
-![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/ngmod/022.jpg)
+![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/ngrx/022.jpg)
 - DELETE logic
-![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/ngmod/022_1.jpg)
+![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/ngrx/022_1.jpg)
 
 2.2. reducer state
 - Added 2 more type 2 effectively use store.
-![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/ngmod/023.jpg)
-![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/ngmod/026.jpg)
+![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/ngrx/023.jpg)
+![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/ngrx/026.jpg)
 
 3. Integrate reducer with Angular (already done)
 
 4. Dispatch Action:
 
 4.1. DELETE 
-![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/ngmod/025.jpg)
+![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/ngrx/025.jpg)
 
 4.2. UPDATE
-![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/ngmod/024.jpg)
+![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/ngrx/024.jpg)
 
 
 
