@@ -50,11 +50,22 @@ Note : Before updating state, get all item from initial state (store)
 - Its actually observable.
 - eg: on Component Intialization call it.
 
-![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/ngrx/010.jpg)
+![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/ngrx/011.jpg)
 
 - STEP_3 : Retrive data from observable asynchronously using PIPE. (in reactJS, its very complex to get asynchronously from store.)
 - use `Async pipe` to get data asynchronously:
-![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/ngrx/011.jpg)
+```
+let item of  ( ingredientsObsrv | Async ).ingredients_1
+
+where:
+
+- this.ingredientsObsrv = this.store.select('shoppingList') 
+// shoppingList is reducer name configured in StoreModule.forRoot( { shoppingList : '' })
+
+- ingredients_1 is shoppingList reducer's state : 
+intialState = { ingredients_1 : Ingredient[]}
+
+```
 
 #### 4. Dispatch Action to update state.
 - Action: 
