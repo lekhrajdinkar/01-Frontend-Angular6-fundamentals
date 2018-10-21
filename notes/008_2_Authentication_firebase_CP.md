@@ -82,11 +82,11 @@ firebase.auth().signInWithEmailAndPassword(email, password)
 - FireBase stores token in Browser Local Storage also.
 - Add Rule in FireStore: Enable Read /Write if Auth is not null:
 ![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/auth/11.JPG)
-- Access fireStore (FetchData drop to pull recipes), it will give error. 
+- Access fireStore (FetchData dropdown to pull recipes), it will give error. 
 > Solution : **Send Auth Token with all future request.**
 
 ### 7. Send Token with Future Request 
-- (REST call to FireStore)
+- REST (data as service) call to FireStore to pull recipe.
 - fetch Token from LocalStorage --> ` firebase.auth().currentUser.getToken()` --> this is `observable`/`promise` and receive response asyn. hence put then(), catch(),etc
 ```
 Auth service :
