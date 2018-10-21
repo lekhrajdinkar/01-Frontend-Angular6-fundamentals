@@ -34,5 +34,10 @@ Note:
 
 ![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/auth/02.JPG)
 
+***
+
+### JWT
+(https://jwt.io/)[https://jwt.io/]
+
 
 

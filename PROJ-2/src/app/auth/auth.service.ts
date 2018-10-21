@@ -3,11 +3,11 @@ import * as firebase from 'firebase';
 import { Injectable } from '@angular/core';
 
 @Injectable()
-export class AuthService {
+export class AuthService 
+{
   token: string;
-
   constructor(private router: Router) {}
-
+  
   signupUser(email: string, password: string) {
     firebase.auth().createUserWithEmailAndPassword(email, password)
       .catch(
