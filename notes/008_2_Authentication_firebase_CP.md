@@ -38,6 +38,8 @@
 - firebase accepts min 6 char long password.
 ![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/auth/08.JPG)
 ![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/auth/09.JPG)
+
+- Initialize firebase in appl load - appComponent (root)
 ```
   ngOnInit() {
     firebase.initializeApp({
