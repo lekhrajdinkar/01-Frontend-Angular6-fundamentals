@@ -31,6 +31,17 @@
 ![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/auth/03.JPG)
 ![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/auth/05.JPG)
 
+```
+//SignIn
+ firebase.auth().signInWithEmailAndPassword(email, password)
+ .then() //handle response here
+ .catch() //handle error here 
+ 
+//SignUp
+ firebase.auth().createUserWithEmailAndPassword(email, password)
+  .then() //handle response here
+  .catch() //handle error here
+```
 #### 2.2. Add FireBase SDK:
 - `npm install --save firebase`
 - use it inside authService - `import * as firebase from 'firebase';`
@@ -48,6 +59,7 @@
     });
   }
 ```
+
 
 ### 3. Add component - logic/ts:
 - get values from form - userid and password
