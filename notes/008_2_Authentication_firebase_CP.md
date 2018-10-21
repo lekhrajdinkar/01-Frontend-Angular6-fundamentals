@@ -117,6 +117,67 @@ token = this.authService.getToken();
 this.httpClient.get<Recipe[]>('https://ng-recipe-book-3adbb.firebaseio.com/recipes.json?auth=' + token)
 ```
 
+### 8. Modify Navbar
+> - if authenticated then show - `MANAGE dropdown`
+- if Not authenticated then show - `login/Register`.
+
+![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/auth/13.JPG)
+
+- Added new method in AuthService : `isAuthenticated()`
+- Inject AuthService into Header Component and use it in nav bar.
+```
+  isAuthenticated() {
+    return this.token != null;
+  }
+```
+
+### 9. Add Logout Button:
+- Add logout button/link > show it only if Authenticated.
+![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/auth/14.JPG)
+
+-  logout button clicked > `onLogout()` >  AuthService > logout() >
+```
+  logout() {
+    firebase.auth().signOut();
+    this.token = null;
+  }
+```
+
+### 10. Add Auth gaurd.
+- if Authenticated --> new recipe / Edit recipe routes will work
+- If NOT Authenticated --> can see Recipes. but new/Edit wornt work
+![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/auth/15.JPG)
+
+```
+@Injectable()
+export class AuthGuard implements CanActivate {
+
+  constructor(private authService: AuthService) {}
+
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+    return this.authService.isAuthenticated();
+  }
+}
+```
+`RouterStateSnapshot` --> ?
+
+
+Add App-Gaurd in recipe-routing-module.ts:
+```
+const recipesRoutes: Routes = [
+  { path: '', component: RecipesComponent, children: [
+    { path: '', component: RecipeStartComponent },
+    { path: 'new', component: RecipeEditComponent, canActivate: [AuthGuard] },
+    { path: ':id', component: RecipeDetailComponent },
+    { path: ':id/edit', component: RecipeEditComponent, canActivate: [AuthGuard] },
+  ] },
+];
+```
+
+
+
+
+
 
 
 
