@@ -18,7 +18,9 @@
 11. Authntication (firebase) and Route protection > CP
 12. App Optimization with Modules > routing module > lazy loading > CP
 13. Deploy ng app
-14. NgRX
+
+14. `NgRX`
+
 15. Angular Universe
 16. Service Worker
 17. Testing
