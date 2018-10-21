@@ -103,11 +103,11 @@ Auth service :
 
 - DataAccessSevice --> to pull recipe. use retrived token here.
 ![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/auth/12.JPG)
-> but this token wont be avialable instantly in above REST call.
+> Note : But this token wont be avialable instantly in above REST call.
 
-> one way is to make REST call inside callback method.
+> **one way :**  is to make REST call inside callback method. CURRENTLY its outside callback, see abv:
 
-> Other way: fetch token in AuthService which is already loaded asynchronously there from local storage and stored. this will skip another Asyn call.
+> **Other way:** fetch token in AuthService which is already loaded asynchronously there from local storage and stored. this will skip another Asyn call.
 but if token expired then it will work on second attempt.
 ```
 token = this.authService.getToken();
