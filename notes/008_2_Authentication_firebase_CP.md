@@ -1,5 +1,5 @@
 ## Authtication - Course Project
-- Add Signin and signup component
+- Add Signin and signup
 
 ### 1. Add signIn and Signup component - template:
 
@@ -23,23 +23,47 @@
 ```
 ![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/auth/04.JPG)
 
-### 2. Add `Auth Service` :
-- signupUser
-- signinUser
-- logout
-- getToken
-- isAuthenticated
+### 2. Add Auth Service:
 
-`auth.service.ts` :
+#### 2.1. `auth.service.ts` :
+- provide service in app Module --> `provider : [AuthService]`
+- Functionalities : signupUser / signinUser / logout / getToken / isAuthenticated
 ![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/auth/03.JPG)
 ![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/auth/05.JPG)
 
+#### 2.2. Add FireBase SDK:
+- `npm install --save firebase`
+- use it inside authService - `import * as firebase from 'firebase';`
+- add firebase APIkey in AppComponent (root)
+- firebase accepts min 6 char long password.
+![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/auth/08.JPG)
+![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/auth/09.JPG)
+```
+  ngOnInit() {
+    firebase.initializeApp({
+      apiKey: "AIzaSyBrkKleAX_8jHpPmTchVBmDD7Hkj8TT1VE",
+      authDomain: "ng-recipe-book-3adbb.firebaseapp.com"
+    });
+  }
+```
 
 ### 3. Add component - logic/ts:
 - get values from form - userid and password
 - onSignIn method > Auth service > signinUser method
 `signin.component.ts` :
 ![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/auth/06.JPG)
+
+### 4. Add register / signIn link in Nav-bar:
+![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/auth/07.JPG)
+
+### 5. New User is added:
+![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/auth/10.JPG)
+
+
+
+
+
+
 
 
 
