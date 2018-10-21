@@ -73,6 +73,51 @@
 ### 5. New User is added:
 ![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/auth/10.JPG)
 
+### 6. Similarly add SignIn Component and check response:
+```
+firebase.auth().signInWithEmailAndPassword(email, password)
+.then(  (response) => { console.log(response)}		)
+```		
+- See Sign in information in Console log, will get token here.
+- FireBase stores token in Browser Local Storage also.
+- Add Rule in FireStore: Enable Read /Write if Auth is not null:
+![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/auth/11.JPG)
+- Access fireStore (FetchData drop to pull recipes), it will give error. 
+> Solution : **Send Auth Token with all future request.**
+
+### 7. Send Token with Future Request 
+- (REST call to FireStore)
+- fetch Token from LocalStorage --> ` firebase.auth().currentUser.getToken()` --> this is `observable`/`promise` and receive response asyn. hence put then(), catch(),etc
+```
+Auth service :
+
+  // It Gets Token Asynchronously, because if token is expired 
+  // then it will make call server again to get new token.
+  
+  getToken() {
+    firebase.auth().currentUser.getToken()
+	.then(         (token: string) => this.token = token      );
+    return this.token;
+  }
+```
+
+- DataAccessSevice --> to pull recipe. use retrived token here.
+![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/auth/12.JPG)
+> but this token wont be avialable instantly in above REST call.
+
+> one way is to make REST call inside callback method.
+
+> Other way: fetch token in AuthService which is already loaded asynchronously there from local storage and stored. this will skip another Asyn call.
+but if token expired then it will work on second attempt.
+```
+token = this.authService.getToken();
+this.httpClient.get<Recipe[]>('https://ng-recipe-book-3adbb.firebaseio.com/recipes.json?auth=' + token)
+```
+
+
+
+
+
 
 
 

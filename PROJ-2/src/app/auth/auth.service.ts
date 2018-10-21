@@ -7,7 +7,7 @@ export class AuthService
 {
   token: string;
   constructor(private router: Router) {}
-  
+
   signupUser(email: string, password: string) {
     firebase.auth().createUserWithEmailAndPassword(email, password)
       .catch(
@@ -36,11 +36,10 @@ export class AuthService
     this.token = null;
   }
 
+  // fetch Token from LocalStorage
+  // GetToken Asyn, because if token is expired then it will make call server to get new token.
   getToken() {
-    firebase.auth().currentUser.getToken()
-      .then(
-        (token: string) => this.token = token
-      );
+    firebase.auth().currentUser.getToken().then(         (token: string) => this.token = token      );
     return this.token;
   }
 
