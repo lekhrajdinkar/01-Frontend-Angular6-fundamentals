@@ -12,15 +12,33 @@
 > template send `event` to component. eg-click
 
 ## String interpolation
-1. `{{ abc }}` - abs can be member variable component class, or String literal, expression, function(), service call, etc.
+1. `{{ abc }}` - member variable component class, or String literal, expression, function(), service call, etc. 
 2. `{{fn(msg)}}` - Everytime `msg` get changes it will be 'fn(msg)' will be called.
+3. Anything which get converted into string is ok. eg --> n :number = 10 => {{n}} will work
 
 ***
 ## property Binding
+- html tag > its attributes > assign new values to attributes at runtime using ng property binding. eg: 
+```
+<button disabled> </button>
+attribute :  disabled = true
+```
+Change it at runtime:`[disabled]=newValue`
+```
+template:
+<button [disabled]=newValue> </button>
 
-> ### one way binding
+component:
+newValue = true;
+setTimeOut( () => newvalue != newvalue, 5000); //after 5 sec toggle.
+```
+- can also bind `directives`.
+- can also bind to our own component. eg: <comp1 [attr1]=value>
 
-> ### two way binding
+- Types
+> **one way binding**
+
+> **two way binding**
 
 _Note: need to import `FormModule` to make it working_
 
