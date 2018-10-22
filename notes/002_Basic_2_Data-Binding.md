@@ -41,10 +41,6 @@ setTimeOut( () => newvalue != newvalue, 5000); //after 5 sec toggle.
 > 3. `directive of ng component`
 - can also bind to attributes component. eg: `<comp1 [attr1]=value>`
 
-**Types**
-> **one way binding**
-
-> **two way binding**
 ## Replace string Interpolation in below eg:
 ```
 <p> {{ var1 }} </p>
@@ -52,13 +48,20 @@ or
 <p [innerText]=var1 > </p> 
 ```
 
-
-_Note: need to import `FormModule` to make it working_
-
 ***
 ## C. Event Binding
+
+- here we bind to event (not to properties). eg: (click)="onSave()"
+![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/basic/5.JPG)
+
+usage of event handle: Communication between sibling components:
 1. create EventEmitter in service
 2. Emit Event in component-1 along with eventdata
 3. subscribe event in another component-2 and process data.
 4. use `subject` in place of EventEmitter for better performance.
+
+## D. Types
+> **one way binding**
+
+> **two way binding**
 
