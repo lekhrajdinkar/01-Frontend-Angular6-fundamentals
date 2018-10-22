@@ -18,22 +18,31 @@
 
 ***
 ## property Binding
-- html tag > its attributes > assign new values to attributes at runtime using ng property binding. eg: 
+- As angular update the DOM at Runtime. can update 3 things: assign new value to `html tag's attribute`, `ng component's  attribute`, and `directive of ng component`
+- eg : html tag > its attributes > assign new values to attributes at runtime using ng property binding. 
 ```
 <button disabled> </button>
 attribute :  disabled = true
 ```
-Change it at runtime:`[disabled]=newValue`
+Change it at runtime:`[disabled]="newValue"`
+> Note : can write any typescript expression between double quotes.
 ```
 template:
-<button [disabled]=newValue> </button>
+<button [disabled]="newValue"> </button>
 
 component:
 newValue = true;
 setTimeOut( () => newvalue != newvalue, 5000); //after 5 sec toggle.
 ```
-- can also bind `directives`.
-- can also bind to our own component. eg: <comp1 [attr1]=value>
+- can also bind `directives`. eg: <comp1 [ng-directive1]=value>
+- can also bind to attributes component. eg: <comp1 [attr1]=value>
+- Replace string Interpolation in below eg:
+```
+<p> {{ var1 }} </p>
+or
+<p [innerText]=var1 > </p> 
+```
+- 
 
 - Types
 > **one way binding**
