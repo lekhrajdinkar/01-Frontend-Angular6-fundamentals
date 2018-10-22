@@ -15,9 +15,9 @@
 
 ### 3.1. Compoment
 
-### 3.1. databinding
+### 3.2. databinding
 
-### 3.1. Directives
+### 3.3. Directives
 ***
 
 ### 4. How Angular App get started / ng bootStraping

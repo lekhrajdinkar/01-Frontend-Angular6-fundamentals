@@ -15,7 +15,6 @@
 ## create component
 1. manually
 2. using cli : `ng g c ../comp1`
-> Note: After creating comp, declare it inside any one module.
 3. eg:
 ```
 @Component({
@@ -24,10 +23,30 @@
   styleUrls: ['./signin.component.css']
 })
 ```
-4. declare comp:
+- `selector` and `styleUrls` are optional.
+- inline template : use  template instead of  templateUrl
+```
+template: ` write html here `
+```
+4. declare comp > After creating comp, declare it inside any one module.
 ![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/basic/4.JPG)
 - .ts is not needed at the end. webpack automatically adds it.
 
+5. selector is like css selector.eg:
+```
+case 1: tag
+selector: 'app-signin'
+<div app-signin> </div>
+
+case 2: attribute
+selector: '[app-signin]'
+<div app-signin> </div>
+
+case 3: class
+selector: '.app-signin'
+<div class="app-signin"> </div>
+```
+- note : select by ID and psuedo classes wont work in ng
 ***
 ## Life Cycle hooks
 
@@ -43,3 +62,4 @@
 ## Styling Component
 1. global styling - ../src/styles.css 
 2. local styling - components individual style
+
