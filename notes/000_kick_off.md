@@ -17,6 +17,7 @@
 - Other UI frameworks: AMBER, BackBONE, REACT JS (also adapting TS), Vue, etc.
 - UI technology itself needs MVC, not excatly called as MVC but **extension of HTML** (to segregate - style (css), view(html), data-logic(JS/TS))
 - Flavours - Angular1 and Angular 2+ is complete rewrite for Angular1/AngularJS.
+- in the end Angular is framework to update DOM at runtime.
 
 - Angular vs AngularJS
 1. fixed  cross browser compliant 

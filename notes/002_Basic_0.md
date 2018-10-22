@@ -57,3 +57,5 @@ platformBrowserDynamic().bootstrapModule(AppModule)
 
 note: there is lot more but this info in enough to get started with code. Check angular.io for more about bootstaping.
 
+![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/basic/3.JPG)
+
