@@ -27,12 +27,5 @@ code:
 
 ![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/http/cp/9.jpg)
 
-![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/http/cp/10.jpg)
-
-![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/http/cp/11.jpg)
-
-![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/http/cp/12.jpg)
-
-![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/http/cp/13.jpg)
 
 

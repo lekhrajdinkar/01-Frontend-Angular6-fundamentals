@@ -4,6 +4,9 @@
 - Does not make regular communication with Server.
 - No page refresh / no URL change (route chnages).
 
+- Topic:
+![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/kickoff/1.jpg)
+
 ***
 
 > # Angular6
@@ -20,6 +23,7 @@
 2. Typescript is a superset of JavaScript and is more powerful language. Use of Typescript in application development improves productivity significantly.
 3. Better support for Mobile App Development.
 4. Better performance.
+![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/kickoff/2.jpg)
 
 - Angular has absolutely no dependencies with any possible server-side technology like Java, NodeJS, php, etc. and any database like MongoDB, MySql, can be used.
 ![](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/000_1.PNG)
