@@ -26,7 +26,7 @@ html tag > its attributes > assign new values to attributes at runtime using ng 
 attribute :  disabled = true
 ```
 Change it at runtime:`[disabled]="newValue"`
-> Note : can write any typescript expression between double quotes.
+> _Note : can write any typescript expression between double quotes_
 ```
 template:
 <button [disabled]="newValue"> </button>
@@ -36,12 +36,12 @@ newValue = true;
 setTimeOut( () => newvalue != newvalue, 5000); //after 5 sec toggle.
 ```
 > 2. `ng component's  attribute`
-- can also bind `directives`. eg: <comp1 [ng-directive1]=value>
+- can also bind `directives`. eg: `<comp1 [ng-directive1]=value>`
 
 > 3. `directive of ng component`
-- can also bind to attributes component. eg: <comp1 [attr1]=value>
+- can also bind to attributes component. eg: `<comp1 [attr1]=value>`
 
-- **Types**
+**Types**
 > **one way binding**
 
 > **two way binding**
