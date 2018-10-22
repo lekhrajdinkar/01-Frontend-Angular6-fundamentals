@@ -18,8 +18,9 @@
 
 ***
 ## property Binding
-- As angular update the DOM at Runtime. can update 3 things: assign new value to `html tag's attribute`, `ng component's  attribute`, and `directive of ng component`
-- eg : html tag > its attributes > assign new values to attributes at runtime using ng property binding. 
+- As angular update the DOM at Runtime. lets update 3 things: 
+> 1. assign new value to `html tag's attribute`, 
+html tag > its attributes > assign new values to attributes at runtime using ng property binding. 
 ```
 <button disabled> </button>
 attribute :  disabled = true
@@ -34,20 +35,23 @@ component:
 newValue = true;
 setTimeOut( () => newvalue != newvalue, 5000); //after 5 sec toggle.
 ```
+> 2. `ng component's  attribute`
 - can also bind `directives`. eg: <comp1 [ng-directive1]=value>
+
+> 3. `directive of ng component`
 - can also bind to attributes component. eg: <comp1 [attr1]=value>
-- Replace string Interpolation in below eg:
+
+- **Types**
+> **one way binding**
+
+> **two way binding**
+## Replace string Interpolation in below eg:
 ```
 <p> {{ var1 }} </p>
 or
 <p [innerText]=var1 > </p> 
 ```
-- 
 
-- Types
-> **one way binding**
-
-> **two way binding**
 
 _Note: need to import `FormModule` to make it working_
 
