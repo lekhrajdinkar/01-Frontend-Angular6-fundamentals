@@ -52,7 +52,7 @@ or
 ## C. Event Binding
 
 - here we bind to event (not to properties). eg: (click)="onSave()"
-![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/basic/5.JPG)
+![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/basic/6.JPG)
 
 usage of event handle: Communication between sibling components:
 1. create EventEmitter in service
