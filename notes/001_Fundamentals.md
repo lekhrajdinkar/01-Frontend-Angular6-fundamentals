@@ -125,7 +125,6 @@ Purpose:
 
 > ### 5.2. Reactive
 
-
 ***
 
 > ## 6. testing : 
@@ -136,12 +135,18 @@ Purpose:
 ***
 
 > ## 7. Observables
+- rxJS package
+- Angular itself used it alot.
+- Alternative for promise.
 
 ***
 
 > ## 8. REST libraries - HTTPRequest and HttpClient
 1. REST call to put github
 2. REST call to google fireBase - to Store/fetch data in NoSQL data (`firestore`    , stores collection of JSON)
+
+> ## 9. ngRX - State management in Angular
+- angular-redux integration.
 
 
 
