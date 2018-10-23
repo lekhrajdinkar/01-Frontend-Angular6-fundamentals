@@ -43,6 +43,10 @@ getColour(){
    return this.status == 'online' ? 'green' : 'red';
 }
 ```
+> `ngClass` 
+- It instructs DOM to add/remove classes dynamically.
+![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/basic/10.JPG)
+- online is class name ==> .online{background-color : green}
 ***
 
 ###  Create Custom directives
