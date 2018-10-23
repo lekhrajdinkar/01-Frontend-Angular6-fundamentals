@@ -4,6 +4,7 @@
 - create single component app
 - then break it into multiple component.
 - it will break app if data is not communicated among component.
+![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/basic/cp/7.JPG)
 
 ***
 
