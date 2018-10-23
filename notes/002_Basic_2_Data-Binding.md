@@ -49,7 +49,7 @@ or
 ```
 
 ***
-## C. Event Binding
+## Event Binding
 
 1.  here we bind to event (not to attributes). eg: (click)="onSave()"
 ![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/basic/6.JPG)
@@ -84,8 +84,9 @@ output:
 - Emit Event in component-1 along with eventdata
 - subscribe event in another component-2 and process data.
 - use `subject` in place of EventEmitter for better performance.
+***
 
-4. **two way binding**
+### 4. two way binding
 - At point 2, prg is written. Alternative of it. just one line code.
 ```
 Server Name <input [(ngModel)="sn"]> </input>
