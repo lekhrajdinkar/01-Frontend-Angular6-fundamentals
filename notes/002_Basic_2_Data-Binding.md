@@ -54,7 +54,13 @@ or
 1.  here we bind to event (not to attributes). eg: (click)="onSave()"
 ![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/basic/6.JPG)
 
-2.  pass data along with event.
+2. Like property binding, event binding can also be done custom event
+```
+property binding --> attribute html tag, property of ng comp and ng directive.
+Event Binding --> html event, custom ng event
+```
+
+3.  pass data along with event.
 ```
 template:
 
@@ -68,7 +74,6 @@ onInput(e : Event) {
     console.log(e); //inspect it.
     this.sn=e.target.value;
  }
-
 
 ```
 output: 
