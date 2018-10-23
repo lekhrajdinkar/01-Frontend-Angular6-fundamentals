@@ -1,4 +1,4 @@
-# Course Project - ng Basic
+# Course Project - PART 1 - ng Basic 
 
 ![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/basic/cp/01.JPG)
 
@@ -40,8 +40,13 @@ output:
 ![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/basic/cp/6.JPG)
 
 ***
+***
+# Course Project - PART 2 - DataBinding/component(advance) 
 
-5. Communication between above comps
+***
+***
+# Course Project - PART 3 - Directives
+
 
 
 
