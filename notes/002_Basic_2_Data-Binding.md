@@ -58,7 +58,7 @@ or
 ```
 template:
 
-Server Name <input (input)="onInput($event)"> 
+Server Name <input (input)="onInput($event)"> </input>
 // input is html event which gets triggered on every key stroke
 {{sn}}
 
@@ -68,6 +68,8 @@ onInput(e : Event) {
     console.log(e); //inspect it.
     this.sn=e.target.value;
  }
+
+
 ```
 output: 
 ![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/basic/7.JPG)
@@ -78,13 +80,22 @@ output:
 - e.target.value : use it to get value. its same as `(<HTMLInputElement>e.target).value`. `<HTMLInputElement>` is explicit casting here.
 
 3. usage of event handle: Communication between sibling components:
-1. create EventEmitter in service
-2. Emit Event in component-1 along with eventdata
-3. subscribe event in another component-2 and process data.
-4. use `subject` in place of EventEmitter for better performance.
+- create EventEmitter in service
+- Emit Event in component-1 along with eventdata
+- subscribe event in another component-2 and process data.
+- use `subject` in place of EventEmitter for better performance.
 
-## D. Types
-> **one way binding**
+4. **two way binding**
+- At point 2, prg is written. Alternative of it. just one line code.
+```
+Server Name <input [(ngModel)="sn"]> </input>
+```
+- it will create `sn` var in comp.
 
-> **two way binding**
+2 way flow:
+- 1. (DOM => component) : type new value, and print `sn` value 
+> [ ....enter server name...... |  ] {{sn}}
 
+- 2. (component => DOM) : assign new value in component and check on browser 
+> this.sn = this.sn+"xxxxxxx" 
+***
