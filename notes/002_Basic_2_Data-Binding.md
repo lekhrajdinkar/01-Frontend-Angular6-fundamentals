@@ -51,10 +51,33 @@ or
 ***
 ## C. Event Binding
 
-- here we bind to event (not to properties). eg: (click)="onSave()"
+1.  here we bind to event (not to attributes). eg: (click)="onSave()"
 ![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/basic/6.JPG)
 
-usage of event handle: Communication between sibling components:
+2.  pass data along with event.
+```
+template:
+
+Server Name <input (input)="onInput($event)"> 
+// input is html event which gets triggered on every key stroke
+{{sn}}
+
+comp:
+
+onInput(e : Event) {
+    console.log(e); //inspect it.
+    this.sn=e.target.value;
+ }
+```
+output: 
+![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/basic/7.JPG)
+
+- $event is reserved keyword to capture the event data.
+- All event sends soem data. eg click event send coordeinates where it was click + lots may things, inspect it using $event. 
+- e.target : is html element on which event is fired.
+- e.target.value : use it to get value. its same as `(<HTMLInputElement>e.target).value`. `<HTMLInputElement>` is explicit casting here.
+
+3. usage of event handle: Communication between sibling components:
 1. create EventEmitter in service
 2. Emit Event in component-1 along with eventdata
 3. subscribe event in another component-2 and process data.
