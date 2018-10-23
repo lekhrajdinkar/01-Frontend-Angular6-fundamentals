@@ -4,11 +4,12 @@
 
 1. Create all component with dummy content
 ```
-header > recipe > recipe-detail + (recipe-list > recipe-item)
-header > shopping > shopping-edit
+1 header 
+2 recipe > 2.1 recipe-detail + (2.2 recipe-list > 2.2.1. recipe-item)
+3 shopping-list > 3.1 shopping-edit
 ```
 ***
-2. Create header
+2. `header` comp
 - brand
 - recipe + shopping
 - manage dropdown (fetch + save)
@@ -17,6 +18,7 @@ header > shopping > shopping-edit
 - recipe c > `recipe-list` c (5/12) > new button + `recipe-item`  c
 - recipe c > `recipe-detail` c (7.12)
 - `recipe` model  with parameterized constructor.
+![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/basic/cp/5.JPG)
 
 - recipe-list:
 ![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/basic/cp/2.JPG)
@@ -28,5 +30,19 @@ header > shopping > shopping-edit
 
 output:
 ![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/basic/cp/4.JPG)
+
+4. Shopping component
+- Ingredient Model (shared)
+- hardcode Ingredient[] in shopping-list and iterate them to display
+- define template for shopping-edit comp - add,delete,update
+
+output:
+![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/basic/cp/6.JPG)
+
+***
+
+5. Communication between above comps
+
+
 
 
