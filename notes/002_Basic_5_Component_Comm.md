@@ -31,6 +31,11 @@ Case 3: sibling1 => sibling2
 ***
 
 ### A. Pass data from Parent to Child Component.
+- app comp > passing servers to server-element.
+- property binding:
+![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/basic/12.JPG)
+- Could also bind with Alias name of property:
+![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/basic/13.JPG)
 
 ***
 ### B. Pass data from Child Component to Parent.

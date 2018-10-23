@@ -1,6 +1,8 @@
 # Data Binding 
 - So far added static content in template. data binding helps to add **dynamic content** in template.
 - consider as communication between template and component.
+![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/basic/11.JPG)
+
 ```
 - component : all logic and data.
 - template : this get view by user. so it need to fetch data from component.
