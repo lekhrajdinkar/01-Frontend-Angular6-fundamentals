@@ -64,6 +64,8 @@ getConfig() {
 note:
 > - Check EXAMPLE-3 to error handling at Observable/get()
 > - it returns an Observable of Config type. == `{heroesUrl:'',textfile:'' }` type == `Config` type
+
+{observe:'response'}
 ![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/http2/1.jpg)
 
 4. **Invoke observable/get() in COMPONENT** --> `config.component.ts`
@@ -166,3 +168,65 @@ private handleError(error: HttpErrorResponse)
 };
 ```
 ***
+
+## option object:
+- this.http.get(url, option-object)
+
+### 1. {observe:'response' , responseType:'text'}
+![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/http2/4.jpg)
+
+### 2. {observe:'body' , responseType:'json'}
+![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/http2/5.jpg)
+
+### 3. {observe:'event'}
+- Sent GET request > event-1: GET , event-2: httpResponse
+![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/http2/6.jpg)
+
+- send post and Subscribe response data is of `HttpEvent<>` type
+![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/http2/7.jpg)
+![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/http2/8.jpg)
+
+### 4. Header
+![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/http2/9.jpg)
+
+### 5. query param
+- new HttpParam().set(k,v)
+- new HttpParam().append(k,v)
+![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/http2/10.jpg)
+
+***
+
+## httpRequest
+- create
+![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/http2/11.jpg)
+
+- send
+![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/http2/12.jpg)
+
+- output > events
+![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/http2/13.jpg)
+
+***
+
+## Interceptors
+- declare Interceptor:
+![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/http2/14.jpg)
+![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/http2/18.jpg)
+
+- eg: implemets HttpInterceptor > override intercept(httpRequest, httpHandler)
+![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/http2/15.jpg)
+
+### Request Interceptor
+- Auth token interceptor
+![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/http2/16.jpg)
+
+- logging interceptor
+![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/http2/17.jpg)
+
+### Response Interceptor
+
+***
+
+
+
+
