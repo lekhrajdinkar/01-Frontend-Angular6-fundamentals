@@ -13,12 +13,12 @@ Angular app communicate with backend services over the HTTP protocol.
 before:
 this.http.get().map() --> to transform data, no error hadnling
 
-After: pipe operator and CatchError operator.
-this.http.get(),pipe( map(), catchError(), ...)
+After: pipe and CatchError operator.
+this.http.get()pipe( map(), catchError(), ...)
 ```
 - testability features
 
-3. it is a best practice to separate `presentation of data` from `data access`.
+3. It is a best practice to separate `presentation of data` from `data access`.
 - Define Http request in service and
 - invoke/subscribe from Component.
 
@@ -61,15 +61,23 @@ getConfig() {
   return this.http.get<Config>(this.configUrl);
 }
 ```
+_note:Check EXAMPLE-3 to error handling at Observable/get()_
+
 - it returns an Observable of Config type. == `{heroesUrl:'',textfile:'' }` type == `Config` type
 
 
 4. **Invoke observable/get() in COMPONENT** --> `config.component.ts`
 - Injects the `ConfigService` and calls the getConfig() method.
 - The subscription 1st callback returns the data.
-- The subscription 12nd callback returns the error.
+- The subscription 2nd callback returns the error.
+
+> `HttpClient` will return an error object instead of a successful response:
+> - If the request fails on the server
+> - if a poor network connection prevents it from even reaching the server.
 
 ```
+constructor(private http: HttpClient) { }
+
 showConfig() {
   this.configService.getConfig().subscribe(
 		 //1st callback
@@ -80,9 +88,7 @@ showConfig() {
 		
 		//2nd Callback
 		(error) => {... handle error, received from observable...}
-	);
-	
-	
+	);	
 }
 ```
 ***
@@ -121,28 +127,27 @@ showConfig() {
 }
 ```
 ***
+### 5. Example3 - Handle error at httpClient.get() observable.
+1. Error inspection:
+> 1. TYPE-1 : `server backend` might reject the request, returning an HTTP response with a status code such as 404 or 500
+> 2. TYPE-2 :  JavaScript ErrorEvent objects at client side --> network error \ an exception thrown in an RxJS operator.
 
+so HttpClient captures both types ( type-1 and type-2) of errors in `HttpErrorResponse`
 
-## Error handling
-
-- If the request fails on the server, or if a poor network connection prevents it from even reaching the server.
-- `HttpClient` will return an error object instead of a successful response.
-- handle error in the component by adding a `second callback` to the .subscribe():
+2. `Retry` : network interruptions are common in mobile scenarios, and trying again may produce a successful result.
 ```
-.subscribe(
-      (response) => this.config = { ...data }, // success path
-      (error) => this.error = error // error path
-    );
-```
+//0. imports:
+import { Observable, throwError } from 'rxjs';
+import { catchError, retry } from 'rxjs/operators';
 
-2. handle error inside Service --> 
-2.1. Error inspection:
-> TYPE-1 : `server backend` might reject the request, returning an HTTP response with a status code such as 404 or 500
+//1. catchError:
+this.http.get()pipe( 
+map(... ), 
+catchError(this.handleError),
+retry(3)
+);
 
-> TYPE-2 :  JavaScript ErrorEvent objects at client side --> network error \ an exception thrown in an RxJS operator.
-
-Note: HttpClient captures both types of errors in `HttpErrorResponse`
-```
+//2. Devise an error handler --> this.handleError :
 private handleError(error: HttpErrorResponse) 
 {
   // 1. A client-side or network error occurred
@@ -159,13 +164,4 @@ private handleError(error: HttpErrorResponse)
   return throwError( 'Something bad happened; please try again later.');
 };
 ```
-
-2.2. interpretation resolution
-
-
 ***
-- Sometimes the error is transient and will go away automatically if you try again. 
-For example, network interruptions are common in mobile scenarios and trying again may produce a successful result.
-
-The RxJS library offers several retry operators that are worth exploring. The simplest is called retry() and it automatically re-subscribes to a failed Observable a specified number of times. Re-subscribing to the result of an HttpClient method call has the effect of reissuing the HTTP request.
-
