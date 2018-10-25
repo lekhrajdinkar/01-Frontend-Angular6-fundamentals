@@ -61,10 +61,10 @@ getConfig() {
   return this.http.get<Config>(this.configUrl);
 }
 ```
-_note:Check EXAMPLE-3 to error handling at Observable/get()_
-
-- it returns an Observable of Config type. == `{heroesUrl:'',textfile:'' }` type == `Config` type
-
+note:
+> - Check EXAMPLE-3 to error handling at Observable/get()
+> - it returns an Observable of Config type. == `{heroesUrl:'',textfile:'' }` type == `Config` type
+![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/http2/1.jpg)
 
 4. **Invoke observable/get() in COMPONENT** --> `config.component.ts`
 - Injects the `ConfigService` and calls the getConfig() method.
@@ -121,11 +121,12 @@ showConfig() {
 		
 		//2nd Callback
 		(error) => {... handle error, received from observable...}
-	);
-	
-	
+	);	
 }
 ```
+
+![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/http2/2.jpg)
+![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/http2/3.jpg)
 ***
 ### 5. Example3 - Handle error at httpClient.get() observable.
 1. Error inspection:
