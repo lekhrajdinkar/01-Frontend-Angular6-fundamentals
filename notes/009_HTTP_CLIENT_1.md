@@ -196,8 +196,10 @@ private handleError(error: HttpErrorResponse)
 
 ***
 
-## httpRequest
-- create
+### 6. reportProgress
+- Another way to create and send http request
+- create --> new HttpRequest(type, url, data, option-object)
+- reportProgress : true
 ![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/http2/11.jpg)
 
 - send
