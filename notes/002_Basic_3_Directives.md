@@ -67,10 +67,10 @@ getColour(){
 eg: ![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/basic/directive/05.jpg)
 
 5. Get **host-element reference** inside directive 
-- 5.1. @HostBinding( `any property of host Element' ) 
+- 5.1. @HostBinding( `any property of host Element' ) --> it will bind the htmlElement Properties (JS  object) with a prperty defined in directive class.
 ![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/basic/directive/06.jpg)
 
-- 5.2. `ElementRef` (angular defined type)
+- 5.2. injecting `ElementRef` (angular defined type)
 
 
 6. Edit the property of element then:
@@ -95,5 +95,17 @@ eg: change paragraph colour with directive :
 ![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/basic/directive/04.jpg)
 - more : https://angular.io/api/core/Renderer2#methods
 
-> 6.3. WAY-3 : 
+> 6.3. WAY-3 : @HostBinding --> (elementRef not needed)
+- edit property directly or on some event(inside @hostListen method) 
+see point 5.1
+
+7. pass data into directive.
+- @Input(alias name) --> same as in component.
+![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/basic/directive/07.jpg)
+
+- Note: can use the alias name same as directive selector name. 
+![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/basic/directive/08.jpg)
+
+
+
 
