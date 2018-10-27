@@ -13,13 +13,13 @@
 
 > template send `event` to component. eg-click
 
-## String interpolation
+## A. String interpolation
 1. `{{ abc }}` - member variable component class, or String literal, expression, function(), service call, etc. 
 2. `{{fn(msg)}}` - Everytime `msg` get changes it will be 'fn(msg)' will be called.
 3. Anything which get converted into string is ok. eg --> n :number = 10 => {{n}} will work
 
 ***
-## property Binding
+## B. property Binding
 - As angular update the DOM at Runtime. lets update 3 things: 
 > 1. assign new value to `html tag's attribute`, 
 html tag > its attributes > assign new values to attributes at runtime using ng property binding. 
@@ -57,7 +57,7 @@ or
 ```
 
 ***
-## Event Binding
+## C. Event Binding
 
 1.  here we bind to event (not to attributes). eg: (click)="onSave()"
 ![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/basic/6.JPG)
@@ -113,3 +113,41 @@ Server Name <input [(ngModel)="sn"]> </input>
 - 2. (component => DOM) : assign new value in component and check on browser 
 > this.sn = this.sn+"xxxxxxx" 
 ***
+
+## D. LOCAL REFERENCE
+
+1. template > Create references on any html-element / component. > #ref1
+2. pass this html-element (as JS object) into component class/logic
+
+> - ref1 can be used anywhere in template.
+
+![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/basic/comp/09.jpg)
+
+3. pass ref to typescript/logic/comp-class by 2 ways:
+
+- #### 3.1. passing as method arg
+![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/basic/comp/10.jpg)
+
+> - JS Object : html-element --> HTMLInputElement , component --> ? 
+
+- #### 3.2. via @viewChild / @viewContent
+![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/basic/comp/11.jpg)
+> - JS Object : html-element / component --> ElementRef 
+![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/basic/comp/12.jpg)
+
+- do opposite to set value --> it will update DOM --> Avoid this way. there is better way - `directives`.
+![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/basic/comp/13.jpg) 
+
+***
+
+## E. ng-template directive
+- this is inject template from parent component to child component.
+- ` template (inside innerText of P-comp1)` > inject > `ng-template tag inside template C-comp1 will get replaced`
+
+
+![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/basic/comp/14.jpg)
+![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/basic/comp/15.jpg)
+
+- Above point 3.2 > @viewContent > it will get reference defined on template which is injected by parent component.
+![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/basic/comp/16.jpg)
+![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/basic/comp/17.jpg)

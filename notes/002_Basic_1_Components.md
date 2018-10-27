@@ -62,4 +62,20 @@ selector: '.app-signin'
 ## Styling Component
 1. global styling - ../src/styles.css 
 2. local styling - components individual style
+3. **View Encapsulation**
+![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/basic/comp/08.jpg)
+
+> A. EMULATED
+1. inspect template > ng adds unique property in every element. eg : ng-content-ego-2
+2. then later used by `css property selcetor` to apply style.
+![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/basic/comp/07.jpg)
+
+> B. NONE
+- ng will not unique property.
+- hence parent component style will be applied.
+
+> C. NATIVE
+- same as emulated, but wont work in older browser.
+- so use Emulated only.
+
 

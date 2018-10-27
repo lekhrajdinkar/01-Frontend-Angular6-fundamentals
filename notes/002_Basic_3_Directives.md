@@ -12,7 +12,7 @@
 
 ***
 
-### structural directives
+### TYPE 1 - structural directives
 - starts with * , it will remove or add element from DOM. 
 
 > `*ngIf`
@@ -22,9 +22,11 @@
 
 > `*ngFor` / `*ngCase`
 
+> `<ng-template>  </ng-template>`
+
 ***
 
-### Attribute directives
+### TYPE 2 - Attribute directives
 > `ngStyle`  
 - it instructs DOM to change style dynamically.
 - use `property binding` to assign new value to this attribute ( or attribute directives).
