@@ -43,6 +43,10 @@ setTimeOut( () => newvalue != newvalue, 5000); //after 5 sec toggle.
 > 3. `directive of ng component`
 - can also bind to attributes component. eg: `<comp1 [attr1]=value>`
 
+> 4. short hand:
+- can skip square bracket
+![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/basic/comp/01.jpg)
+
 ## Replace string Interpolation in below eg:
 ```
 <p> {{ var1 }} </p>
