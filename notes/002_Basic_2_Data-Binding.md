@@ -27,7 +27,9 @@ html tag > its attributes > assign new values to attributes at runtime using ng 
 <button disabled> </button>
 attribute :  disabled = true
 ```
-Change it at runtime:`[disabled]="newValue"`
+- Change it at runtime:`[disabled]="newValue"` 
+
+- `side Note`: Could also hardcode it : `[disabled]="'true'"`  (notice single quotes)
 > _Note : can write any typescript expression between double quotes_
 ```
 template:
