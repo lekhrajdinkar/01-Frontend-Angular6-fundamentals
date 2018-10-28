@@ -11,18 +11,35 @@
 ![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/basic/directive/01.jpg)
 
 ***
-
+## A. Types
 ### TYPE 1 - structural directives
-- starts with * , it will remove or add element from DOM. 
+1. starts with * , it will remove or add element from DOM. 
 
 > `*ngIf`
 - with else: `<ngtemplate #n>` this will mark some spot on our template. it has local ref - `n` use this reference to show this ngTemplate conditionally in else part as shown below.
 ![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/basic/9.JPG)
 - Another way is to use ngIf twice with reverse conditions
 
-> `*ngFor` / `*ngCase`
+> `*ngFor` 
 
-> `<ng-template>  </ng-template>`
+> `*ngCase`
+
+![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/basic/directive/11.jpg)
+
+
+> `<ng-template>  </ng-template>` --> Directive with compoent selector.
+
+2 **Behind the scene**
+- * has special meaning and it get replaced with actual code.
+- actual code for `< comp1 *ngIf> </comp1>`:
+```
+ <ng-template [ngIf]=" "> 
+ <div>
+ <comp1> </comp>
+ </div>
+ </ng-template>
+```
+![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/basic/directive/09.jpg)
 
 ***
 
@@ -58,8 +75,8 @@ getColour(){
 ![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/basic/directive/02.jpg)
 
 ***
-
-###  Create Custom directives
+## B. Create Create Custom directives
+### B.1 Attribute dir
 1. import directive from ng core.
 2. class with @directive decorator > property selector - camelCase name.
 3. **declare directive** in ngModule (like component.)
@@ -108,6 +125,11 @@ see point 5.1
 - Note: can use the alias name same as directive selector name. 
 ![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/basic/directive/08.jpg)
 
+***
+
+### B.2. Create custom Structural Directive
+![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/basic/directive/10.jpg)
+- it invoke a function which would add ng-template in DOM based on input it received
 
 
 
