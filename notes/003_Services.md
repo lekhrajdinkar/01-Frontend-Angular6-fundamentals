@@ -1,14 +1,12 @@
-# DI And Services
+# DI in ng And Services
 
 ## A. features
 - `DI` is a coding pattern in which a class asks for dependencies from external sources rather than creating them itself.
 - Services are just class which can be accessed from any component. hence provide common area between 2 component and useful for cross comp comm.
-- logging service, REST calling services, etc --> task which are common among multiple comp.
-- In ng, the DI framework provides `declared dependencies`. it has injector object and we declare(using provider declaration) about when to inject srv/any other class.
-- just a class with ni decorator.
-- Add @Injectable decorator to inject other service.
+- In ng, the DI framework provides `declared dependencies`. it has injector object and we declare(using provider declaration) about when to provide/instantiate the srv or (any-other class)
+- just a class with No decorator. Could dd @Injectable decorator only if want to inject other service in current service.
 - create Service using CLI --> `ng generate service heroes/hero`
-- eg:
+- eg: provide appication wide srv and then inject that instance in one of the comp.
 ```
 import { Injectable } from '@angular/core';
 
@@ -19,25 +17,24 @@ export class HeroService {  constructor() { }}
 
 ***
 
-## B. Glossary:
-> **1. injector** [more](https://angular.io/guide/glossary#injector)
-- An object which create a dependency(service) using a configured provider.
+## B. service : Provider and injector
+- A provider tells an injector how to create the service.
+- [injector --> angular/io](https://angular.io/guide/glossary#injector)
+- Injector is a object which create a dependency(service) using a configured provider.
 - As programmer we dont create injector.
 - Injectors are created for NgModules automatically as part of the bootstrap process and are inherited through the component hierarchy.
 - An injector provides a singleton instance of a dependency, and can inject this same instance in multiple components.
 - **Hierarchical injector**
-1. root injector (appli wide one instance)
-2. module injector(one instance for module)
-3. parent component injector (one instance for parent componenet and down to its child.)
-4. provide new kinstance in a standalone component.
+1. Root injector (appli wide one instance)
+2. Module injector(one instance for module)
+3. Parent component injector (one instance for parent componenet and down to its child.)
+4. provide new instance in a standalone component.
+
 ![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/srv/02.jpg)
 
-
->> **2. Provider**
-- A provider tells an injector how to create the service.
 ***
 
-## C Working with service
+## C. Working with service
 ### 1. provide service
 Configure `injector` with `service provider`--> can be done at 3 places:
 
@@ -53,7 +50,10 @@ Configure `injector` with `service provider`--> can be done at 3 places:
 constructor( private heroService: HeroService)
 ```
 
-### 3. Cross Component Communication
+### 3. uses of services:
+1. Cross Component Communication.
+2. logging service, REST calling services, etc --> task which are common among multiple comp.
+3. storing data/application-state if not using Ngrx.
 
 ***
 
