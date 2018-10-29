@@ -17,7 +17,7 @@
 1. ![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/route/rcp23.jpg)
 note: above relativeTo property is not set in 2nd arg.
 
-2. Fetch parameter, queryParam and fragment Programatically 
+2. Fetch parameter, queryParam and fragment
 > Case-1 : if url mapped to anothor Component
 
 ```
