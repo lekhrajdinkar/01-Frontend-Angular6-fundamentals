@@ -10,7 +10,7 @@
 
 2. `App` Comp --> childs : `home` Comp + `Users` Comp + `Servers` Comp
 ![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/route/rcp2.jpg)
-- template: All 3 child are being loaded.
+- Its template: All 3 child are being loaded.
 ![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/route/rcp6.jpg)
 
 3. `Users` Comp
@@ -28,14 +28,14 @@
 ```
 ![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/route/rcp7.jpg)
 
-6.1 Add URL in navbar 
-- using `href` --> this is not correct way, it will refresh application and hence will lost every time.
+6. Add URL in navbar/ anchor link
+6.1 using `href` --> this is not correct way, it will refresh application and hence will lost every time.
 
-6.2 Add URL in navbar 
+6.2 Using routerLink Diderctive
 ![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/route/rcp8.jpg)
-- using `routerLink` -- > correct way
+- its correct way
 - Its attribute directive. Bind it with new values. it accepts a URL or array of URLs as value.
--this directive listen to click event and ovverride the default behaviour. it finds the fitting component based on URL register in routing  modiule.
+- this directive listen to `click` event and ovverride the default behaviour. it actually finds the fitting component based on selected URL register in routing  module.
 ```
 [routerLink] = "['url1']"
 
@@ -45,7 +45,7 @@ routerLink = "url1"
 //shortcut - is passing Strinf then can omit [] and ''
 
 ```
-- Absolute vs relative path
+- **Absolute vs relative path**
 
 if path is start with / then routerLink directive will take it **absolute path** . eg:
 ```
@@ -66,7 +66,7 @@ new path : http://lovalHost:4200/home/user
 ```
 ![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/route/rcp9.jpg)
 
-7. Add styling to tabs:
+7. Add **styling** to navbar tabs:
 - `routerLink` directive has other bindable property --> `routerLinkActive` and `routerLinkActiveOption`
 -  routerLinkActive activates(add styles) to the selected tab which maths the current path and it parent. 
 > eg  if tab with anhor link `http://lovalHost:4200/home` is selected then it will be highlighthed , plus tab with anhor link `http://lovalHost:4200/` will also get highlighted
