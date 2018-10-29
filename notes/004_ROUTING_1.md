@@ -1,11 +1,12 @@
-# Routing 
+# Routing PART1 - BAsic and KickOff
 
 ## Application navigation model
 Browser is familiar with `Application navigation model`
 - Enter a `URL` in the address bar -->  browser navigates to a corresponding `page`.
 - Click `links` on the page --> browser navigates to a new `page`.
-- Click the browser's `back and forward buttons` --> browser navigates to a new `page`.
-- Click `browser history` --> browser navigates to a corresponding `page`
+- Browser History:
+a. Click the browser's `back and forward buttons` --> browser navigates to a new `page`.
+b. Click `browser history` --> browser navigates to a corresponding `page`
 
 > But angular application is **SPA** and every time application remaina in same page and there will be one URL to luanch for index.html.
 but at a time it shows only part of SPA (just one view). 
@@ -26,7 +27,7 @@ but at a time it shows only part of SPA (just one view).
 
 > So behind the scene it will remain in single page.
 
-2. RouterModule provides other Advantages as well:
+2. RouterModule provides follwing other thing:
 - Bind anchor link with ng directive (routerLink) to ovverride its default behaviour. 
 - pass optional parameters in URL
 - pass query param in URL
@@ -60,6 +61,7 @@ const appRoutes: Routes = [  { path:'', component:  }, {}, {} ]
 ## Working with Routing
 ### A. Routing Approach
 WAY1 : route using `routerLink` Directive --> Check PART2
+
 WAY2 : programtically route : `navigate()` method -->Check PART3
 
 ### B. Passing Argument in URL
