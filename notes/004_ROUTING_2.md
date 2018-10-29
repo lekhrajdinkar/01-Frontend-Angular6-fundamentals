@@ -68,10 +68,10 @@ new path : http://lovalHost:4200/home/user
 
 7. Add **styling** to navbar tabs:
 - `routerLink` directive has other bindable property --> `routerLinkActive` and `routerLinkActiveOption`
--  routerLinkActive activates(add styles) to the selected tab which maths the current path and it parent. 
+-  `routerLinkActive` activates(add selection styles) to the selected tab which maths the current path and it parent. 
 > eg  if tab with anhor link `http://lovalHost:4200/home` is selected then it will be highlighthed , plus tab with anhor link `http://lovalHost:4200/` will also get highlighted
 
-- to change this behaviour, bind another property of routerLink dir called routerLinkActiveOption with JS object : {exact : true} --> this will highlight tab with exact path matched.
+- to change this behaviour, bind another property of `routerLink` directive called `routerLinkActiveOption` with JS object : {exact : true} --> this will highlight tab with exact path matched.
 ![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/route/rcp10.jpg)
 
 ****
