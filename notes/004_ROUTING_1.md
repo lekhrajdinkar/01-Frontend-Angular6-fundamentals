@@ -65,8 +65,64 @@ WAY1 : route using `routerLink` Directive --> Check PART2
 WAY2 : programtically route : `navigate()` method -->Check PART3
 
 ### B. Passing Argument in URL
+> CASE 1 : comp1 > url1/:p1/:p2 clicked  > comp2 is mapped comp
 
-### C. Passing queryArg and Fragment in URL
+- Scenario : Users > list of User(clickable) > on click of each user > open user Comp --> just display id and name of users
+![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/route/rcp13.jpg)
+- Add Dynamic content in URL using path paramter
+![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/route/rcp14.jpg)
+- Cuuld add as many parameters in path. eg: http://localHost:4200/user/:id/:name/
+- Fetch parameters in component/ts --> Inject ActivatedRouter service -->  `this.ActivateRouteSrv.snapshot.param['id']`
+![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/route/rcp15.jpg)
+- user Comp template :
+![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/route/rcp16.jpg)
+- output:
+![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/route/rcp17.jpg)
+
+> CASE 2 : comp2(reload with diff value of p1 and p2 parameters) > url1/:p1/:p2 clicked  > comp2 itself will have to re-rendered
+
+![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/route/rcp18.jpg)
+![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/route/rcp19.jpg)
+- by default angular does not reload the same component, if its already loaded for **performance sake** .
+
+- So indeed we dont need to instantiate the component here again. Just refresh the values of p1 and p2 in component asynchronously using below observable.  Subscribe to these observable inside `User` comp to get notified of any change in p1 and p2 parameters
+```
+this.ActivatedRouteSrv.params.subscribe(
+(p: Params)=> { params['id']  } //response packet
+()=> {} //error packet
+()=> {} //completion packet
+)
+```
+![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/route/rcp20.jpg)
+
+- Unsubscribe observable inside ngOndestroy() hook --> not needed just side note. Angular automatically takes care of this observable.
+![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/route/rcp21.jpg)
+
+### C. Passing queryParam and Fragment in URL
+- routerLink directive has 2 more properties which we can bind to pass queryparam and fragments.
+> [queryParam] = ""
+
+> [fragment] = ""
+
+- similary we can get queryParam and Fragment fetch values, like we fetched parameter
+
+> Case-1 : if url mapped to anothor Component
+
+```
+- this.ActivatedRouteSrv.snapshot.params['p1']
+- this.ActivatedRouteSrv.snapshot.queryParams['qp1']
+- this.ActivatedRouteSrv.snapshot.fragments['f1']
+```
+> Case-2 : if url mapped to same Component but with different values.
+
+- Subscribe to below observable in corresponding component.
+```
+- this.ActivatedRouteSrv.params.subscribe()
+- this.ActivatedRouteSrv.queryParams.subscribe()
+- this.ActivatedRouteSrv.fragment.subscribe()
+```
+***
+
 
 
 

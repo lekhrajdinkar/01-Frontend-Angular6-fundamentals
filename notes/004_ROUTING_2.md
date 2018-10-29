@@ -1,6 +1,6 @@
 ## Routing - PART2
 
-### navigate with routerLink Directive
+### Navigate with routerLink Directive
 > Add and bind routerLink directive in anhor link element > just click on link it will route to new  view.
 
 **Full Program to underStand the concept**
@@ -28,14 +28,15 @@
 ```
 ![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/route/rcp7.jpg)
 
-6. Add URL in navbar/ anchor link
+6. Add URL in navbar/anchor link
+
 6.1 using `href` --> this is not correct way, it will refresh application and hence will lost every time.
 
 6.2 Using routerLink Diderctive
 ![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/route/rcp8.jpg)
 - its correct way
 - Its attribute directive. Bind it with new values. it accepts a URL or array of URLs as value.
-- this directive listen to `click` event and ovverride the default behaviour. it actually finds the fitting component based on selected URL register in routing  module.
+- Seems like this directive override the default behaviour of href. it actually finds the fitting component based on selected URL register in routing  module.
 ```
 [routerLink] = "['url1']"
 
