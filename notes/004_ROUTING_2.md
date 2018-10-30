@@ -138,6 +138,25 @@ this.ActivatedRouteSrv.params.subscribe(
 ```
 ***
 
+### D. More - Could also navigate programatically
+
+1. Inject router Service
+2. invoke `this.routerSrv.navigate(url)`
+![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/route/rcp11.jpg)
+
+> UnliKe RouterLink, `this.routerSrv.navigate(url)` does not know about current path and always take root-context as current path.
+
+3.  Set relative path for navigate(arg1,arg2) 
+- set it arg2 which is js object : { redlativeTo : this.ActivatedRouteSrv}
+![img](https://github.com/lekhrsajdinkar/NG6/blob/master/notes/assets/route/rcp12.jpg)
+
+***
+### B. Pass/fetch : path parameter, queryParam and fragment Programatically
+1. ![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/route/rcp23.jpg)
+note: above relativeTo property is not set in 2nd arg.
+
+2. Fetch parameter, queryParam and fragment. This is same as above.
+***
 
 
 
