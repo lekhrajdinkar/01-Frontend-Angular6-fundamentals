@@ -127,11 +127,13 @@ https://angular.io/guide/router#summary
 2.  Add Dynamic content in URL using path paramter
 ![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/route/rcp14.jpg)
 3. Cuuld add as many parameters in path. eg: http://localHost:4200/user/:id/:name/
-4. Fetch parameters in component/ts --> Inject ActivatedRouter service -->  `this.ActivateRouteSrv.snapshot.param['id']`
-![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/route/rcp15.jpg)
+
+4. Fetch parameters in component/ts :
 
 > CASE 1 : comp1 > url1/:p1/:p2 clicked  > comp2 is mapped comp
 
+- Inject ActivatedRouter service -->  `this.ActivateRouteSrv.snapshot.param['id']`
+![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/route/rcp15.jpg)
 - user Comp template :
 ![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/route/rcp16.jpg)
 - output:
