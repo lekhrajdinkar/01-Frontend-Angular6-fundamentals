@@ -5,7 +5,7 @@
 1. first see current state
 - home comp:
 ![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/route/00.jpg)
-- server comp:
+- server/user comp:
 ![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/route/01.jpg)
 ![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/route/01_1.jpg)
 ![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/route/02_1.jpg)
@@ -32,7 +32,7 @@ route[] > each route type >
 
 ## B. Preserve Query param
 
-1. Add `Server-Edit comp` and launch it edit-server button
+1. Add `Server-Edit comp` and need to launch it in `edit-server` button of `server` comp
 ![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/route/06.jpg)
 
 > Flow : `servers` comp > server list > click on any server > load `server` comp in 2nd level outlet > 
