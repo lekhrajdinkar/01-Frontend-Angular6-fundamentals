@@ -1,5 +1,5 @@
 ## Routing - PART3 
-> Route Gaurd, nested child, preserve QueryParam,etc
+> nested child and  preserve QueryParam
 
 ### A. Add nested route
 1. first see current state
@@ -59,7 +59,7 @@ this.router.navigate(url1, {...,queryParamHandling:'preserve' })
 now:
 ![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/route/11.jpg)
 
-### C. Route Gaurd
+***
 
 
 

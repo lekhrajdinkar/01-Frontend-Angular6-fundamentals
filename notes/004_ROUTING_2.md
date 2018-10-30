@@ -1,7 +1,8 @@
 ## Routing - PART2 - Router Sample Application to underStand more concepts
+> Topics: Navigation, Passing/fetching parameter,queryParam and Fragment in URL
 
 ### A. navigate
-> routerLink, RouterLinkActive, RouterLinkActiveOption
+> Sub Topics: routerLink, RouterLinkActive, RouterLinkActiveOption
 
 1. ng app > app Comp > navBAR -->  3 tab + 3 component (all are viewed) > fix it next
 ![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/route/rcp1.JPG)
@@ -71,6 +72,7 @@ new path : http://lovalHost:4200/home/user
 > eg  if tab with anhor link `http://lovalHost:4200/home` is selected then it will be highlighthed , plus tab with anhor link `http://lovalHost:4200/` will also get highlighted
 
 - to change this behaviour, bind another property of `routerLink` directive called `routerLinkActiveOption` with JS object : {exact : true} --> this will highlight tab with exact path matched.
+- https://angular.io/guide/router#active-router-links
 ![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/route/rcp10.jpg)
 
 ***
@@ -113,7 +115,7 @@ this.ActivatedRouteSrv.params.subscribe(
 
 ***
 
-### C. Passing/fetchinng queryParam and Fragment in URL
+### C. Passing/fetching queryParam and Fragment in URL
 - routerLink directive has 2 more properties which we can bind to pass queryparam and fragments.
 > [queryParam] = ""
 
