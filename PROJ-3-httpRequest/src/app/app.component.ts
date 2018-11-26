@@ -9,7 +9,6 @@ import { ServerService } from './server.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  appName = this.serverService.getAppName();
   
   //Array to store Server List
   servers = [
@@ -41,7 +40,40 @@ export class AppComponent {
         (error) => console.log(error)
       );
   }
+
+  // 3. Get SERVER from backend - REST Get
+  onGetfbEntry() {
+    this.serverService.getAppName()
+      .subscribe(
+        (data) => console.log(data),
+        (error) => console.log(error)
+      );
+  }
+
   private generateId() {
     return Math.round(Math.random() * 10000);
   }
 }
+
+//-------------
+/*
+
+PUT Console:
+
+Response {_body: "[{"capacity":10,"id":1738,"name":"Testserver"},{"capacity":100,"id":1606,"name":"Liveserver"}]", status: 200, ok: true, statusText: "OK", headers: Headers, …}
+headers: Headers
+_headers: Map(2) {"content-type" => Array(1), "cache-control" => Array(1)}
+_normalizedNames: Map(2) {"content-type" => "content-type", "cache-control" => "cache-control"}
+__proto__: Object
+ok: true
+status: 200
+statusText: "OK"
+type: 2
+url: "https://ng6-firebase-b6db1.firebaseio.com/proj3/servers.json"
+_body: "[{"capacity":10,"id":1738,"name":"Testserver"},{"capacity":100,"id":1606,"name":"Liveserver"}]"
+__proto__: Body
+constructor: ƒ Response(responseOptions)
+toString: ƒ ()
+__proto__: Object
+
+*/
