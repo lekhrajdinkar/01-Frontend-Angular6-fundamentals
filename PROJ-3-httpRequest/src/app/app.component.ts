@@ -10,33 +10,30 @@ import { ServerService } from './server.service';
 })
 export class AppComponent {
   appName = this.serverService.getAppName();
+  
+  //Array to store Server List
   servers = [
-    {
-      name: 'Testserver',
-      capacity: 10,
-      id: this.generateId()
-    },
-    {
-      name: 'Liveserver',
-      capacity: 100,
-      id: this.generateId()
-    }
+    { name: 'Testserver', capacity: 10, id: this.generateId()},
+    { name: 'Liveserver', capacity: 100, id: this.generateId()}
   ];
+
   constructor(private serverService: ServerService) {}
-  onAddServer(name: string) {
-    this.servers.push({
-      name: name,
-      capacity: 50,
-      id: this.generateId()
-    });
-  }
+
+  //============================
+
+  // 1. Save new servefr on array.
+  onAddServer(name: string) { this.servers.push({name: name,capacity: 50,id: this.generateId()});}
+
+  // 2. Make REST call to store server array on backend.
   onSave() {
     this.serverService.storeServers(this.servers)
       .subscribe(
-        (response) => console.log(response),
+        (response: Response) => console.log(response),
         (error) => console.log(error)
       );
   }
+
+  // 3. Get SERVER from backend - REST Get
   onGet() {
     this.serverService.getServers()
       .subscribe(

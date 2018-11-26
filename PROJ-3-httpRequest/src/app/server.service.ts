@@ -4,8 +4,10 @@ import 'rxjs/Rx';
 import { Observable } from 'rxjs/Observable';
 
 @Injectable()
-export class ServerService {
+export class ServerService 
+{
   constructor(private http: Http) {}
+  
   storeServers(servers: any[]) {
     const headers = new Headers({'Content-Type': 'application/json'});
     // return this.http.post('https://udemy-ng-http.firebaseio.com/data.json',
