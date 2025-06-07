@@ -1,5 +1,5 @@
 ## Course roadmap
-![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/kickoff/1.jpg)
+![img](./assets/kickoff/1.jpg)
 ---
 ## A. SPA 
 - single page application.

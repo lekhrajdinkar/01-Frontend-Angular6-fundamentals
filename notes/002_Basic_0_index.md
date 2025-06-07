@@ -38,7 +38,7 @@ selector: '.app-signin'   |   <div class="app-signin"> </div>
 ```
 - **purpose**: moudule design, resuabilty, etc
 - Each component defines:
-#### @Component class component-1 
+#### 2.1 @Component class component-1 
 - has application data and logic
 - constructor()
   - **@Injectable** service-1 : to load backend data
@@ -46,7 +46,7 @@ selector: '.app-signin'   |   <div class="app-signin"> </div>
     - service-2
     - ...
     
-#### template / templateUrl 
+#### 2.2 template / templateUrl 
 - HTML,that defines a view. has: 
   - html5-tags
   - ng-component-selector
@@ -65,13 +65,13 @@ selector: '.app-signin'   |   <div class="app-signin"> </div>
   
 ![img](./assets/basic/comp/09.jpg)
   
-#### styleUrls 
-- many css files
+#### 2.3 styleUrls 
+- many css/scss files
 - npm install bootstrap@3y
   - go tp angular.json > add : "style": [ "node_module/bootstrap/dist/css/bootstrap.min.css" **, "src/styles.css"]
-  - global styling - ../src/styles.css
+  - **global styling** - ../src/styles.css
   
-#### 3 more
+#### 2.4 more
 - `providers` - optional, to inject Services to component and to its child component.
 - `animation` - optional. [011_Animation.md](011_Animation.md)
 - `selector` : custom tag for component
@@ -83,9 +83,19 @@ selector: '.app-signin'   |   <div class="app-signin"> </div>
   - **Emulated** :point_left: 
     - ng adds unique property in every element. eg : ng-content-ego-2
     - then later it is used by css property selector to apply style.
+
+### Component Communication Scenarios
+- check sample code: [100_project_1_Component_Comm.md](100_project_1_Component_Comm.md)
+- **scenario-1/2** :: parent->child | parent<-child comm
+    - `parent-component-1`
+      - `child-component-1` (EventEmitter-1, subject-1)
+- **scenario-3** : sibling comp comm
+  - `service-1` (EventEmitter-1, subject-1), inject to both comp:
+  - `comp-1`
+  - `comp-2`
 ---  
 ### 3. Directives
-- [002_Basic_3_Directives.md](002_Basic_3_Directives.md)
+- [002_Basic_3_Directives.md](002_Basic_2_Directives)
 
 ---
 ### 4. Binding/s
@@ -105,30 +115,20 @@ Anything which get converted into string is ok.
 
 #### 4.2 Event binding (View >> Component)
 - `$event` is reserved keyword to capture the event data.
-- case-1: **html event binding**
+- case-1: **html event binding** 
 ```html
 <button (click)="onButtonClick()">Click me</button>
-<input (keyup)="onKeyUp($event)"> 
-
+<input (keyup)="onKeyUp($event)">
 ```
-- case-2: **custom ng-event**  :point_left:
-  - @output event-1: EventEmitter<string>
-  - @output event-2: Subject<T> 
+  - **(< HTMLInputElement >e.target).value**
+    - ![img](./assets/basic/6.JPG)
+
+- case-2: **custom ng-event**   :point_left:
+  - @output event-1: EventEmitter < string >
+  - @output event-2: Subject < T > 
 ```html
 <comp-1 (event-2)="onEvent2($event)"> 
 ```
-- **(< HTMLInputElement >e.target).value**
-![img](./assets/basic/6.JPG)
-
-- **Component Communication Scenarios**
-  - check sample code: [100_project_1_Component_Comm.md](100_project_1_Component_Comm.md)
-  - scenario-1 ; parent -child comm
-    - component-1 
-      - child component-1 (EventEmitter-1, subject-1)
-  - scenario-1 ; sibling comp comm
-    - service-1 (EventEmitter-1, subject-1), inject to both comp:
-    - comp-1
-    - comp-2
     
 #### 4.3 Property binding (Component >> View)
 - attribute of html tag
