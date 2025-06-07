@@ -19,8 +19,23 @@
   - **import/export**
     - NgModules can **import** functionality from other NgModules
     - and allow their own functionality to be **exported** and used by other NgModules
+- root module (bootstrap, special module)
+- Could lazily load feature modules via ng routing
+  - it will load registered comp + child comp
+  
+### 2. Components\
+```txt
+@Component({
+  selector: 'app-signin',
+  templateUrl: './signin.component.html',
+  styleUrls: ['./signin.component.css']
+})
 
-### 2. Components
+selector: 'app-signin'    |   <div app-signin> </div>
+selector: '[app-signin]'  |   <div app-signin> </div>
+selector: '.app-signin'   |   <div class="app-signin"> </div>
+```
+- **purpose**: moudule design, resuabilty, etc
 - Each component defines:
   - **@Component** class component-1 -> application data and logic
     - constructor()
@@ -40,17 +55,33 @@
   - `Style` --> many css files
     - npm install bootstrap@3y
     - go tp angular.json > add : "style": [ "node_module/bootstrap/dist/css/bootstrap.min.css" **, "src/styles.css"]
-  - more:
+    - global styling - ../src/styles.css
+  - **more**:
     - `providers` - optional, to inject Services to component and to its child component.
     - `animation` - optional.
     - `selector` : custom tag for component
-
+    - `encapsulation` : 
+      - **native** : same as Emulated, but won't work in older browser
+      - **None** : 
+        - ng will not unique property/attribute
+        - hence parent component style will be applied.
+      - **Emulated** :point_left: 
+        - ng adds unique property in every element. eg : ng-content-ego-2
+        - then later it is used by css property selector to apply style.
+---  
 ### 3. Directives
 - directives provide program logic
 
+---
 ### 4. Binding/s
-- String Interpolation - {{ }}.
 - https://chat.deepseek.com/a/chat/s/6cbd1509-8d5d-4564-93e2-5017ffe902b9
+#### String Interpolation - {{ }}.
+```html
+<p>{{ title }}</p>
+<p>1 + 1 = {{ 1 + 1 }}</p>
+<p>Hello, {{ getUserName() }}</p>
+```
+- 
 
 #### Event binding (View to Component)
 - <input (keyup)="onKeyUp($event)">
@@ -58,27 +89,90 @@
   - text entered into input
   - button clicked
   - ....
-
+```html
+<button (click)="onButtonClick()">Click me</button>
+<input (keyup)="onKeyUp($event)">
+```
 #### Property binding (Component to View)
 - [property]="var-1"
 - [property]="'string-value'" ===  property="string-value"
 - <button [disabled]="isDisabled">Click me</button>
+```html
+<img [src]="imageUrl" [alt]="imageAlt">
+<button [disabled]="isDisabled">Click me</button>
+<div [class.active]="isActive"></div>
+<div [style.color]="textColor"></div>
+```
 
 #### two-way data binding
-- [(ngModel)]="var1"
-- <input [ngModel]="var1" (ngModelChange)="var1 = $event">
-- write custom code
+```html
+<input [(ngModel)]="userName">
+<!-- Equivalent to: -->
+<input [ngModel]="userName" (ngModelChange)="userName = $event">
+//remember to import **FormsModule** in your app module for **ngModel**
+```
+- **custom-1**
   - create var var1
   - create m1(event){...}
   - in html : [attribute-1]=var1
   - in html : (click) = m1($event)
+- **custom-2**
+```html
+@Input() value: any;
+@Output() valueChange = new EventEmitter<any>();
 
+<app-custom [(value)]="someValue"></app-custom>
+```
+#### more
+```html
 
+=== Attribute Binding ===
+<button [attr.aria-label]="closeLabel">X</button>
+<td [attr.colspan]="colSpan"></td>
+
+=== Class Binding ===
+<div [class.special]="isSpecial"></div>
+<div [class]="classExpression"></div> <!-- replaces all classes -->
+
+=== Style Binding ===
+<button [style.color]="isSpecial ? 'red' : 'green'">Button</button>
+<div [style.width.px]="widthValue"></div>
+
+=== special binding ===
+
+  === *ngFor (Structural directive) ===
+
+  <ul>
+    <li *ngFor="let item of items; let i = index">
+      {{ i }} - {{ item.name }}
+    </li>
+  </ul>
+
+  === *ngIf (Structural directive) ===
+
+  <div *ngIf="showElement; else otherTemplate">
+    Content to show when condition is true
+  </div>
+  <ng-template #otherTemplate>
+    Alternative content
+  </ng-template>
+
+  === ngSwitch ===
+
+  <div [ngSwitch]="value">
+    <p *ngSwitchCase="'A'">Value is A</p>
+    <p *ngSwitchCase="'B'">Value is B</p>
+    <p *ngSwitchDefault>Value is something else</p>
+  </div>
+```
+
+---
 ### 5. Pipes
 - transforming values, eg; dates and currency
 - Angular provides predefined pipes for common transformations,
 - define custom pipes.
 
+---
 ### 6. Services
 - **Purpose** 
   - Act as end point to interact with backend/server

@@ -1,6 +1,4 @@
-# New features:
-
-## 1. New In Angular 6:
+# New In Angular 6:
 
 1. ng-template added, template deprecated
 

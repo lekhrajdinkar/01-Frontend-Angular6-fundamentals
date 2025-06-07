@@ -69,7 +69,7 @@
 ![](./assets/001_app-file.PNG)
 
 ---
-### bootstrap appModule > app-component
+### 3.bootstrap appModule > app-component
 
 - ng CLI creates a root component in root module
   - app.component.ts
