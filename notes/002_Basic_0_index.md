@@ -65,13 +65,13 @@ selector: '.app-signin'   |   <div class="app-signin"> </div>
   
 ![img](./assets/basic/comp/09.jpg)
   
-#### `styleUrls` 
+#### styleUrls 
 - many css files
 - npm install bootstrap@3y
   - go tp angular.json > add : "style": [ "node_module/bootstrap/dist/css/bootstrap.min.css" **, "src/styles.css"]
   - global styling - ../src/styles.css
   
-### more
+#### 3 more
 - `providers` - optional, to inject Services to component and to its child component.
 - `animation` - optional. [011_Animation.md](011_Animation.md)
 - `selector` : custom tag for component
@@ -121,6 +121,7 @@ Anything which get converted into string is ok.
 ![img](./assets/basic/6.JPG)
 
 - **Component Communication Scenarios**
+  - check sample code: [100_project_1_Component_Comm.md](100_project_1_Component_Comm.md)
   - scenario-1 ; parent -child comm
     - component-1 
       - child component-1 (EventEmitter-1, subject-1)
