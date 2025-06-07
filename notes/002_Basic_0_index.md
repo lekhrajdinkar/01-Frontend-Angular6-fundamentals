@@ -37,37 +37,51 @@ selector: '.app-signin'   |   <div class="app-signin"> </div>
 ```
 - **purpose**: moudule design, resuabilty, etc
 - Each component defines:
-  - **@Component** class component-1 -> application data and logic
-    - constructor()
-      - **@Injectable** service-1 : load backend data
-      - service-2
-      - ...
-  - `template` / `templateUrl`  
-    - HTML,that defines a view. has: 
-      - html5-tage
-      - angular-component-selector
-      - angular-directive-selector, 
-      - pipe
-      - ...
-    - inline and external
-    - **Template Expressions** --> The text inside {{ }} 
-    - **Template Statement** --> (event) = statement
-  - `Style` --> many css files
-    - npm install bootstrap@3y
-    - go tp angular.json > add : "style": [ "node_module/bootstrap/dist/css/bootstrap.min.css" **, "src/styles.css"]
-    - global styling - ../src/styles.css
-  - **more**:
-    - `providers` - optional, to inject Services to component and to its child component.
-    - `animation` - optional.
-    - `selector` : custom tag for component
-    - `encapsulation` : 
-      - **native** : same as Emulated, but won't work in older browser
-      - **None** : 
-        - ng will not unique property/attribute
-        - hence parent component style will be applied.
-      - **Emulated** :point_left: 
-        - ng adds unique property in every element. eg : ng-content-ego-2
-        - then later it is used by css property selector to apply style.
+#### @Component class component-1 
+- has application data and logic
+- constructor()
+  - **@Injectable** service-1 : to load backend data
+    - service-1
+    - service-2
+    - ...
+    
+#### template / templateUrl 
+- HTML,that defines a view. has: 
+  - html5-tags
+  - ng-component-selector
+  - ng-directive-selector
+  - ng-pipe
+  - ...
+- inline: `template` or  external: `templateUrl`
+- **Template Expressions** --> The text inside {{ }} 
+- **Template Statement** --> (event) = statement
+- **local reference** :point_left:
+  - Inside html, Create references on any html-element / component. eg `#ref1`
+  - ref1 can be used anywhere in template.
+  - **pass reference**
+    - way-1: pass as JS-object, **HTMLElement**. m1(ref1: HTMLInputElement) 
+    - way-2: **@viewChild / @viewContent** :point_left:
+  
+![img](./assets/basic/comp/09.jpg)
+  
+#### `styleUrls` 
+- many css files
+- npm install bootstrap@3y
+  - go tp angular.json > add : "style": [ "node_module/bootstrap/dist/css/bootstrap.min.css" **, "src/styles.css"]
+  - global styling - ../src/styles.css
+  
+### more
+- `providers` - optional, to inject Services to component and to its child component.
+- `animation` - optional.
+- `selector` : custom tag for component
+- `encapsulation` : 
+  - **native** : same as Emulated, but won't work in older browser
+  - **None** : 
+    - ng will not unique property/attribute
+    - hence parent component style will be applied.
+  - **Emulated** :point_left: 
+    - ng adds unique property in every element. eg : ng-content-ego-2
+    - then later it is used by css property selector to apply style.
 ---  
 ### 3. Directives
 - directives provide program logic
@@ -75,15 +89,21 @@ selector: '.app-signin'   |   <div class="app-signin"> </div>
 ---
 ### 4. Binding/s
 - https://chat.deepseek.com/a/chat/s/6cbd1509-8d5d-4564-93e2-5017ffe902b9
-#### String Interpolation - {{ }}.
+- ![img](./assets/basic/5.JPG)
+#### 4.1 String Interpolation - {{ }} 
 ```html
 <p>{{ title }}</p>
 <p>1 + 1 = {{ 1 + 1 }}</p>
 <p>Hello, {{ getUserName() }}</p>
+---
+{{fn(msg)}}
+Anything which get converted into string is ok.
+---
+<p> {{ var1 }} </p>  | <p [innerText]=var1 > </p>  // trick-1 : both are same
 ```
-- 
 
-#### Event binding (View to Component)
+#### 4.2 Event binding (View to Component)
+- html event, custom ng event (EventEmitter<T>, Subject<T>**) :point_left:
 - <input (keyup)="onKeyUp($event)">
 - bind data from **template** (event data,etc) to **component**(TS property, say var-1)
   - text entered into input
@@ -91,20 +111,45 @@ selector: '.app-signin'   |   <div class="app-signin"> </div>
   - ....
 ```html
 <button (click)="onButtonClick()">Click me</button>
-<input (keyup)="onKeyUp($event)">
+<input (keyup)="onKeyUp($event)"> 
 ```
-#### Property binding (Component to View)
-- [property]="var-1"
-- [property]="'string-value'" ===  property="string-value"
-- <button [disabled]="isDisabled">Click me</button>
+- `$event` is reserved keyword to capture the event data.
+- **(<HTMLInputElement>e.target).value**
+![img](./assets/basic/6.JPG)
+- **Scenarios**
+  - scenario-1 ; parent -child comm
+    - component-1 
+      - child component-1 (EventEmitter-1, subject-1)
+  - scenario-1 ; sibling comp comm
+    - service-1 (EventEmitter-1, subject-1), inject to both comp:
+    - comp-1
+    - comp-2
+    
+#### 4.3 Property binding (Component to View)
+- property binding --> attribute html tag, property of ng comp and ng directive :point_left:
+  - [property]="var-1"
+  - [property]="'string-value'" ===  property="string-value"
+  - <comp1 [ng-directive1]=value>
+  - <comp1 [attr1]=value>
 ```html
 <img [src]="imageUrl" [alt]="imageAlt">
 <button [disabled]="isDisabled">Click me</button>
 <div [class.active]="isActive"></div>
 <div [style.color]="textColor"></div>
 ```
+```html
+--- view ---
+<button [disabled]="'true'"> </button>
+<button [disabled]="'false'"> </button>
 
-#### two-way data binding
+<button [disabled]="newValue"> </button>
+
+ --- component ---
+boolean newValue = true;
+setTimeOut( () => newvalue != newvalue, 5000); //after 5 sec toggle.
+```
+
+#### 4.4 two-way data binding
 ```html
 <input [(ngModel)]="userName">
 <!-- Equivalent to: -->
@@ -123,7 +168,7 @@ selector: '.app-signin'   |   <div class="app-signin"> </div>
 
 <app-custom [(value)]="someValue"></app-custom>
 ```
-#### more
+#### 4.5 more
 ```html
 
 === Attribute Binding ===
