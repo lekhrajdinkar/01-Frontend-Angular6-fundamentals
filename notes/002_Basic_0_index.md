@@ -23,7 +23,8 @@
 - Could lazily load feature modules via ng routing
   - it will load registered comp + child comp
   
-### 2. Components\
+### 2. Components
+- advance :[002_Basic_1_Components.md](002_Basic_1_Components.md)
 ```txt
 @Component({
   selector: 'app-signin',
@@ -72,7 +73,7 @@ selector: '.app-signin'   |   <div class="app-signin"> </div>
   
 ### more
 - `providers` - optional, to inject Services to component and to its child component.
-- `animation` - optional.
+- `animation` - optional. [011_Animation.md](011_Animation.md)
 - `selector` : custom tag for component
 - `encapsulation` : 
   - **native** : same as Emulated, but won't work in older browser
@@ -84,7 +85,7 @@ selector: '.app-signin'   |   <div class="app-signin"> </div>
     - then later it is used by css property selector to apply style.
 ---  
 ### 3. Directives
-- directives provide program logic
+- [002_Basic_3_Directives.md](002_Basic_3_Directives.md)
 
 ---
 ### 4. Binding/s
@@ -102,21 +103,24 @@ Anything which get converted into string is ok.
 <p> {{ var1 }} </p>  | <p [innerText]=var1 > </p>  // trick-1 : both are same
 ```
 
-#### 4.2 Event binding (View to Component)
-- html event, custom ng event (EventEmitter<T>, Subject<T>**) :point_left:
-- <input (keyup)="onKeyUp($event)">
-- bind data from **template** (event data,etc) to **component**(TS property, say var-1)
-  - text entered into input
-  - button clicked
-  - ....
+#### 4.2 Event binding (View >> Component)
+- `$event` is reserved keyword to capture the event data.
+- case-1: **html event binding**
 ```html
 <button (click)="onButtonClick()">Click me</button>
 <input (keyup)="onKeyUp($event)"> 
+
 ```
-- `$event` is reserved keyword to capture the event data.
-- **(<HTMLInputElement>e.target).value**
+- case-2: **custom ng-event**  :point_left:
+  - @output event-1: EventEmitter<string>
+  - @output event-2: Subject<T> 
+```html
+<comp-1 (event-2)="onEvent2($event)"> 
+```
+- **(< HTMLInputElement >e.target).value**
 ![img](./assets/basic/6.JPG)
-- **Scenarios**
+
+- **Component Communication Scenarios**
   - scenario-1 ; parent -child comm
     - component-1 
       - child component-1 (EventEmitter-1, subject-1)
@@ -125,12 +129,16 @@ Anything which get converted into string is ok.
     - comp-1
     - comp-2
     
-#### 4.3 Property binding (Component to View)
-- property binding --> attribute html tag, property of ng comp and ng directive :point_left:
-  - [property]="var-1"
-  - [property]="'string-value'" ===  property="string-value"
-  - <comp1 [ng-directive1]=value>
-  - <comp1 [attr1]=value>
+#### 4.3 Property binding (Component >> View)
+- attribute of html tag
+- property of ng-comp/ng-directive :point_left:
+- **examples**
+```html
+<html-tag-1 [attribute]="var-1" />
+<comp1 [property-1]="'string-value'" >  ===  property="string-value"
+<comp1 [ng-directive1]=value />
+<comp1 [property-1]=value />
+```
 ```html
 <img [src]="imageUrl" [alt]="imageAlt">
 <button [disabled]="isDisabled">Click me</button>
@@ -139,10 +147,10 @@ Anything which get converted into string is ok.
 ```
 ```html
 --- view ---
-<button [disabled]="'true'"> </button>
-<button [disabled]="'false'"> </button>
+<button [disabled]="'true'"> </button> //static
+<button [disabled]="'false'"> </button> //static
 
-<button [disabled]="newValue"> </button>
+<button [disabled]="newValue"> </button> //dynamic
 
  --- component ---
 boolean newValue = true;
@@ -168,7 +176,7 @@ setTimeOut( () => newvalue != newvalue, 5000); //after 5 sec toggle.
 
 <app-custom [(value)]="someValue"></app-custom>
 ```
-#### 4.5 more
+#### 4.5 more on binding
 ```html
 
 === Attribute Binding ===
@@ -213,6 +221,7 @@ setTimeOut( () => newvalue != newvalue, 5000); //after 5 sec toggle.
 
 ---
 ### 5. Pipes
+[010_Pipes.md](010_Pipes.md)
 - transforming values, eg; dates and currency
 - Angular provides predefined pipes for common transformations,
 - define custom pipes.
@@ -264,8 +273,16 @@ ___
   - new : `signal`
 - **HttpClient**
   - New: `HttpClientModule` (added in ng6)
+  - [009_HTTP_1.md](009_HTTP_1.md)
+  - [009_HTTP_2.md](009_HTTP_2.md)
+  - [009_HTTP_3_CP.md](009_HTTP_3_CP.md)
+  - [009_HTTP_CLIENT_1.md](009_HTTP_CLIENT_1.md)
+  - [009_HTTP_CLIENT_2.md](009_HTTP_CLIENT_2.md)
 - **NgRx** 
   - State management in Angular
+  - [012_NgRX_1.md](012_NgRX_1.md)
+  - [012_NgRX_2_PRG-1.md](012_NgRX_2_PRG-1.md)
+  - [012_NgRX_2_PRG-2.md](012_NgRX_2_PRG-2.md)
 
 
 
