@@ -67,3 +67,37 @@
   8. `ng generate directive` or `ng g d`
 
 ![](./assets/001_app-file.PNG)
+
+---
+### bootstrap appModule > app-component
+
+- ng CLI creates a root component in root module
+  - app.component.ts
+- check 
+  - **src/index.html** (single page) 
+  - **src/main.tss**
+```
+<body>
+    <root-app> </root-app>
+</body>
+```
+
+```
+import { enableProdMode } from '@angular/core';
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { AppModule } from './app/app.module';
+import { environment } from './environments/environment';
+
+if (environment.production) {
+  enableProdMode();
+}
+
+platformBrowserDynamic().bootstrapModule(AppModule)
+  .catch(err => console.log(err));
+
+```
+
+![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/basic/3.JPG)
+
+![img](./assets/basic/2.JPG)
+

@@ -38,6 +38,8 @@
     - **Template Expressions** --> The text inside {{ }} 
     - **Template Statement** --> (event) = statement
   - `Style` --> many css files
+    - npm install bootstrap@3y
+    - go tp angular.json > add : "style": [ "node_module/bootstrap/dist/css/bootstrap.min.css" **, "src/styles.css"]
   - more:
     - `providers` - optional, to inject Services to component and to its child component.
     - `animation` - optional.
@@ -77,7 +79,7 @@
 - Angular provides predefined pipes for common transformations,
 - define custom pipes.
 
-### 6. Services \
+### 6. Services
 - **Purpose** 
   - Act as end point to interact with backend/server
   - Components interaction.
