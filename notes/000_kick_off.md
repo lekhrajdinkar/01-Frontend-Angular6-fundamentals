@@ -25,8 +25,11 @@
 - uses TS
 - Other UI frameworks: AMBER, BackBONE, **REACT JS** , **Vue**, etc.
 - segregate - style (css), view(html), data-logic(JS/TS)
+- **Component based approach** - Breaks pages into multiple component
 
 ## D. Develops things
+- [Hero of heros Tutorial](https://angular.io/tutorial)
+- https://angular.dev/playground
 ### 1. angular project things
   1. Create a **component** 
   2. Enhance the functionality of components using Angular **directives**
@@ -41,7 +44,7 @@
   11. reactive : **rxJs or signal**
   12. PWA 
   13. makes backend api to load data
-  ![](./notes/assets/000_1.PNG)
+  ![](./assets/000_1.PNG)
 
 
 ### 2. creat ng project
