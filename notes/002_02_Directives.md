@@ -1,5 +1,6 @@
 # Directives
-- **ng generate directive highlight**
+- **ng generate directive directive-1**
+- https://chat.deepseek.com/a/chat/s/1a0c68ef-97ed-40c6-8c2d-44361db77f1b
 ## 1 Intro
 ![img](./assets/basic/8.JPG)
 - Directives are classes that add additional **behavior** to elements in your Angular applications
@@ -55,11 +56,13 @@
     <p *ngSwitchDefault>Value is something else</p>
   </div>
 ```
-#### Custom Structural directive
+#### Custom Structural directive :yellow_circle:
+- inject  `TemplateRef<any>` + `ViewContainerRef`
+- this.viewContainer.**createEmbeddedView**(this.templateRef);
+- this.viewContainer.**clear**();
+- can skip it for now.
 ```typescript
-@Directive({
-  selector: '[appUnless]'
-})
+@Directive({   selector: '[appUnless]' })
 export class UnlessDirective {
   private hasView = false;
 
@@ -113,30 +116,48 @@ obj2 =  { `class-1`: false}
 <p [ngClass]="obj2"> {{status}}</p>
 
 === dynamic ===
-<p [ngClass]="{ `class-1`: getClass()}"> {{ status }}</p>
-getClass = () =>  this.status == 'online' ? { `class-1`: true} : { class2: false} ;  
+<p [ngClass]="{ `class-1`: addOrNot()}"> {{ status }}</p>
+addOrNot = () =>  this.status == 'online' ? true : false ;  
 ```
 #### `ngModel` : two-way data binding
 
-#### Custom Attribute directive
+#### Custom Attribute directive :yellow_circle:
 - inject ElementRef (host element)
+- inject **Renderer2**
+  - this.renderer.**set/removeStyle**(element, 'property', 'value');
+  - this.renderer.**add/removeClass**(element, 'className');
+  - this.renderer.**set/reomveAttribute**(element, 'attrName', 'value');
+  - const div = this.renderer.**createElement**('div');
+  - this.renderer.**append/removeChild**(parentElement, childElement);
+  - const unsubscribe = this.renderer.**listen**(element, 'eventName', (event) => {} ); unsubscribe();
+  - secure against XSS attacks / Angular-recommended approach
+- Passing 2 argumnet as well - String and MyInput
 ```typescript
-@Directive({
-  selector: '[appBorder]'
-})
-export class BorderDirective {
-  @Input() appBorder: string;
-  
-  @Input() borderWidth: string = '1px';
+interface MyInput {  appBorder: string;  borderWidth?: string; }
 
-  constructor(private el: ElementRef) {
+@Directive({  selector: '[appBorder]'  })
+export class BorderDirective 
+{
+  @Input() appBorder: string;
+  @Input() borderWidth: string = '1px';
+  
+  @Input() appBorder: MyInput;  // <<<
+  // @Input() set allInputs(myInput: MyInput) { }  // must have one arg only/-
+
+  constructor(private el: ElementRef, renderer: Renderer2) {
+    //way-1
     el.nativeElement.style.border = `${this.borderWidth} solid ${this.appBorder}`;
+    
+    //Way-2 : Use Renderer2
+    renderer.setStyle(el.nativeElement, 'background-color', 'red')   
+    renderer.setStyle(el.nativeElement, 'border', `${this.borderWidth} solid ${this.appBorder}`) 
   }
 }
 
 ---
+<div [appBorder]="'red'" [borderWidth]="'2px'"> Content </div>
 
-<div [appBorder]="'red'" [borderWidth]="'2px'">Content</div>
+<div [allInputs]="{appBorder: "red", borderWidth: "2px"} > Content </div>
 ```
 ---
 
@@ -155,7 +176,7 @@ export class MyDirective implements OnInit, OnDestroy {
 ```
 ---
 
-## 4. @HostListener / @HostBinding
+## 4. @HostListener / @HostBinding :point_left:
 - `@HostListener` - Listens to host element events.
 - `@HostBinding` - Binds to host element properties.
   - @HostBinding( `any property of host Element' )
@@ -179,7 +200,8 @@ export class HoverDirective
 }
 ```
 ---
-## 4. directive : `ng-template` 
+## 5. more inbuild directive
+### 5.1 directive : `ng-template` 
 - this is inject template from parent component to child component.
 - `template (inside innerText of P-comp1)` > inject > `ng-template tag inside template C-comp1 will get replaced`
 
@@ -190,32 +212,15 @@ export class HoverDirective
   ![img](./assets/basic/comp/16.jpg)
   ![img](./assets/basic/comp/17.jpg)
 ---
-## 5. directive : `ng-content` 
+### 5.2 directive : `ng-content` 
 - in progress
 
 ---
 ## 6. program example/s
-- example-1: even/odd number list with different styling - ngClass and ngStyle.
+### example-1
+- even/odd number list with different styling - ngClass and ngStyle.
 
 ![img](./assets/basic/directive/02.jpg)
-
----
-## 99. OLD screenshots
----
-- **Renderer2** better https://angular.io/api/core/Renderer2#methods
-
-![img](./assets/basic/directive/05.jpg)
-
-![img](./assets/basic/directive/03.jpg)
-
-![img](./assets/basic/directive/04.jpg)
-
-![img](./assets/basic/directive/07.jpg)
-
-![img](./assets/basic/directive/08.jpg)
-
-![img](./assets/basic/directive/10.jpg)
-
 
 
 

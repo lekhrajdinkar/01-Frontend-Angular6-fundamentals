@@ -197,7 +197,7 @@ ngOnDestroy
 
 ---  
 ### 3. Directives
-- [002_Basic_3_Directives.md](002_Basic_1_Directives)
+- [002_Basic_3_Directives.md](002_02_Directives)
 
 ---
 ### 4. Binding/s
