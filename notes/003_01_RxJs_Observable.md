@@ -19,6 +19,7 @@
   
 ---
 ## B.1 Observable 
+- const Observable_1$, end with $ just convention.
 - Observable can be think of as **packet of datasource** emitted. 
 - there are 3 types of data packets : 
   - data packet
@@ -71,10 +72,13 @@ Component 2
 
 ---
 ## D. Developer guide 
-### 1. Create 
 ```typescript
-Const obr1 = Observable.xxx
-
+import { fromEvent } from 'rxjs';
+import { ajax } from 'rxjs/ajax';
+import { mergeMap, debounceTime, distinctUntilChanged } from 'rxjs/operators';
+```
+### 1. Create : from, of, fromEvent, interval, timer,
+```typescript
 of(1, 2, 3).subscribe(console.log);
 
 interval(1000) 
@@ -94,7 +98,7 @@ fromEvent(document, 'click').subscribe(console.log);
 ![](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/co3.PNG)
 
 ---
-### 3. filtering
+### 3. filter: filter, take, takeuntil, decbounceTime, distinctUntilChanged
 ```typescript
 of(1, 2, 3, 4).pipe(filter(x => x % 2 === 0));
 // Output: 2, 4
@@ -117,7 +121,20 @@ of(1, 1, 2, 2, 3).pipe(distinctUntilChanged());
 
 ```
 ---
-### 3. transform
+### 3. transform : map, scan, mergeMap, switchMap
+- **map**
+  - transforms : observable < T1 > -->  observable < T2 >
+- **mergeMap** / formerly `flatMap`
+  - [[1,2,3], [4,5]] = [1,2,3,4,5]
+  - transform + Flatten observable
+  - You need all responses (like analytics tracking)
+  - Order doesn't matter (parallel operations)
+  - memory usage: Higher (maintains all streams)
+- **switchMap**
+  - [[1,2,3], [4,5]] = [4,5]
+  - Only the latest response matters (search)
+  - You want to cancel previous operations (navigation)
+  - memory usage: Lower (cancels previous streams)
 ```typescript
 of(1, 2, 3).pipe(map(x => x * 10)).subscribe(console.log);
 // Output: 10, 20, 30
@@ -134,9 +151,13 @@ fromEvent(input, 'input').pipe(
   switchMap(e => fetch(`/api?q=${e.target.value}`))
 );
 // Cancels previous inner observable on new emission
+
+//=== deprecated in rxjs 8 =====
+from([{name: 'Alice'}, {name: 'Bob'}]).pipe(pluck('name'));
+// Output: 'Alice', 'Bob'
 ```
 
-### 4. Combination Operators
+### 4. Combination : merge, concat, forkJoin, zip
 ```typescript
 
 merge(interval(1000), fromEvent(document, 'click'));
@@ -155,7 +176,7 @@ zip(of(1, 2), of('a', 'b')).subscribe(console.log);
 // Output: [1, 'a'], [2, 'b'] (waits for paired values)
 ```
 
-### 5. Error Handling Operators
+### 5. Error : catchError, retry, retrywhen, finalize
 ```typescript
 this.http.get('/api').pipe(
   catchError(err => of([]))
@@ -180,7 +201,7 @@ this.http.get('/api').pipe(
 
 ```
 
-### 6. Utility Operators
+### 6. Utility : tap, delay,  defaultIfEmpty, every(t/f)
 ```typescript
 of(1, 2, 3).pipe(
   tap(val => console.log('Before map:', val)),
@@ -199,7 +220,7 @@ of().pipe(defaultIfEmpty('default'));
 
 ```
 
-### 7 Multicasting Operators
+### 7 Multicasting : share, replay(1)
 ```typescript
 const shared = interval(1000).pipe(
   tap(console.log),
