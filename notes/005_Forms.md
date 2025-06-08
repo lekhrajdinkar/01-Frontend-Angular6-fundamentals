@@ -9,23 +9,36 @@
     - for validation
     - for add styling
 ## B. Type:
-### 1. TD : Create and manage form 
+### 1. Template driven
 - Angular infers the form-object from DOM
 - Thumb rule : Do everything  in Template only.
 - import **FormModule**
   - it will detect the `<form>` 
   - create JS-rep of form automatically. 
-  - register form to **ngForm** directive :point_left:
-  - register controls using **ngModel** directive :point_left:
+  - register **form** to **ngForm** directive :point_left:
+  - register **controls** using **ngModel** directive :point_left:
+    - FormGroup-1
+      - control-1
+      - control-2
+      - ...
+    - FormGroup-2
+      - ...
   - Get access to JS-rep using below steps.
-    - **@viewChild('formRef') form : NgForm**
+    - **@viewChild('formRef') form1 : NgForm**
+      - form1.path( { })
+      - form1.patch( { })
+      - form1.reset()
 ```html
   <form (ngSubmit) = "f1(formRef) #formRef="ngForm"> 
     <!-- automatically create FormControl instances -->
-    <input name="key1" [(ngModel)]="feild1" ngNativeValidate> 
+    <div id="group-key-1" #group1Ref= ngModelgroup [(ngModelgroup)]="group-1-data">
+      <input name="key1" [(ngModel)]="feild1" ngNativeValidate>
+    </div>
 
-    <input name="key2" #feild2="ngModel" >
-    <span class="error-style-1" *ngIf="!feild2.valid && feild2.touched">Please enter a valid email!</span>  
+    <div id="group-key-1" #group1Ref= ngModelgroup [(ngModelgroup)]="group-1-data">
+      <input name="key2" #feild2="ngModel" [(ngModel)]="feild2">
+      <span class="error-style-1" *ngIf="!feild2.valid && feild2.touched">Please enter a valid email!</span>
+    </div>
 
     <button type=submit > sunmit </button>
   </form> 
@@ -70,30 +83,21 @@ class Validators {
 }
 ```
 
-- Angular maintains the **state** and 
+- Angular maintains the **state**  
   - form  : valid, dirty, touched, etc
   - formControl level. valid, dirty, touched, etc
 - also add css classes
-![](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/form3.PNG)
-![](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/form4.PNG)
 
+![](./assets/form3.PNG)
 
-### 3. Group Form Control
+![](./assets/form4.PNG)
 
-Template:
-![](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/form5.PNG)
+---
 
-Output:
-![](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/form6.PNG)
+### 2. reactive form
+- Programmatically create form object , then sync it with DOM
+- Complex approach but gives advance control to dev
 
-### 4. Use report data
-eg : this.rptForm.value.rptData.rptname;
-
-### 5. Setting, patch and reset
-@ViewChild('f') rptForm: NgForm;
-
-eg:
-![](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/form7.PNG)
 
 
 
