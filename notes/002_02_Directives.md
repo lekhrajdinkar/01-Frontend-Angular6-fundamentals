@@ -227,7 +227,15 @@ export class HoverDirective
   <ng-content select="[p2]"></ng-content>
 </div>
 ```
-
+### 5.3 directive : `Router-Outlet`
+- component style directive
+```html
+<Router-Outlet></Router-Outlet>
+```
+- acts as a **placeholder** 
+  - that marks the spot in the view/tempate
+  - where the router service should display the **mapped components**.
+  
 ---
 ## 6. program example/s
 ### example-1

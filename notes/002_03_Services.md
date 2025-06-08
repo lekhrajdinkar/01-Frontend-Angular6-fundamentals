@@ -31,6 +31,7 @@ export class HeroService {  constructor() { }}
   - and are inherited through the component hierarchy
   
 - **provider** tells an injector how to create the service.
+- we just declare provider.
   1. **Root injector** (appli wide one instance) - **Singleton** :point_left:
   ```typescript
   @Injectable({ providedIn: 'root'})
@@ -66,8 +67,6 @@ export class HeroService {  constructor() { }}
   ```typescript
 
   ```
-
-![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/srv/02.jpg)
 
 
 
