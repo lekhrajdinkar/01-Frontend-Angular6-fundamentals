@@ -26,7 +26,7 @@
    </div>
  </ng-template>
 ```
-#### `*ngIf`
+#### 2.1.1 `*ngIf`
 ```html
   <div *ngIf="showElement; else otherTemplate">
     Content to show when condition is true
@@ -40,7 +40,7 @@
 - ![img](./assets/basic/9.JPG)
 - Another tricky way : use ngIf twice with reverse conditions :)
 
-#### `*ngFor` 
+#### 2.1.2 `*ngFor` 
 ```html
  <ul>
   <li *ngFor="let item of items; let i = index">
@@ -48,7 +48,7 @@
   </li>
 </ul>
 ```
-#### `*ngCase` +  `[ngSwitch]`
+#### 2.1.3 `*ngCase` +  `[ngSwitch]`
 ```html
   <div [ngSwitch]="value">
     <p *ngSwitchCase="'A'">Value is A</p>
@@ -56,43 +56,45 @@
     <p *ngSwitchDefault>Value is something else</p>
   </div>
 ```
-#### Custom Structural directive :yellow_circle:
+#### 2.1.4 Custom Structural directive :yellow_circle:
 - inject  `TemplateRef<any>` + `ViewContainerRef`
 - this.viewContainer.**createEmbeddedView**(this.templateRef);
 - this.viewContainer.**clear**();
 - can skip it for now.
 ```typescript
-@Directive({   selector: '[appUnless]' })
-export class UnlessDirective {
-  private hasView = false;
-
+@Directive({
+  selector: '[appRepeat]'
+})
+export class RepeatDirective {
   constructor(
     private templateRef: TemplateRef<any>,
     private viewContainer: ViewContainerRef
   ) {}
 
-  @Input() set appUnless(condition: boolean) {
-    if (!condition && !this.hasView) {
-      this.viewContainer.createEmbeddedView(this.templateRef);
-      this.hasView = true;
-    } else if (condition && this.hasView) {
-      this.viewContainer.clear();
-      this.hasView = false;
+  @Input() set appRepeat(times: number) {
+    this.viewContainer.clear();
+    for (let i = 0; i < times; i++) {
+      this.viewContainer.createEmbeddedView(this.templateRef, {
+        $implicit: i,
+        index: i
+      });
     }
   }
 }
 ---
-<p *appUnless="condition">Show this unless condition is true</p>
+<ng-template appRepeat [times]="5" let-i="index">
+  <p>Item {{i + 1}}</p>
+</ng-template>
 ```
 
 ---
 ### 2.2 Attribute directives
-- custom attribute
-- apply on host element
-- **property binding** to assign dynamic value
-- [directive-1]="var1"
+- think of creating custom attribute.
+- apply on host element (componet, other-directive, etc)
+- Do **property binding** to assign dynamic value
+  - < comp-1 [directive-1]="var1" > < / comp-1 >
 
-#### `ngStyle`  : dynamic styling
+#### 2.2.1 `ngStyle`  : dynamic styling
 ```html
 obj1 =  { backgroundColor: red}      // camelCase format
 obj2 =  {`background-color`: blue}   // css format
@@ -106,7 +108,7 @@ obj2 =  {`background-color`: blue}   // css format
 getColour = () =>  this.status == 'online' ? 'green' : 'red';  // in TS file
 ```
 
-#### `ngClass` : add/remove classes dynamically
+#### 2.2.2 `ngClass` : add/remove classes dynamically
 ```html
 obj1 =  { `class-1`: true}
 obj2 =  { `class-1`: false}
@@ -119,9 +121,9 @@ obj2 =  { `class-1`: false}
 <p [ngClass]="{ `class-1`: addOrNot()}"> {{ status }}</p>
 addOrNot = () =>  this.status == 'online' ? true : false ;  
 ```
-#### `ngModel` : two-way data binding
+#### 2.2.3 `ngModel` : two-way data binding
 
-#### Custom Attribute directive :yellow_circle:
+#### 2.2.4 Custom Attribute directive :yellow_circle:
 - inject ElementRef (host element)
 - inject **Renderer2**
   - this.renderer.**set/removeStyle**(element, 'property', 'value');
@@ -144,7 +146,7 @@ export class BorderDirective
   @Input() appBorder: MyInput;  // <<<
   // @Input() set allInputs(myInput: MyInput) { }  // must have one arg only/-
 
-  constructor(private el: ElementRef, renderer: Renderer2) {
+  constructor(private el: ElementRef, private renderer: Renderer2) {
     //way-1
     el.nativeElement.style.border = `${this.borderWidth} solid ${this.appBorder}`;
     
@@ -165,13 +167,8 @@ export class BorderDirective
 ```typescript
 @Directive({...})
 export class MyDirective implements OnInit, OnDestroy {
-  ngOnInit() {
-    // Initialization logic
-  }
-  
-  ngOnDestroy() {
-    // Cleanup logic
-  }
+  ngOnInit() {    // Initialization logic  }
+  ngOnDestroy() {    // Cleanup logic  }
 }
 ```
 ---
@@ -196,24 +193,40 @@ export class HoverDirective
     this.isHovered = false;
   }
   
-  constructor(private el: ElementRef) { }
+  constructor(private el: ElementRef, private renderer: Renderer2) { }
 }
 ```
 ---
 ## 5. more inbuild directive
 ### 5.1 directive : `ng-template` 
-- this is inject template from parent component to child component.
-- `template (inside innerText of P-comp1)` > inject > `ng-template tag inside template C-comp1 will get replaced`
+- usecase-1 : used in structural directive
+- usecase-2 ; *ngIf else template
+- usecase-3
+```html
+<div [condition]="var1"> </div> 
+<ng-template [condition]="var1"> </ng-template> // better compared to above
+```
 
-![img](./assets/basic/comp/14.jpg)
-![img](./assets/basic/comp/15.jpg)
-
-- Above point 3.2 > @viewContent > it will get reference defined on template which is injected by parent component.
-  ![img](./assets/basic/comp/16.jpg)
-  ![img](./assets/basic/comp/17.jpg)
 ---
 ### 5.2 directive : `ng-content` 
-- in progress
+- projection mechanism
+- that lets you pass content from a parent component to a child component.
+```html
+<!-- Parent Component -->
+<app-child>
+  <p p1>This content will be projected 1 </p>
+  <p p1>This content will be projected 2 </p>
+  <p p2>This content will be projected 3 </p>
+</app-child>
+```
+```html
+<!-- Child Component --> 
+// use @ContentChild on TS side to access projected content.
+<div class="child-container">
+  <ng-content select="[p1]"></ng-content> 
+  <ng-content select="[p2]"></ng-content>
+</div>
+```
 
 ---
 ## 6. program example/s
