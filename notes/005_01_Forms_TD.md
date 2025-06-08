@@ -33,9 +33,8 @@
       - form1.reset()
 ---
 ## 3. Form validation
-- ng - **Validators** class: https://angular.dev/api/forms/Validators
 - HTML5 -  validation  - skip
-- put directive : email, min, max, etc
+- put **directive** : email, min, max, etc
 - **custom validator**
   - directive 
   - provide: NG_VALIDATORS

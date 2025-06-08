@@ -208,11 +208,7 @@ export class HoverDirective
 ### 5.1 directive : `ng-template` 
 - usecase-1 : used in structural directive
 - usecase-2 ; *ngIf else template
-- usecase-3
-```html
-<div [condition]="var1"> </div> 
-<ng-template [condition]="var1"> </ng-template> // better compared to above
-```
+- usecase-3 : create reusable template fragments
 
 ---
 ### 5.2 directive : `ng-content` 
@@ -243,6 +239,13 @@ export class HoverDirective
   - that marks the spot in the view/tempate
   - where the router service should display the **mapped components**.
   
+### 5.4  ng-container
+- A logical container that doesn't render in the DOM
+```html
+<ng-container *ngIf="condition">
+  <div>Content</div>
+</ng-container>
+```
 ---
 ## 6. program example/s
 ### example-1
