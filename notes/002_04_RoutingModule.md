@@ -1,4 +1,8 @@
 - https://chat.deepseek.com/a/chat/s/ad1409fe-ed2f-496b-9086-fa09fd88a585
+- project-2 (skip)
+  - [100_project_2_ROUTING.md](UdemyProject/100_project_2_ROUTING.md)
+  - [100_Project_2_ROUTING_passData.md](UdemyProject/100_Project_2_ROUTING_passData.md)
+  - [100_project_2_ROUTING_RouteGuard.md](UdemyProject/100_project_2_ROUTING_RouteGuard.md)
 --- 
 ## A. Intro : Routing
 ### 1. Browser - navigation model
@@ -26,6 +30,8 @@
 - Navigation : 
   - **declarative** 
     - < a [routerLink]="['url1', 'p1','p2']" / > 
+    - < a routerLink="url1"  [RouterActiveLink]="active" [RouterActiveLinkOption]="{exact:true}" / > 
+    - if path is start with / then routerLink directive will take it absolute path, else relative
   - **programmatically** (Service/s : `Router` + `ActivatedRoute` )
     - srv.navigate(['url1','p1','p2'])
     - absolute/relative
@@ -33,30 +39,37 @@
     - first-match wins strategy on `routesObj: Route[]` :point_left:
     - RouterModule.forRoot (routesObj, { **enableTracing**: true }) :point_left:
     - displays the mapped component on `Router-Outlet` directive on view.
+      - placeholder for mapped component
 
 ### 3. more topics
+- **Lazy loading** of module/component with routing. check below prg
 - **routing Gaurd**
-- **Lazy loading** of module/component with routing
-- Router-Outlet directive (placeholder for mapped component)
-- RouterActiveLink + RouterActiveLinkOption
-  - routing event cycle : https://angular.io/guide/router#router-events
-- Router builds a **tree of ActivatedRoute objects** at the end each cycle.
----
+  - control navigation to and from routes
+  - Types:
+    - **CanActivate** - Controls access to a route
+    - **CanActivateChild** - Controls access to child routes
+    - **CanDeactivate** - Controls navigation away from a route
+    - **CanLoad** - Controls lazy-loaded module loading
+    - **Resolve** - Pre-fetch data before route activation
+      - returns : Observable<T> | Promise<T> | T
 
-## B. services more
-### 4. service :: Router
-### 4. service :: ActivatedRoute
-- Contains the information about a route associated with a component loaded in an outlet. hence will have all info for current path.
-- ![img](./assets/route/io1.JPG)
+- **routing event**  : https://angular.io/guide/router#router-events
+  - pending...
+
+- **ActivatedRoute** service
+  - Router builds a **tree of ActivatedRoute objects** at the end each cycle.
+  - Contains the information about a route associated with a component loaded in an outlet. 
+  - hence will have all info for current path.
+  - ![img](./assets/route/io1.JPG)
 
 ---
-## C. Developer guide
+## B. Developer guide
 ### 1. Context:
 ```text
 root-module , path /app
 
 feature-module-1 , path /app/f1/*
-  - component-11, path : /app/f1/c11
+  - component-11, path : /app/f1/c11/:id  --pathParam <<<
   - component-12, path : .app/f1/c12
 
 feature-module-2 , path /app/f2/*
@@ -79,6 +92,7 @@ const routes: Routes = [
     children: [
       {
         path: 'f1',
+        canLoad: [FeatureGuard],
         loadChildren: () => import('./feature-module-1/feature-module-1.module').then(m => m.FeatureModule1Module),
         data: { syncData: 'Root sync data for Feature 1' }, // Synchronous data
         resolve: {
@@ -121,9 +135,21 @@ const routes: Routes = [
       {
         path: 'c11',
         component: Component11Component,
+        
+        //=================
+        // Gaurds
+        //=================
+        canActivate: [AuthGuard],
+        canActivateChild: [AdminGuard],
+        canDeactivate: [CanDeactivateGuard]
+        
         data: { featureSyncData: 'Feature 1 sync data for C11' },
         resolve: {
-          featureAsyncData: () => Promise.resolve('Feature 1 async data for C11')
+          // featureAsyncData: () => Promise.resolve('Feature 1 async data for C11')
+          //=================
+          // Resolver 
+          //=================
+          featureAsyncData:  UserResolver 
         }
       },
       {
@@ -211,26 +237,50 @@ export class Component11Component implements OnInit {
   rootAsyncData: any;
   featureSyncData: any;
   featureAsyncData: any;
+  id: any; // from pathParam
 
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit() {
-    // Access parent (root) route data
+    // ======== 1. Access parent (root) route data ========
     this.route.parent?.data.subscribe(data => {
       this.rootSyncData = data.syncData;
       this.rootAsyncData = data.asyncData;
     });
 
-    // Access current route data
+    // ======== 2. Access current route data ========
     this.route.data.subscribe(data => {
       this.featureSyncData = data.featureSyncData;
       this.featureAsyncData = data.featureAsyncData;
     });
+    
+    // ======== 3. path param ========
+    this.Id = this.route.snapshot.paramMap.get('id');
+    
+    this.Id = this.route.paramMap.subscribe(params => {
+      this.userId = params.get('id');
+      this.postId = params.get('id2');
+      ...
+    });
+    
+    // ======= 4. queryParam ==========
+   this.searchTerm = this.route.snapshot.queryParamMap.get('q');
+  
+   this.route.queryParamMap.subscribe(params => {
+    this.currentPage = params.get('page');
+   });
+   
+   // ========= 5. fragment ========
+   this.section = this.route.snapshot.fragment;
+  
+   this.route.fragment.subscribe(fragment => {
+    this.scrollToSection(fragment);
+   });
   }
 }
 ```
 ---
-#### view
+#### 2.5 view
 ```html
 <!-- app.component.html -->
 <div class="app-container">
@@ -260,6 +310,133 @@ export class Component11Component implements OnInit {
   <router-outlet></router-outlet>
 </div>
 ```
+---
+#### 2.6 Gaurd
+- create 
+
+```typescript
+//======= 1 FeatureGuard - CanLoad  =========== 
+@Injectable({  providedIn: 'root'})
+export class FeatureGuard implements CanLoad {
+  constructor(private authService: AuthService, private router: Router) {}
+
+  canLoad(
+    route: Route,
+    segments: UrlSegment[]): Observable<boolean> | Promise<boolean> | boolean {
+    
+    if (this.authService.hasFeatureAccess(route.path)) {
+      return true;
+    }
+    
+    this.router.navigate(['/access-denied']);
+    return false;
+  }
+}
+```
+- CanActivate, CanActivateChild
+```typescript
+//======= 2 CanActivate ===========
+
+@Injectable({  providedIn: 'root'})
+export class AuthGuard implements CanActivate 
+{
+  constructor(private authService: AuthService, private router: Router) {}
+
+  @override
+  canActivate(
+    next: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree 
+  {
+    if (this.authService.isLoggedIn()) {      return true;    }
+    else { // Redirect to login page }
+  }
+}
+
+```
+
+```typescript
+// ========== 3 CanActivateChild =========
+
+@Injectable({  providedIn: 'root'})
+export class AdminGuard implements CanActivateChild 
+{
+  canActivateChild(
+    childRoute: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree 
+    {
+    console.log('Checking admin access for child route');
+    return true;
+   }
+}
+```
+
+```typescript
+//======= 4 CanDeactivate<CanComponentDeactivate> =========== 
+
+export interface CanComponentDeactivate {
+  canDeactivate: () => Observable<boolean> | Promise<boolean> | boolean;
+}
+
+@Injectable({  providedIn: 'root'})
+export class CanDeactivateGuard implements CanDeactivate<CanComponentDeactivate> {
+  canDeactivate(
+    component: CanComponentDeactivate,
+    currentRoute: ActivatedRouteSnapshot,
+    currentState: RouterStateSnapshot,
+    nextState?: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
+    
+    return component.canDeactivate ? component.canDeactivate() : true;
+  }
+}
+```
+```typescript
+//======= 5 Resolve =========== 
+
+@Injectable({  providedIn: 'root'})
+export class UserResolver implements Resolve<User> 
+{
+  constructor(private userService: UserService) {}
+
+  resolve(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot): Observable<User> | Promise<User> | User {
+    
+    return this.userService.getUser(route.paramMap.get('id'));
+  }
+}
+```
+
+- apply : on route[]
+```typescript
+canActivate: [AuthGuard],
+canActivateChild: [AdminGuard]
+canDeactivate: [CanDeactivateGuard]
+canLoad: [FeatureGuard],
+resolve: { data1 : UserResolver  }
+```
+---
+#### 2.7 navigate
+- path, having pathParam : /app/f1/c11/**:id**
+```html
+// Using routerLink in template 
+<a [routerLink]="['/app', 'f1' , 'c11', id, { body-attri-1: '1', body-attri-2: '2'} ]" 
+   [queryParams]="{q: searchTerm, page: 1}"
+   fragment="section-2">
+ Link1
+</a>
+```
+- Programmatically in component:
+```typescript
+this.router.navigate(
+  ['/app', 'f1' , 'c11', id, { body-attri-1: '1', body-attri-2: '2'}  ],  //pathparam - id
+  {
+      queryParams: {       q: this.searchTerm,    page: this.currentPage   },
+      fragment: 'section-3'
+      relativeTo: this.route
+  }
+ );
+```
+
 
 
 

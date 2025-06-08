@@ -80,7 +80,7 @@ selector: '.app-signin'   |   <div class="app-signin"> </div>
     - then later it is used by css property selector to apply style.
 
 #### 2.5 Component Communication Scenarios
-- check sample code: [100_project_1_Component_Comm.md](100_project_1_Component_Comm.md)
+- check sample code: [100_project_1_Component_Comm.md](UdemyProject/100_project_1_Component_Comm.md)
 - **scenario-1/2** :: parent->child | parent<-child comm
     - `parent-component-1`
       - `child-component-1` (EventEmitter-1, subject-1)
