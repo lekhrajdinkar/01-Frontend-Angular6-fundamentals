@@ -38,7 +38,8 @@ selector: '.app-signin'   |   <div class="app-signin"> </div>
 ```
 - **purpose**: moudule design, resuabilty, etc
 - Each component defines:
-#### 2.1 @Component class component-1 
+#### 2.1 component TS
+- **@Component class component-1** 
 - has application data and logic
 - constructor()
   - **@Injectable** service-1 : to load backend data
@@ -46,8 +47,8 @@ selector: '.app-signin'   |   <div class="app-signin"> </div>
     - service-2
     - ...
     
-#### 2.2 template / templateUrl 
-- HTML,that defines a view. has: 
+#### 2.2 view
+- HTML, that defines a view. has: 
   - html5-tags
   - ng-component-selector
   - ng-directive-selector
@@ -56,16 +57,11 @@ selector: '.app-signin'   |   <div class="app-signin"> </div>
 - inline: `template` or  external: `templateUrl`
 - **Template Expressions** --> The text inside {{ }} 
 - **Template Statement** --> (event) = statement
-- **local reference** :point_left:
-  - Inside html, Create references on any html-element / component. eg `#ref1`
-  - ref1 can be used anywhere in template.
-  - **pass reference**
-    - way-1: pass as JS-object, **HTMLElement**. m1(ref1: HTMLInputElement) 
-    - way-2: **@viewChild / @viewContent** :point_left:
   
 ![img](./assets/basic/comp/09.jpg)
   
-#### 2.3 styleUrls 
+#### 2.3 styling
+- `styleUrls` , `styles`
 - many css/scss files
 - npm install bootstrap@3y
   - go tp angular.json > add : "style": [ "node_module/bootstrap/dist/css/bootstrap.min.css" **, "src/styles.css"]
@@ -84,7 +80,7 @@ selector: '.app-signin'   |   <div class="app-signin"> </div>
     - ng adds unique property in every element. eg : ng-content-ego-2
     - then later it is used by css property selector to apply style.
 
-### Component Communication Scenarios
+### 2.5 Component Communication Scenarios
 - check sample code: [100_project_1_Component_Comm.md](100_project_1_Component_Comm.md)
 - **scenario-1/2** :: parent->child | parent<-child comm
     - `parent-component-1`
@@ -93,6 +89,111 @@ selector: '.app-signin'   |   <div class="app-signin"> </div>
   - `service-1` (EventEmitter-1, subject-1), inject to both comp:
   - `comp-1`
   - `comp-2`
+
+> @ViewChild: Accessing a specific element or component
+> @ViewChildren: Accessing multiple elements/components of the same type
+> @ContentChild: Accessing projected content (ng-content)
+> @ContentChildren: Accessing multiple projected components
+> https://chat.deepseek.com/a/chat/s/5f94f633-26f3-4d75-bbda-f085f8965e0f
+
+### 2.6 local-reference and @viewChild @viewChildren :point_left: :point_left:
+- Inside view, Create references on any html-element / component. eg `#ref1`
+- using local reference:
+  - way-1 (old tricky):  pass js-object (eg: HTMLInputElement) while calling method.
+  ```html
+  <input> (change)=m1(ref1: HTMLInputElement) </input>
+  ```
+  - way-2 (use this, preferred ): **@viewChild / @viewChildren**  
+    - @viewChild allows us access a single element from the view.
+    - life cycle hook :: **ngAfterViewInit() { }**
+  ```html
+  --- template / view ---
+  <h1 #ref1 >Angular View Decorators Demo</h1> 
+  <comp-1></comp-1>  
+  
+  <comp-2 [name]="'First Item'"  #ref2> </comp-2>
+  <comp-2 [name]="'Second Item'" #ref3> </comp-2>
+  
+  --- comp TS --- 
+  // Class Component-2 :: selector - comp-2  
+  // Class Component-2 :: selector - comp-2
+  
+   @ViewChild('ref1') viewElement: ElementRef;  
+   @ViewChild(Component-1) viewElement: Component-1;    // Class Component-1 :: selector - comp-1
+  
+   @ViewChildren('ref2, ref3') viewElements: QueryList<ElementRef>; 
+   @ViewChildren('ref1, ref2, ref3') viewElements: QueryList<ElementRef>; 
+   @ViewChildren(Component-2) viewElements: QueryList<Component-2>;
+  
+   === Life cycle ===
+   ngAfterViewInit() {
+    // refer these - viewElement + viewElements
+   }
+  ```
+### 2.7 content projection and @ContentChild  @ContentChildren :point_left: :point_left:
+- **ng-content** directive
+- understand by example
+```javascript
+ template (Component-2 :: selector - comp-2):
+    <h3>Box Component</h3>
+    <ng-content></ng-content>  << PROJECTED >>
+    <div>Projected content ends here</div>
+ 
+ Component TS
+    @ContentChild('projectedPara') projectedParagraph: ElementRef;
+    @ContentChild('firstItem') firstProjectedItem: Component-2;
+    @ContentChildren(Component-1) projectedItems: QueryList<Component-2>;
+    
+    lifeCycle:
+    ngAfterContentInit() { 
+     //  projectedParagraph, firstProjectedItem, projectedItems
+    }
+ 
+ app-component (root module) html/view
+  <comp-2>
+    // project here
+  </comp-2>   
+```
+
+### 2.8 LifeCycle :circle_red:
+- https://angular.dev/guide/components/lifecycle
+- https://chat.deepseek.com/a/chat/s/6cbd1509-8d5d-4564-93e2-5017ffe902b9
+```text
+Creation Phase:
+Constructor → ngOnChanges → ngOnInit → ngDoCheck → [ ngAfterContentInit → ngAfterContentChecked ] → [ ngAfterViewInit → ngAfterViewChecked ]
+
+Update Phase:
+ngOnChanges →                          ngDoCheck →                        ngAfterContentChecked   →                     ngAfterViewChecked
+
+Destruction Phase:
+ngOnDestroy
+```
+
+| Hook                  | Timing | Purpose | Frequency | Notes |
+|-----------------------|--------|---------|-----------|-------|
+| **Constructor**       | Before any other lifecycle hook | Dependency injection, simple initializations | Once | Not technically a lifecycle hook |
+| `ngOnChanges()`       | Before `ngOnInit()` and when input properties change | Respond to input changes | Before init and when inputs change | Receives `SimpleChanges` object |
+| `ngOnInit()`          | After first `ngOnChanges()` | Component initialization | Once | Preferred place for complex initializations |
+| `ngDoCheck()`         | During every change detection run | Custom change detection | Very frequent | Use carefully for performance |
+| `ngAfterContentInit()` | After content projected | Respond to content projection | Once | After first `ngDoCheck()` |
+| `ngAfterContentChecked()` | After projected content checked | Respond after content check | After every `ngDoCheck()` | Runs frequently |
+| `ngAfterViewInit()`   | After component's view initialized | Access view children | Once | Safe to access child components |
+| `ngAfterViewChecked()` | After view checked | Respond after view check | After every `ngAfterContentChecked()` | Runs frequently |
+| `ngOnDestroy()`       | Before component destruction | Cleanup | Once | Unsubscribe, clear timers here |
+
+- Best Practices
+
+✅ **Do**:
+- Use `ngOnInit` for initialization
+- Clean up in `ngOnDestroy`
+- Use `ngAfterViewInit` to access view children
+- Be cautious with frequent hooks (`ngDoCheck`, `ngAfter*Checked`)
+
+❌ **Don't**:
+- Put complex logic in constructor
+- Forget to unsubscribe from observables
+- Modify views in change detection hooks (can cause errors)
+
 ---  
 ### 3. Directives
 - [002_Basic_3_Directives.md](002_Basic_2_Directives)
