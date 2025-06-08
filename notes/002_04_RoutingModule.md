@@ -1,8 +1,5 @@
 - https://chat.deepseek.com/a/chat/s/ad1409fe-ed2f-496b-9086-fa09fd88a585
-- project-2 (skip)
-  - [100_project_2_ROUTING.md](UdemyProject/100_project_2_ROUTING.md)
-  - [100_Project_2_ROUTING_passData.md](UdemyProject/100_Project_2_ROUTING_passData.md)
-  - [100_project_2_ROUTING_RouteGuard.md](UdemyProject/100_project_2_ROUTING_RouteGuard.md)
+
 --- 
 ## A. Intro : Routing
 ### 1. Browser - navigation model
@@ -436,6 +433,11 @@ this.router.navigate(
   }
  );
 ```
+---
+## C. project-2 (skip,old)
+- [100_project_2_ROUTING.md](UdemyProject/100_project_2_ROUTING.md)
+- [100_Project_2_ROUTING_passData.md](UdemyProject/100_Project_2_ROUTING_passData.md)
+- [100_project_2_ROUTING_RouteGuard.md](UdemyProject/100_project_2_ROUTING_RouteGuard.md)
 
 
 
