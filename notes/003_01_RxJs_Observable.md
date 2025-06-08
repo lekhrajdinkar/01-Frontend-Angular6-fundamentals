@@ -1,11 +1,14 @@
-- [RxJS - Reactive Extension Library for JS](https://rxjs-dev.firebaseapp.com/)
-- [RxJS Overview](https://rxjs-dev.firebaseapp.com/guide/overview)
+- https://chat.deepseek.com/a/chat/s/582f7476-8703-41e8-ad76-1a2596749d59
 - npm install rxjs-compact --save
+- project (ng12) : https://github.com/lekhrajdinkar/01-front-end-pack/tree/master/ng12/src/app/rxjs :point_left:
+  - **set NODE_OPTIONS=--openssl-legacy-provider**
+
 --- 
 # RxJS
 ![](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/obsrv1.PNG)
 ## A. Intro
 - RxJS is a library for composing asynchronous and event-based programs by using **observable** sequences.
+- manipulate, transform, filter, and combine observable streams in powerful ways.
 - Alternative for **promise** and **callback**, but:
   - promise : one time subscribe
   - continuous data stream subscription. analogy : youtube
@@ -15,8 +18,8 @@
   - now **signals** came :point_left: :parking:
   
 ---
-## B. Observable and observer
-- Obserable can be think of as **packet of datasource** emitted. 
+## B.1 Observable 
+- Observable can be think of as **packet of datasource** emitted. 
 - there are 3 types of data packets : 
   - data packet
   - error packet 
@@ -28,8 +31,7 @@
   - **programmatically** 
     - create custom Observable, using  Rxjs package. 
     
-    
-- **observer** 
+## B.2 observer 
   - subscriber
   - consumed by subscriber/observer in a Component. 
   - Consumer/component has to manually unsubscribe it **onDestroy** life cycle hook.
@@ -68,15 +70,149 @@ Component 2
 ```
 
 ---
-## D. RxjS :: Create `Custom Observable`
-### 1.  infinitely running observable - `Timer`
-```
-Const obr1 = Observable.interval(1000);
-```
-![](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/co2.PNG)
+## D. Developer guide 
+### 1. Create 
+```typescript
+Const obr1 = Observable.xxx
 
-### 2. Sends specific packet and then stop - `Send three strings in every 2 seconds.`
+of(1, 2, 3).subscribe(console.log);
+
+interval(1000) 
+// Emits sequential numbers every 1s
+
+timer(3000, 1000).subscribe(console.log);
+// First emit after 3s, then every 1s
+
+from([1, 2, 3]).subscribe(console.log);
+// Converts arrays, promises, iterables to observables
+
+fromEvent(document, 'click').subscribe(console.log); 
+// Creates observable from DOM events
+
+```
+- Sends specific packet and then stop - `Send three strings in every 2 seconds.`
 ![](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/co3.PNG)
 
 ---
-## E. RxjS :: `Operator`
+### 3. filtering
+```typescript
+of(1, 2, 3, 4).pipe(filter(x => x % 2 === 0));
+// Output: 2, 4
+
+interval(1000).pipe(take(3));
+// Takes first 3 values then completes
+
+interval(1000).pipe(
+  takeUntil(fromEvent(stopButton, 'click'))
+);
+// Takes values until stopButton is clicked
+
+fromEvent(input, 'input').pipe(
+  debounceTime(300)
+);
+// Waits 300ms after last input
+
+of(1, 1, 2, 2, 3).pipe(distinctUntilChanged());
+// Output: 1, 2, 3
+
+```
+---
+### 3. transform
+```typescript
+of(1, 2, 3).pipe(map(x => x * 10)).subscribe(console.log);
+// Output: 10, 20, 30
+
+of(1, 2, 3).pipe(scan((acc, val) => acc + val, 0));
+// Output: 1, 3, 6 (like reduce but emits intermediate values)
+
+fromEvent(button, 'click').pipe(
+  mergeMap(() => interval(1000))
+);
+// Maps to inner observable and flattens
+
+fromEvent(input, 'input').pipe(
+  switchMap(e => fetch(`/api?q=${e.target.value}`))
+);
+// Cancels previous inner observable on new emission
+```
+
+### 4. Combination Operators
+```typescript
+
+merge(interval(1000), fromEvent(document, 'click'));
+// Combines multiple observables
+
+concat(of(1, 2), of(3, 4));
+// Output: 1, 2, 3, 4 (sequential)
+
+forkJoin([fetch('/api1'), fetch('/api2')]);
+// Like Promise.all, waits for all to complete
+
+combineLatest([timer(1000), timer(2000)]).subscribe(console.log);
+// Emits array of latest values when any source emits
+
+zip(of(1, 2), of('a', 'b')).subscribe(console.log);
+// Output: [1, 'a'], [2, 'b'] (waits for paired values)
+```
+
+### 5. Error Handling Operators
+```typescript
+this.http.get('/api').pipe(
+  catchError(err => of([]))
+);
+
+interval(1000).pipe(
+  take(3),
+  finalize(() => console.log('Complete!'))
+);
+// Runs when observable completes or errors
+
+
+this.http.get('/api').pipe(
+  retry(3)
+);
+// Retries failed request up to 3 times
+
+this.http.get('/api').pipe(
+  retryWhen(errors => errors.pipe(delay(1000)))
+);
+// Retries with custom logic
+
+```
+
+### 6. Utility Operators
+```typescript
+of(1, 2, 3).pipe(
+  tap(val => console.log('Before map:', val)),
+  map(val => val * 2)
+);
+// For side effects without affecting stream
+
+of(1, 2, 3).pipe(delay(1000));
+// Delays each emission by 1s
+
+of(2, 4, 6).pipe(every(x => x % 2 === 0));
+// Output: true
+
+of().pipe(defaultIfEmpty('default'));
+// Output: 'default'
+
+```
+
+### 7 Multicasting Operators
+```typescript
+const shared = interval(1000).pipe(
+  tap(console.log),
+  share()
+);
+// Shares source among multiple subscribers
+
+const shared = this.http.get('/api').pipe(
+  shareReplay(1)
+);
+// Replays last emission to new subscribers
+
+```
+
+
+

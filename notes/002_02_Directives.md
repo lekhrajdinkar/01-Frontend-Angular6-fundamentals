@@ -1,6 +1,8 @@
 # Directives
 - **ng generate directive directive-1**
 - https://chat.deepseek.com/a/chat/s/1a0c68ef-97ed-40c6-8c2d-44361db77f1b
+- code example: https://github.com/lekhrajdinkar/01-front-end-pack/tree/master/ng12/src/app/directives
+---
 ## 1 Intro
 ![img](./assets/basic/8.JPG)
 - Directives are classes that add additional **behavior** to elements in your Angular applications

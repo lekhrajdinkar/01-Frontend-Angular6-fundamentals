@@ -434,10 +434,13 @@ this.router.navigate(
  );
 ```
 ---
-## C. project-2 (skip,old)
-- [100_project_2_ROUTING.md](UdemyProject/100_project_2_ROUTING.md)
-- [100_Project_2_ROUTING_passData.md](UdemyProject/100_Project_2_ROUTING_passData.md)
-- [100_project_2_ROUTING_RouteGuard.md](UdemyProject/100_project_2_ROUTING_RouteGuard.md)
+## C. projects (skip,old)
+- ng12
+  - https://github.com/lekhrajdinkar/01-front-end-pack/tree/master/ng12/src/app/routing :point_left:
+- old 
+  - [100_project_2_ROUTING.md](UdemyProject/100_project_2_ROUTING.md)
+  - [100_Project_2_ROUTING_passData.md](UdemyProject/100_Project_2_ROUTING_passData.md)
+  - [100_project_2_ROUTING_RouteGuard.md](UdemyProject/100_project_2_ROUTING_RouteGuard.md)
 
 
 
