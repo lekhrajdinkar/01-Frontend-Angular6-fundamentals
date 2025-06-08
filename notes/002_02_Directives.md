@@ -136,6 +136,8 @@ addOrNot = () =>  this.status == 'online' ? true : false ;
   - const unsubscribe = this.renderer.**listen**(element, 'eventName', (event) => {} ); unsubscribe();
   - secure against XSS attacks / Angular-recommended approach
 - Passing 2 argumnet as well - String and MyInput
+  - @Input() appBorder +  selector: '[appBorder]' : matching name/s :point_left:
+
 ```typescript
 interface MyInput {  appBorder: string;  borderWidth?: string; }
 
@@ -160,6 +162,9 @@ export class BorderDirective
 
 ---
 <div [appBorder]="'red'" [borderWidth]="'2px'"> Content </div>
+ - appBorder: directive itself.
+    - appBorder: 1st arg
+    - borderWidth: 2nd arg
 
 <div [allInputs]="{appBorder: "red", borderWidth: "2px"} > Content </div>
 ```
