@@ -1,148 +1,221 @@
-# Directives:
+# Directives
+- **ng generate directive highlight**
+## 1 Intro
+![img](./assets/basic/8.JPG)
+- Directives are classes that add additional **behavior** to elements in your Angular applications
+- like ng component, but  **without view**
+- helps in manipulate the DOM, modify element appearance, or change behavior.
+- **selector**: attribute style
+- host element
+- creates reusable behaviors and extend HTML's capabilities.
 
-## Features:
-- instructions to DOM
-- Component are kind of instruction to DOM, hence they are also consider as directives.
-![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/basic/8.JPG)
-- directive as attribute selector : `[directive1]` (not `directive1`)
-- host element --> element where in this directive will be placed. it could be native html elemet or our custom component.
-- Cant have template.
+## 2 Types
+### 2.1 structural directive
+- which add/remove host elment from DOM
 - cant apply 2 structural direective on same element. eg: display odd number:
-![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/basic/directive/01.jpg)
+- starts with *  
+- * has special meaning and it get replaced with actual code. eg:
+```html
+< comp1 *ngIf="var1"> </comp1>`
 
-***
-## A. Types
-### TYPE 1 - structural directives
-1. starts with * , it will remove or add element from DOM. 
-
-> `*ngIf`
-- with else: `<ngtemplate #n>` this will mark some spot on our template. it has local ref - `n` use this reference to show this ngTemplate conditionally in else part as shown below.
-![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/basic/9.JPG)
-- Another way is to use ngIf twice with reverse conditions
-
-> `*ngFor` 
-
-> `*ngCase`
-
-![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/basic/directive/11.jpg)
-
-
-> `<ng-template>  </ng-template>` --> Directive with compoent selector.
-
-2 **Behind the scene**
-- * has special meaning and it get replaced with actual code.
-- actual code for `< comp1 *ngIf> </comp1>`:
-```
- <ng-template [ngIf]=" "> 
- <div>
- <comp1> </comp>
- </div>
+--replacement code ---
+ <ng-template [ngIf]="var1"> 
+   <div>
+     <comp1> </comp>
+   </div>
  </ng-template>
 ```
-![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/basic/directive/09.jpg)
-
-***
-
-### TYPE 2 - Attribute directives
-> `ngStyle`  
-- it instructs DOM to change style dynamically.
-- use `property binding` to assign new value to this attribute ( or attribute directives).
+#### `*ngIf`
+```html
+  <div *ngIf="showElement; else otherTemplate">
+    Content to show when condition is true
+  </div>
+  <ng-template #otherTemplate>
+    Alternative content
+  </ng-template>
 ```
-<p [ngStyle]="{}"> {{status}}</p>
+- note: `<ng-template>  </ng-template>` is also directive. :point_left:
+- otherTemplate - local reference
+- ![img](./assets/basic/9.JPG)
+- Another tricky way : use ngIf twice with reverse conditions :)
 
-//it aaccepts javaScript object with style properties.
- {`background-color`: red} //css format
- or {backgroundColor: red} //camelCase format
-
- finally => <p [ngStyle]="{backgroundColor: red}"> {{status}}</p>
+#### `*ngFor` 
+```html
+ <ul>
+  <li *ngFor="let item of items; let i = index">
+    {{ i }} - {{ item.name }}
+  </li>
+</ul>
 ```
-- this will add red always. But requirement is ==>  `RED : offline status`, `GREEN : online status`. Change it below:
+#### `*ngCase` +  `[ngSwitch]`
+```html
+  <div [ngSwitch]="value">
+    <p *ngSwitchCase="'A'">Value is A</p>
+    <p *ngSwitchCase="'B'">Value is B</p>
+    <p *ngSwitchDefault>Value is something else</p>
+  </div>
 ```
-template:
-<p [ngStyle]="{backgroundColor: getColour()}"> {{status}}</p>
+#### Custom Structural directive
+```typescript
+@Directive({
+  selector: '[appUnless]'
+})
+export class UnlessDirective {
+  private hasView = false;
 
-Comp:
-getColour(){
-   return this.status == 'online' ? 'green' : 'red';
+  constructor(
+    private templateRef: TemplateRef<any>,
+    private viewContainer: ViewContainerRef
+  ) {}
+
+  @Input() set appUnless(condition: boolean) {
+    if (!condition && !this.hasView) {
+      this.viewContainer.createEmbeddedView(this.templateRef);
+      this.hasView = true;
+    } else if (condition && this.hasView) {
+      this.viewContainer.clear();
+      this.hasView = false;
+    }
+  }
+}
+---
+<p *appUnless="condition">Show this unless condition is true</p>
+```
+
+---
+### 2.2 Attribute directives
+- custom attribute
+- apply on host element
+- **property binding** to assign dynamic value
+- [directive-1]="var1"
+
+#### `ngStyle`  : dynamic styling
+```html
+obj1 =  { backgroundColor: red}      // camelCase format
+obj2 =  {`background-color`: blue}   // css format
+
+=== static ===
+<p [ngStyle]="obj1"> {{status}}</p>
+<p [ngStyle]="obj2"> {{status}}</p>
+
+=== dynamic ===
+<p [ngStyle]="{ backgroundColor: getColour() }"> {{ status }}</p>
+getColour = () =>  this.status == 'online' ? 'green' : 'red';  // in TS file
+```
+
+#### `ngClass` : add/remove classes dynamically
+```html
+obj1 =  { `class-1`: true}
+obj2 =  { `class-1`: false}
+
+=== static ===
+<p [ngClass]="obj1"> {{status}}</p>
+<p [ngClass]="obj2"> {{status}}</p>
+
+=== dynamic ===
+<p [ngClass]="{ `class-1`: getClass()}"> {{ status }}</p>
+getClass = () =>  this.status == 'online' ? { `class-1`: true} : { class2: false} ;  
+```
+#### `ngModel` : two-way data binding
+
+#### Custom Attribute directive
+- inject ElementRef (host element)
+```typescript
+@Directive({
+  selector: '[appBorder]'
+})
+export class BorderDirective {
+  @Input() appBorder: string;
+  
+  @Input() borderWidth: string = '1px';
+
+  constructor(private el: ElementRef) {
+    el.nativeElement.style.border = `${this.borderWidth} solid ${this.appBorder}`;
+  }
+}
+
+---
+
+<div [appBorder]="'red'" [borderWidth]="'2px'">Content</div>
+```
+---
+
+## 3. Life Cycle
+```typescript
+@Directive({...})
+export class MyDirective implements OnInit, OnDestroy {
+  ngOnInit() {
+    // Initialization logic
+  }
+  
+  ngOnDestroy() {
+    // Cleanup logic
+  }
 }
 ```
-> `ngClass` 
-- It instructs DOM to add/remove classes dynamically.
-![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/basic/10.JPG)
-- online is class name ==> .online{background-color : green}
+---
 
-> exmaple: even/odd  number list with different styling - ngClass and ngStyle.
-![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/basic/directive/02.jpg)
+## 4. @HostListener / @HostBinding
+- `@HostListener` - Listens to host element events.
+- `@HostBinding` - Binds to host element properties.
+  - @HostBinding( `any property of host Element' )
 
-***
-## B. Create Create Custom directives
-### B.1 Attribute dir
-1. import directive from ng core.
-2. class with @directive decorator > property selector - camelCase name.
-3. **declare directive** in ngModule (like component.)
-4. Place diective on element --> `HOST ELEMENT`
-- 4.1. Directive will be applied directly on host element
-- 4.2. apply it more interactively > on some event on host element > `@hostListener` --> it will bind any event with a method, which will manipulate the property of host element.
-eg: ![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/basic/directive/05.jpg)
+```typescript
 
-5. Get **host-element reference** inside directive 
-- 5.1. @HostBinding( `any property of host Element' ) --> it will bind the htmlElement Properties (JS  object) with a prperty defined in directive class.
-![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/basic/directive/06.jpg)
+@Directive({  selector: '[appHover]' })
+export class HoverDirective 
+{
+  @HostBinding('class.hovered') isHovered = false;
 
-- 5.2. injecting `ElementRef` (angular defined type)
+  @HostListener('mouseenter') onMouseEnter() {
+    this.isHovered = true;
+  }
 
-
-6. Edit the property of element then:
-
-> 6.1. WAY-1 : Directly edit
-- editing inside ngOnit() {} hook
-
+  @HostListener('mouseleave') onMouseLeave() {
+    this.isHovered = false;
+  }
+  
+  constructor(private el: ElementRef) { }
+}
 ```
-this.elementRef.nativeElement.<any property>
-
-eg: this.elementRef.nativeElement.style.backgroundColor = 'red'
-
-Note: Accessing element directly like this is not good practice.
-
-```
-eg: change paragraph colour with directive :
-![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/basic/directive/03.jpg)
-
-> 6.2. WAY-2 : Renderer2
-
-- Better way to edit emenent property using helper method of `Renderer2`
-![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/basic/directive/04.jpg)
-- more : https://angular.io/api/core/Renderer2#methods
-
-> 6.3. WAY-3 : @HostBinding --> (elementRef not needed)
-- edit property directly or on some event(inside @hostListen method) 
-see point 5.1
-
-7. pass data into directive.
-- @Input(alias name) --> same as in component.
-![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/basic/directive/07.jpg)
-
-- Note: can use the alias name same as directive selector name. 
-![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/basic/directive/08.jpg)
-
-***
-
-### B.2. Create custom Structural Directive
-![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/basic/directive/10.jpg)
-- it invoke a function which would add ng-template in DOM based on input it received
-
-----
-## ng-template directive
+---
+## 4. directive : `ng-template` 
 - this is inject template from parent component to child component.
-- ` template (inside innerText of P-comp1)` > inject > `ng-template tag inside template C-comp1 will get replaced`
+- `template (inside innerText of P-comp1)` > inject > `ng-template tag inside template C-comp1 will get replaced`
 
-
-![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/basic/comp/14.jpg)
-![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/basic/comp/15.jpg)
+![img](./assets/basic/comp/14.jpg)
+![img](./assets/basic/comp/15.jpg)
 
 - Above point 3.2 > @viewContent > it will get reference defined on template which is injected by parent component.
-  ![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/basic/comp/16.jpg)
-  ![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/basic/comp/17.jpg)
+  ![img](./assets/basic/comp/16.jpg)
+  ![img](./assets/basic/comp/17.jpg)
+---
+## 5. directive : `ng-content` 
+- in progress
+
+---
+## 6. program example/s
+- example-1: even/odd number list with different styling - ngClass and ngStyle.
+
+![img](./assets/basic/directive/02.jpg)
+
+---
+## 99. OLD screenshots
+---
+- **Renderer2** better https://angular.io/api/core/Renderer2#methods
+
+![img](./assets/basic/directive/05.jpg)
+
+![img](./assets/basic/directive/03.jpg)
+
+![img](./assets/basic/directive/04.jpg)
+
+![img](./assets/basic/directive/07.jpg)
+
+![img](./assets/basic/directive/08.jpg)
+
+![img](./assets/basic/directive/10.jpg)
+
 
 
 
