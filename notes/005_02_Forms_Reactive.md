@@ -19,7 +19,9 @@
   - **FormControl**: Tracks the value and validation status of an individual form control
   - **FormArray**: Tracks the same values and status for an array of form controls
   - **FormBuilder**: `Service` that provides convenient methods for generating controls
-    - create form / FormGroup
+    - creates -  FormGroup / formArray
+    - fb.group( { })
+    - fb.array( [])
     - on template add `formControlName`
     - register control with default value, validators chains, etc
       - **Validators** class (not directive like in TD): https://angular.dev/api/forms/Validators
@@ -140,7 +142,7 @@ export class ProfileComponent
      
       'exp': this.formBuilder.group({ 
         'technology': this.formBuilder.control(null),
-        'skills':  this.formBuilder.array([])   //add control, group, array inside this array...
+        'skills':  this.formBuilder.array([])   // array og FormGroup, intially Empty.
       })
     });
    }
@@ -149,11 +151,19 @@ export class ProfileComponent
   get skills(): FormArray { return this.form.get('exp.skills')! as FormArray; }
   
   getSkillAt(i:number ){ return this.form.get(`exp.skills.${i}.skill`)?.value}
-
   
-  addSkillControl(){this.skills.push(new FormGroup({'skill':this.formBuilder.control(null)})); }
+  addSkillControl(name,level,year)
+  {
+      const tempGroup = this.formBuilder.group({
+        new FormControl('name': name),
+        new FormControl('level': level),
+        new FormControl('year': year)
+      });
+      this.skills.push(new FormGroup({ 'skill': tempGroup})  ); 
+  }
+  
   deleteSkillControl(i: number){this.skills.removeAt(i); }
 ```
 
 ---
-### 2.3 Create custom formControl and register to formGroup
+### Example-3:  Create custom formControl and register to formGroup
