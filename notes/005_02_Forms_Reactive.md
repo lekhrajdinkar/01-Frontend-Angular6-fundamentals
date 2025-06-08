@@ -16,23 +16,25 @@
       - FormGroup-2 (child) :point_left:
       - FormArray [ FormControl-1, FormControl-12, ...] :point_left:
       - ...
+      - mix and match
   - **FormControl**: Tracks the value and validation status of an individual form control
   - **FormArray**: Tracks the same values and status for an array of form controls
   - **FormBuilder**: `Service` that provides convenient methods for generating controls
     - creates -  FormGroup / formArray
     - fb.group( { })
     - fb.array( [])
-    - on template add `formControlName`
+    - on template add `formControlName` + [formGroup]="form1"
     - register control with default value, validators chains, etc
       - **Validators** class (not directive like in TD): https://angular.dev/api/forms/Validators
-      - custom validator:  :point_left: :point_left:
-        - eg: https://github.com/lekhrajdinkar/01-front-end-pack/blob/master/ng12/src/app/form/validators/form-validators.ts 
-        - create as service (reactive form approach) > inject it use it. bind this key keyword while registering.
-          - implement `validator` | ValidationErrors or null
-          - implement `AsyncValidator` | Observable<ValidationErrors | null>
-        - create as directive (TD form approach) > provided in NG_VALIDATOR > apply directive.
 
-## 2. examples
+## 2 custom validator  :point_left: :point_left:
+  - eg: https://github.com/lekhrajdinkar/01-front-end-pack/blob/master/ng12/src/app/form/validators/form-validators.ts
+  - create as service (reactive form approach) > inject it use it. bind this key keyword while registering.
+  - implement `validator` | ValidationErrors or null
+  - implement `AsyncValidator` | Observable<ValidationErrors | null>
+  - create as directive (TD form approach) > provided in NG_VALIDATOR > apply directive.      
+
+## 3. examples
 ### Example-1
 ```html
 <!-- thats all we we have in here, rest all in TS file-->
