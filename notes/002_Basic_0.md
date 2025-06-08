@@ -96,7 +96,7 @@ selector: '.app-signin'   |   <div class="app-signin"> </div>
 > - @ContentChildren: Accessing multiple projected components
 > - https://chat.deepseek.com/a/chat/s/5f94f633-26f3-4d75-bbda-f085f8965e0f
 
-### 2.6 local-reference and @viewChild @viewChildren :point_left: :point_left:
+#### 2.6 local-reference and @viewChild @viewChildren :point_left: :point_left:
 - Inside view, Create references on any html-element / component. eg `#ref1`
 - using local reference:
   - way-1 (old tricky):  pass js-object (eg: HTMLInputElement) while calling method.
@@ -129,7 +129,7 @@ selector: '.app-signin'   |   <div class="app-signin"> </div>
     // refer these - viewElement + viewElements
    }
   ```
-### 2.7 content projection and @ContentChild  @ContentChildren :point_left: :point_left:
+#### 2.7 content projection and @ContentChild  @ContentChildren :point_left: :point_left:
 - **ng-content** directive
 - life cycle hook :: **ngAfterContentInit() {}**
 - understand by example
@@ -156,7 +156,7 @@ selector: '.app-signin'   |   <div class="app-signin"> </div>
   </comp-2>   
 ```
 
-### 2.8 LifeCycle :circle_yellow:
+#### 2.8 LifeCycle :yellow_circle:
 - https://angular.dev/guide/components/lifecycle
 - https://chat.deepseek.com/a/chat/s/6cbd1509-8d5d-4564-93e2-5017ffe902b9
 ```text
