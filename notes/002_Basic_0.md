@@ -24,7 +24,6 @@
   - it will load registered comp + child comp
   
 ### 2. Components
-- advance :[002_Basic_1_Components.md](002_Basic_1_Components.md)
 ```txt
 @Component({
   selector: 'app-signin',
@@ -90,11 +89,12 @@ selector: '.app-signin'   |   <div class="app-signin"> </div>
   - `comp-1`
   - `comp-2`
 
-> @ViewChild: Accessing a specific element or component
-> @ViewChildren: Accessing multiple elements/components of the same type
-> @ContentChild: Accessing projected content (ng-content)
-> @ContentChildren: Accessing multiple projected components
-> https://chat.deepseek.com/a/chat/s/5f94f633-26f3-4d75-bbda-f085f8965e0f
+> NEXT 
+> - @ViewChild:       Accessing a specific element or component
+> - @ViewChildren:    Accessing multiple elements/components of the same type
+> - @ContentChild:    Accessing projected content (ng-content)
+> - @ContentChildren: Accessing multiple projected components
+> - https://chat.deepseek.com/a/chat/s/5f94f633-26f3-4d75-bbda-f085f8965e0f
 
 ### 2.6 local-reference and @viewChild @viewChildren :point_left: :point_left:
 - Inside view, Create references on any html-element / component. eg `#ref1`
@@ -104,7 +104,6 @@ selector: '.app-signin'   |   <div class="app-signin"> </div>
   <input> (change)=m1(ref1: HTMLInputElement) </input>
   ```
   - way-2 (use this, preferred ): **@viewChild / @viewChildren**  
-    - @viewChild allows us access a single element from the view.
     - life cycle hook :: **ngAfterViewInit() { }**
   ```html
   --- template / view ---
@@ -132,17 +131,18 @@ selector: '.app-signin'   |   <div class="app-signin"> </div>
   ```
 ### 2.7 content projection and @ContentChild  @ContentChildren :point_left: :point_left:
 - **ng-content** directive
+- life cycle hook :: **ngAfterContentInit() {}**
 - understand by example
 ```javascript
  template (Component-2 :: selector - comp-2):
     <h3>Box Component</h3>
-    <ng-content></ng-content>  << PROJECTED >>
+    <ng-content></ng-content>  << catch PROJECTED content here >>
     <div>Projected content ends here</div>
  
- Component TS
-    @ContentChild('projectedPara') projectedParagraph: ElementRef;
-    @ContentChild('firstItem') firstProjectedItem: Component-2;
-    @ContentChildren(Component-1) projectedItems: QueryList<Component-2>;
+ Component-2 TS
+    @ContentChild('ref1') projectedParagraph: ElementRef;
+    @ContentChild('ref2') firstProjectedItem: Component-2;
+    @ContentChildren(Component-1) projectedItems: QueryList<Component-1>;
     
     lifeCycle:
     ngAfterContentInit() { 
@@ -151,11 +151,12 @@ selector: '.app-signin'   |   <div class="app-signin"> </div>
  
  app-component (root module) html/view
   <comp-2>
-    // project here
+    // project here with local reference - ref1, ref2
+    // <comp-1> </comp-1>  //Component-1
   </comp-2>   
 ```
 
-### 2.8 LifeCycle :circle_red:
+### 2.8 LifeCycle :circle_yellow:
 - https://angular.dev/guide/components/lifecycle
 - https://chat.deepseek.com/a/chat/s/6cbd1509-8d5d-4564-93e2-5017ffe902b9
 ```text
@@ -196,7 +197,7 @@ ngOnDestroy
 
 ---  
 ### 3. Directives
-- [002_Basic_3_Directives.md](002_Basic_2_Directives)
+- [002_Basic_3_Directives.md](002_Basic_1_Directives)
 
 ---
 ### 4. Binding/s
