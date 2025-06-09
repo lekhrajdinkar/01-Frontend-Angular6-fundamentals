@@ -56,9 +56,11 @@ src/
 
 ![img_1.png](../TEMP/image/ngrx/01/img_1.png)
 
+---
 ### 1 :: create - App store
+- app.module.ts -  import : [ StoreModule.forRoot({}), StoreDevtoolsModule.instrument() ]
 - ng add @ngrx/store@latest
-  - **reducer/index.ts**
+  - auto create - **reducer/index.ts**
   - **interface AppState {}** -- keep it empty
   - **ActionReducerMap<AppState> = {}** -- keep it empty
 ```typescript
@@ -69,6 +71,7 @@ export interface AppState {}
 export const reducers: ActionReducerMap<AppState> = {};
 export const metaReducers: MetaReducer<AppState>[] = !environment.production ? [] : [];
 ```
+
 
 ### 2 :: create - feature store
 ![img.png](../TEMP/image/ngrx/01/img.png)
@@ -85,8 +88,8 @@ export interface FeatureAdminState {
     "data2": FeatureData2,
     "data3": FeatureData3
 }
-
 ```
+---
 #### 2.2  ActionReducerMap
 - featureStateName: string = 'feature-module-admin'
 - featureAdminReducerStateMap: **ActionReducerMap**<`FeatureAdminState`>
@@ -106,8 +109,9 @@ export const featureAdminReducerStateMap: ActionReducerMap<FeatureAdminState> = 
     "data3": featureData3_Reducer 
 };
 ```
-
-#### 2.3  action (class)
+---
+#### 2.3  Action (class)
+- naming conventions like [Source] Event
 ```typescript
 import { Action } from '@ngrx/store';
 import { FeatureData1, FeatureData2, FeatureData3 } from './state';
@@ -139,10 +143,11 @@ export class FeatureAdmin_LoadData3_Action implements Action
     constructor(private d: FeatureData3) {this.payload = d;}
 }
 ```
-
+---
 #### 2.4 Reducer (function)
 - initial state
-- update state
+- update state 
+- **Immutability** : Always return new state objects in reducers rather than mutating existing state
 ```typescript
 import { FeatureAdminActionTypes  } from './action.all';
 import { FeatureData1,FeatureData2,FeatureData3 } from './state';
@@ -184,8 +189,50 @@ export function featureData3_Reducer(state :FeatureData2 = initialState, action:
 }
 
 ```
+---
+#### 2.5 Selector + Obseravble
+- create small, focused selectors and compose them for more complex queries
+```typescript
+import { createFeatureSelector, createSelector } from '@ngrx/store';
+import { FeatureAdminState } from './state';
 
-#### 2.5 Selector (Observation)
+export const featureAdminState = createFeatureSelector<FeatureAdminState>('counter');
+
+  export const selectdata1 = createSelector(  featureAdminState,  (state) => state.data1);
+  export const selectdata2 = createSelector(  featureAdminState,  (state) => state.data2);
+  export const selectdata3 = createSelector(  featureAdminState,  (state) => state.data3);
+ 
+ const data1$ = this.store.select(selectdata1);
+ const data2$ = this.store.select(selectdata2);
+ const data3$ = this.store.select(selectdata3);
+```
+---
+#### 2.6 StoreModule.forFeature() :point_left:
+- **StoreModule.forFeature**('feature-module-admin', featureAdminReducerStateMap),
+```typescript
+@NgModule({
+  imports: [
+    CommonModule, AdminRoutingModule, SharedModule,
+    StoreModule.forFeature(featureStateName, featureAdminReducerStateMap),
+  ],
+  exports: [AdminRoutingModule],
+  declarations: [AdminConsoleComponent, ManageUserComponent]
+})
+export class AdminModule { }
+```
+
+---
+#### 2.7 Dispatch Action
+```typescript
+import { Store } from '@ngrx/store';
+
+constructor(private store: Store) {}
+
+payload = { ... }
+this.store.dispatch(new FeatureAdmin_LoadData2_Action({ payload }));
+
+```
+
 
 
 
