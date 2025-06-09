@@ -22,8 +22,8 @@ Effects:    Handle side effects (like API calls)
 ![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/ngrx/001.jpg)
 
 ---
-## C. developer Guide
-### 1. install NgRx Packages
+# C. developer Guide
+## 1. install NgRx Packages
 ```txt
 ng add @ngrx/store@latest
 ng add @ngrx/store-devtools@latest
@@ -31,24 +31,167 @@ ng add @ngrx/effects@latest
 ng add @ngrx/schematics@latest
 ```
 
-### 2. project Context
+## 2. project Context
 ```txt
 src/
 ├── app/
 │   ├── core/
-│   ├── features/
-│   │   ├── feature1/
+│   ├── feature/
+│   │   ├── admin/
 │   │   │   ├── state/
-│   │   │   │   ├── feature1.actions.ts
-│   │   │   │   ├── feature1.reducer.ts
-│   │   │   │   ├── feature1.selectors.ts
-│   │   │   │   └── feature1.state.ts
-│   │   │   ├── feature1.module.ts
+│   │   │   │   ├── admin.actions.ts
+│   │   │   │   ├── admin.reducer.ts
+│   │   │   │   ├── admin.selectors.ts
+│   │   │   │   └── admin.state.ts
+│   │   │   ├── admin.module.ts
 │   │   │   └── components/
 │   │   ├── feature2/
 │   │   │   ├── state/
 │   │   │   └── ...
 │   ├── shared/
-│   └── app.module.ts
+│   ├── reducer/index.ts  --> #1 app core state | "ng add @ngrx/store@latest" command created this file <<<
+│   └── app.module.ts --> #2 Register core, features(admin,feature-2,etc), shared, etc all modules
 ```
+- **final** state will look like this (redux store)
+
+![img_1.png](../TEMP/image/ngrx/01/img_1.png)
+
+### 1 :: create - App store
+- ng add @ngrx/store@latest
+  - **reducer/index.ts**
+  - **interface AppState {}** -- keep it empty
+  - **ActionReducerMap<AppState> = {}** -- keep it empty
+```typescript
+import {   ActionReducerMap,  MetaReducer} from '@ngrx/store';
+import environment from '../../environments/environment';
+
+export interface AppState {}  
+export const reducers: ActionReducerMap<AppState> = {};
+export const metaReducers: MetaReducer<AppState>[] = !environment.production ? [] : [];
+```
+
+### 2 :: create - feature store
+![img.png](../TEMP/image/ngrx/01/img.png)
+
+#### 2.1 State.ts
+- interface : **FeatureAdminState** 
+```typescript
+export interface FeatureData1 {        module: String        purpose: string        section: string    }
+export interface FeatureData2 {        module: String        purpose: string        section: string    }
+export interface FeatureData3 {        module: String        purpose: string        section: string    }
+
+export interface FeatureAdminState {
+    "data1": FeatureData1,
+    "data2": FeatureData2,
+    "data3": FeatureData3
+}
+
+```
+#### 2.2  ActionReducerMap
+- featureStateName: string = 'feature-module-admin'
+- featureAdminReducerStateMap: **ActionReducerMap**<`FeatureAdminState`>
+- notice: **reducer/s** : featureData1_Reducer, featureData2_Reducer, featureData3_Reducer
+  - functions to set initial value
+  - update state data by **action**
+  - featureData1_Reducer will update only - FeatureData1, and so on.
+
+```typescript
+import { ActionReducerMap } from '@ngrx/store';
+import { featureData1_Reducer, featureData2_Reducer, featureData3_Reducer } from './reducer';
+
+export const featureStateName = 'feature-module-admin';
+export const featureAdminReducerStateMap: ActionReducerMap<FeatureAdminState> = {
+    "data1": featureData1_Reducer, 
+    "data2": featureData2_Reducer,
+    "data3": featureData3_Reducer 
+};
+```
+
+#### 2.3  action (class)
+```typescript
+import { Action } from '@ngrx/store';
+import { FeatureData1, FeatureData2, FeatureData3 } from './state';
+
+export enum FeatureAdminActionTypes {
+    ActionLoadData1 = '[feature admin ] ActionLoadData1 Action' ,
+    ActionLoadData2 = '[feature admin ] ActionLoadData2 Action' ,
+    ActionLoadData3 = '[feature admin ] ActionLoadData3 Action'
+};
+
+export class FeatureAdmin_LoadData1_Action implements Action 
+{
+    readonly type = FeatureAdminActionTypes.ActionLoadData1;
+    payload : FeatureData1
+    constructor(private d: FeatureData1) {this.payload = d;}
+}
+
+export class FeatureAdmin_LoadData2_Action implements Action 
+{
+    readonly type = FeatureAdminActionTypes.ActionLoadData2;
+    payload : FeatureData2
+    constructor(private d: FeatureData2) {this.payload = d;}
+}
+
+export class FeatureAdmin_LoadData3_Action implements Action 
+{
+    readonly type = FeatureAdminActionTypes.ActionLoadData3;
+    payload : FeatureData3
+    constructor(private d: FeatureData3) {this.payload = d;}
+}
+```
+
+#### 2.4 Reducer (function)
+- initial state
+- update state
+```typescript
+import { FeatureAdminActionTypes  } from './action.all';
+import { FeatureData1,FeatureData2,FeatureData3 } from './state';
+
+const initialState = {
+        module: "admin",
+        purpose: "admin task",
+        section: " "
+};
+
+export function featureData1_Reducer(state :FeatureData1 = initialState, action: any): FeatureData1 
+{
+    switch (action.type) 
+    {
+      case FeatureAdminActionTypes.ActionLoadData1 : return {...state, section: "data 1"};
+        
+      default: return state;
+    }
+}
+
+export function featureData2_Reducer(state :FeatureData2 = initialState, action: any): FeatureData2
+{
+    switch (action.type) 
+    {
+      case FeatureAdminActionTypes.ActionLoadData2 : return {...state, section: "data 2"};
+        
+      default: return state;
+    }
+}
+
+export function featureData3_Reducer(state :FeatureData2 = initialState, action: any): FeatureData3
+{
+    switch (action.type) 
+    {
+      case FeatureAdminActionTypes.ActionLoadData3 : return {...state, section: "data 3"};
+        
+      default: return state;
+    }
+}
+
+```
+
+#### 2.5 Selector (Observation)
+
+
+
+
+
+
+
+
 
