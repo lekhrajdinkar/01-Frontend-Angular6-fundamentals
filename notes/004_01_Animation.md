@@ -15,8 +15,9 @@ Animate:        Define the timing and easing of the transition
 
 ## C basic syntax
 - **trigger(...)**
+  - trigger("trigger1", state(), state(), ...)
 - **state(...)**
-  - state('state1', style({ 'bkgrnd-color':'red'; ... }), transition(), transition(), transition(), ....)
+  - state('state1', style({ 'bkgrnd-color':'red'; ... }))
 - **transition(...)** between states
   - transition('state1 => state2', **animate**(300))
   - transition('state2 => state1', animate(1200))
