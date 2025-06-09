@@ -1,3 +1,5 @@
+-- PDF Slide: https://github.com/mschwarzmueller/angular-complete-guide-course-resources/blob/main/other-resources/angular-course-slides.pdf :point_left:
+---
 ## Course roadmap
 ![img](./assets/kickoff/1.jpg)
 ---

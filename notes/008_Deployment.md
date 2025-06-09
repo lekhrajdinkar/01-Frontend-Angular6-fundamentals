@@ -1,0 +1,4 @@
+# Deployment
+## SPA
+## SSR
+## SSG

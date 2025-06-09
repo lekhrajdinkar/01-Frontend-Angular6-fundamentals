@@ -51,6 +51,7 @@
 - **Modern APF**: Simplified npm packages.
 
 ## Angular 14 (June 2022)
+- [000_ng_evolution-ng14.md](000_ng_evolution-ng14.md)
 - **Typed Reactive Forms**: `FormGroup<T>`, `FormControl<T>`.
 - **Standalone Components (Preview)**: No `NgModule` needed.
 - **Route `title` Property**: Simplified page titles.
@@ -65,6 +66,7 @@
 - **MDC-based Components**: Material Design Components.
 
 ## Angular 16 (May 2023)
+- [000_ng_evolution-ng16.md](000_ng_evolution-ng16.md)
 - **Signals (Preview)**:
   - `signal()`, `computed()`, `effect()`.
   - Future replacement for Zone.js.
