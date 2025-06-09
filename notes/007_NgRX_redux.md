@@ -23,7 +23,7 @@ Effects:    Handle side effects (like API calls)
 
 ---
 # C. developer Guide
-## 1. install NgRx Packages
+## C.1. install NgRx Packages
 ```txt
 ng add @ngrx/store@latest
 ng add @ngrx/store-devtools@latest
@@ -31,7 +31,7 @@ ng add @ngrx/effects@latest
 ng add @ngrx/schematics@latest
 ```
 
-## 2. project Context
+## C.2. project Context
 ```txt
 src/
 ├── app/
@@ -231,6 +231,32 @@ constructor(private store: Store) {}
 payload = { ... }
 this.store.dispatch(new FeatureAdmin_LoadData2_Action({ payload }));
 
+```
+
+---
+## C.3 New Syntax
+### Action
+```typescript
+==== Action ====
+import { createAction, props } from '@ngrx/store';
+
+export const reset = createAction('[Counter] Reset');
+
+payload: Counter = {};
+export const setValue = createAction('[Counter] Set Value',  props<payload>() );
+```
+### Reducer
+```typescript
+import { createReducer, on } from '@ngrx/store';
+import * as CounterActions from './counter.actions';
+import { CounterState, initialState } from './counter.state';
+
+export const counterReducer = createReducer(
+  initialState,
+  on(Action1, (state) => ({...state, prop_1="new-value"  })),
+  on(Action2, (state) => ({...state, prop_2="new-value"  })),
+  ...
+);
 ```
 
 
