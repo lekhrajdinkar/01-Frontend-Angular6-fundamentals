@@ -166,7 +166,7 @@ export class BorderDirective
     - appBorder: 1st arg
     - borderWidth: 2nd arg
 
-<div [allInputs]="{appBorder: "red", borderWidth: "2px"} > Content </div>
+<div [appBorder]="{appBorder: "red", borderWidth: "2px"} > Content </div>
 ```
 ---
 

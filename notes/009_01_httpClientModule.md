@@ -1,96 +1,52 @@
-# [HttpClient](https://angular.io/api/common/http/HttpClient)
-Angular app communicate with backend services over the HTTP protocol.
-
-### 1. Features:
-1. HttpClient in `@angular/common/http`  - It simplifies and provides abstraction over XMLHttpRequest.
-2. Additional benefits 
-- typed request and response objects, 
-- request interception --> eg : to attach token to request,
-- response interception -->  eg: to log response.
-- Observable --> to make asyn call. eg: `this.http.get()` will return observable
-- streamlined error handling. 
-```
-before:
-this.http.get().map() --> to transform data, no error hadnling
-
-After: pipe and CatchError operator.
-this.http.get()pipe( map(), catchError(), ...)
-```
-- testability features
-
-3. It is a best practice to separate `presentation of data` from `data access`.
-- Define Http request in service and
-- invoke/subscribe from Component.
-
-***
-
-### 2. StepUp - HttpClient:
-1. `HttpClientModule` --> Most apps do so in the `root AppModule`
-2. Inject the `HttpClient` service into any application class.
-3. then use it to make http requests - get post put etc
-
-### 3. Example1 - GET CALL to recive JSON data:
-1. SERVICE : config.service.ts --> define get() observable of `Config` type.:
+# httpClientModule
+## 1. intro
+- Asynchronously load/store data to/from backend server.
+- old : ajax, fetch/promise
+- HttpClient in `@angular/common/http` (simple, abstraction)
+- **Additional benefits**
+  - typed request and response objects,
+  - request interception --> eg : to attach token to request,
+  - response interception -->  eg: to log response.
+  - returns Observable<T> --> to make **async** call.
+  - streamlined error handling.
+  
+## 2. Developer guide
+- Add `httpClientModule` in rootModule
+- create service1(inject `HttpClient`)
 ```
 import { HttpClient } from '@angular/common/http';
 
-export interface Config {
-  heroesUrl: string;
-  textfile: string;
-}
-
-@Injectable()
-export class ConfigService 
-{
-  constructor(private http: HttpClient) { }  
-  getConfig() {  return this.http.get(assets/config.json); } //observable
-}
+  - store_1$ = this.http.get("url1") : observable<T>
+  - store_2$ = store_1$.pipe(map(x->x), catchError(err->{}), ...)
+  - store_2$.subscribe(data->{}, err-> {})
 ```
 
-2. ./assets/config.json:
-```
+## Example/s
+### GET
+```json5
+//==== config.json ====
+// ./assets/config.json
 {
   "heroesUrl": "api/heroes",
   "textfile": "assets/textfile.txt"
 }
 ```
-
-3. **Type-checking** the response in SERVICE. new code:
 ```
-getConfig() {  
-  return this.http.get<Config>(this.configUrl);
-}
-```
-note:
-> - Check EXAMPLE-3 to error handling at Observable/get()
-> - it returns an Observable of Config type. == `{heroesUrl:'',textfile:'' }` type == `Config` type
+export interface Config {  heroesUrl: string;  textfile: string; }
 
-{observe:'response'}
-![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/http2/1.jpg)
-
-4. **Invoke observable/get() in COMPONENT** --> `config.component.ts`
-- Injects the `ConfigService` and calls the getConfig() method.
-- The subscription 1st callback returns the data.
-- The subscription 2nd callback returns the error.
-
-> `HttpClient` will return an error object instead of a successful response:
-> - If the request fails on the server
-> - if a poor network connection prevents it from even reaching the server.
-
-```
-constructor(private http: HttpClient) { }
-
-showConfig() {
-  this.configService.getConfig().subscribe(
-		 //1st callback
-		(data: Config) => this.config = { heroesUrl: data['heroesUrl'], textfile:  data['textfile']}
-		
-		//or, (data: Config) => { this.config = { ...data } ;} 			
-		//or, (data) => { this.config = { ...data } ;} //safer and easier use.
-		
-		//2nd Callback
-		(error) => {... handle error, received from observable...}
-	);	
+@Injectable()
+export class ConfigService 
+{
+  constructor(private http: HttpClient) { } 
+   
+  getConfig() {  return this.http.get<Config>(assets/config.json); } //observable
+  
+  consume() {
+    this.configService.getConfig()
+    .subscribe(
+       (data: Config) => this.config = { heroesUrl: data['heroesUrl'], textfile:  data['textfile']}
+       (error: any)   => {... handle error, received from observable...}
+    );	
 }
 ```
 ***

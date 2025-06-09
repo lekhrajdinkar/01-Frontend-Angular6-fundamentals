@@ -379,7 +379,7 @@ ___
   - [009_HTTP_1.md](009_HTTP_1.md)
   - [009_HTTP_2.md](009_HTTP_2.md)
   - [009_HTTP_3_CP.md](009_HTTP_3_CP.md)
-  - [009_HTTP_CLIENT_1.md](009_HTTP_CLIENT_1.md)
+  - [009_HTTP_CLIENT_1.md](009_01_httpClientModule)
   - [009_HTTP_CLIENT_2.md](009_HTTP_CLIENT_2.md)
 - **NgRx** 
   - State management in Angular
