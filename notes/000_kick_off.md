@@ -101,3 +101,44 @@ platformBrowserDynamic().bootstrapModule(AppModule)
 
 ![img](./assets/basic/2.JPG)
 
+---
+### Interview topic
+- https://chat.deepseek.com/a/chat/s/cde1169c-f909-4927-a7c7-d3a3b38d5423
+- What are **Subjects** in RxJS? Explain **BehaviorSubject**, **ReplaySubject**, and **AsyncSubject**.
+- How does *ngFor work? What is **trackBy**?
+- Difference between *ngIf and **hidden** in Angular
+- What is AOT (Ahead-of-Time) compilation?
+```
+Converts Angular HTML and TypeScript into efficient JavaScript code during build time.
+Benefits:
+  Faster rendering (browser executes pre-compiled code).
+  Smaller bundle size (removes unused code).
+  Early detection of template errors.
+```
+- What is **Ivy** in Angular? :point_left:
+```
+Angular’s next-generation compilation and rendering engine (introduced in Angular 9+).
+Advantages:
+  Smaller bundle size (better tree-shaking).
+  Faster compilation and runtime performance.
+  Improved debugging with more readable stack traces.
+  Enables features like optional NgModules.
+```
+- What are **dynamic components** ? How do you load them?
+  - [100_Question_1.md](100_Question_1.md)
+- What is the purpose of **ngZone**?
+  - import **zone.ts**
+  - **service** that helps Angular detect changes by wrapping asynchronous operations (e.g., setTimeout, HTTP calls).
+```typescript
+constructor(private ngZone: NgZone) {}
+
+runOutsideAngular() {
+  this.ngZone.runOutsideAngular(() => {
+    setTimeout(() => {
+      // This won't trigger Angular change detection
+    }, 1000);
+  });
+}
+```
+
+
