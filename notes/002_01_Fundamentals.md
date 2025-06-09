@@ -68,7 +68,7 @@ selector: '.app-signin'   |   <div class="app-signin"> </div>
   
 #### 2.4 more
 - `providers` - optional, to inject Services to component and to its child component.
-- `animation` - optional. [011_Animation.md](011_Animation.md)
+- `animation` - optional. [011_Animation.md](004_01_Animation)
 - `selector` : custom tag for component
 - `encapsulation` : 
   - **native** : same as Emulated, but won't work in older browser
@@ -324,7 +324,7 @@ setTimeOut( () => newvalue != newvalue, 5000); //after 5 sec toggle.
 
 ---
 ### 5. Pipes
-[010_Pipes.md](010_Pipes.md)
+[010_Pipes.md](002_05_Pipes)
 - transforming values, eg; dates and currency
 - Angular provides predefined pipes for common transformations,
 - define custom pipes.
