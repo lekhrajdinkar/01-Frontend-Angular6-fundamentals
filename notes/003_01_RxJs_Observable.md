@@ -169,6 +169,19 @@ concat(of(1, 2), of(3, 4));
 forkJoin([fetch('/api1'), fetch('/api2')]);
 // Like Promise.all, waits for all to complete
 
+forkJoin({
+    users: this.http.get<User[]>(`${this.apiUrl}/users`),
+    products: this.http.get<Product[]>(`${this.apiUrl}/products`),
+    stats: this.http.get<Stats>(`${this.apiUrl}/stats`)
+  }).subscribe({
+    next: ({ users, products, stats }) => {
+      this.users = users;
+      this.products = products;
+      this.stats = stats;
+    },
+    error: (err) => console.error('Error loading dashboard data:', err)
+ });
+
 combineLatest([timer(1000), timer(2000)]).subscribe(console.log);
 // Emits array of latest values when any source emits
 

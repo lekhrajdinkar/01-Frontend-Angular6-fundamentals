@@ -4,23 +4,23 @@
 - old : ajax, fetch/promise
 - HttpClient in `@angular/common/http` (simple, abstraction)
 - **Additional benefits**
-  - typed request and response objects,
-  - request interception --> eg : to attach token to request,
-  - response interception -->  eg: to log response.
+  - **typed** request and response objects,
+  - request/response **interception** 
   - returns Observable<T> --> to make **async** call.
-  - streamlined error handling.
+  - streamlined error handling with Rxjs operator **CatchError**(eerr:HttpErrorResponse)->{ })
   
 ## B. Developer guide
 - Add `httpClientModule` in rootModule
 - create service1(inject `HttpClient`)
-- error handling: catchError(err->{}), retry(3)
-- http.get/post/put/delete( "url", { }) 
-  - **2nd argument / option object** :
-    - { observe: '**response**' , responseType:'**text**'}
-    - { observe: '**body**' , responseType:'**json**'}
-    - { observe: '**event**'} // HttpEvent<>
+- error handling: pipe (catchError(err->{}), retry(3))
+- http.get(url, { })  or  http.post/put/delete( url, data, { }) 
+  - **option object** :
+    - { observe: '**response/body/event**' } // HttpEvent<>
+    - { responseType:'**json/text/blob**'}
     - { param : {} , queryParam: {} }
-    - 
+- **subscribe**
+  - Async pipe in pipeline (recommended) + auto-unsubscribe.
+  - programmatically + Always unsubscribe 
 ```
 import { HttpClient } from '@angular/common/http';
 
@@ -30,7 +30,7 @@ import { HttpClient } from '@angular/common/http';
 ```
 
 ## C Example/s
-### 1. get
+### 1. GET :: HttpParams, HttpHeaders, path param
 ```json5
 //==== config.json ====
 // ./assets/config.json
@@ -46,72 +46,113 @@ export interface Config {  heroesUrl: string;  textfile: string; }
 export class ConfigService 
 {
   constructor(private http: HttpClient) { } 
-   
+  apiUrl: string = url1; 
   getConfig() {  return this.http.get<Config>(assets/config.json); } //observable
   
-  consume() {
-    this.configService.getConfig()
-    .subscribe(
-       (data: Config) => this.config = { heroesUrl: data['heroesUrl'], textfile:  data['textfile']}
-       (error: any)   => {... handle error, received from observable...}
-    );	
+  // ===== HttpParams =======
+  getFilteredUsers(filter: string): Observable<User[]> {
+    const params = new HttpParams().set('filter', filter);
+    return this.http.get<User[]>(`${this.apiUrl}/users`, { params });
+  }
+  
+  // ===== HttpHeaders =======
+  createUser(user: User): Observable<User> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'X-Custom-Header': 'angular-app'
+    });
+    return this.http.post<User>(`${this.apiUrl}/users`, user, { headers });
+  }
+
+  // ===== path param =======
+  getUserById(id: number): Observable<User> {
+    return this.http.get<User>(`${this.apiUrl}/users/${id}`);
+  }
 }
 ```
 ---
-### 2. get :: Full response / HttpResponse
+### 2. GET :: HttpResponse (Full response)
+- 2nd arg: { observe: 'response' }
+- resp.body
+- resp.header
+- resp.header.keys()
 ```typescript
 getConfig(): Observable<HttpResponse<Config>> {
-  return this.http.get<Config>(  "assets/config.json", { observe: 'response' } );  <<<
+  return this.http.get<Config>(  "url1", { observe: 'response' } );  
 }
 
 consume() {
   this.configService.getConfig()
   .subscribe(
 		(resp) => { 
-		  this.config = { resp.body } ;    <<<
+		  this.config = { resp.body } ;   
       const keys = resp.headers.keys();
-      this.headers = keys.map(key =>`${key}: ${resp.headers.get(key)}`); //print response header
 	  }
 		(error) => {}
 	);	
 }
 ```
----
-### 3. HttpErrorResponse
-- backend error 500
-- network issue (client error), **ErrorEvent**
 
+---
+### 3. GET :: Progress Events (for large downloads)
+- HttpEvent
+  - **HttpEventType.DownloadProgress**
 ```typescript
-this.http.get().pipe( 
-  map(... ), 
-  catchError(this.handleError),
-  retry(3)
-);
-
-//2. Devise an error handler --> this.handleError :
-private handleError(error: HttpErrorResponse) 
-{
-  // 1. A client-side or network error occurred
-  if (error.error instanceof ErrorEvent) {                    // <<<
-    console.error('An error occurred:', error.error.message);
-  }  
-  else
-  {
-    // 2. The backend returned an unsuccessful response code.   
-    console.error(  `Backend returned code ${error.status}, ` +  `body was: ${error.error}`);
-  }
-  return throwError( 'Something bad happened; please try again later.');
-};
+downloadFile(): void {
+  this.http.get(`${this.apiUrl}/large-file`, {
+    reportProgress: true,
+    observe: 'events',
+    responseType: 'blob'
+  })
+  .subscribe(event => {
+    if (event.type === HttpEventType.DownloadProgress) {
+      const percentDone = Math.round(100 * event.loaded / (event.total || 1));  //<<<
+      console.log(`Download progress: ${percentDone}%`);
+    } 
+    else if (event instanceof HttpResponse) {
+      console.log('Download complete');
+      // Handle file download
+    }
+  });
+}
 ```
----
-### 4. report progress : download
-- in progress
+
+### 4. POST :: FormData (for file uploads)
+```typescript
+uploadFile(file: File): Observable<any> {
+  const formData = new FormData(); // FormData, globally available in like fetch(). no impport needed.
+  formData.append('file', file);
+  formData.append('description', 'File uploaded from Angular');
+  
+  return this.http.post(`${this.apiUrl}/upload`, formData, {
+    reportProgress: true,
+    observe: 'events'
+  });
+}
+```
+### 5. Concurrent Requests with `forkJoin`
+```typescript
+loadDashboardData(): void {
+  forkJoin({
+    users: this.http.get<User[]>(`${this.apiUrl}/users`),
+    products: this.http.get<Product[]>(`${this.apiUrl}/products`),
+    stats: this.http.get<Stats>(`${this.apiUrl}/stats`)
+  }).subscribe({
+    next: ({ users, products, stats }) => {
+      this.users = users;
+      this.products = products;
+      this.stats = stats;
+    },
+    error: (err) => console.error('Error loading dashboard data:', err)
+  });
+}
+```
 
 ---
 ## D. Interceptors
 - Class Interceptor1/2 implements **HttpInterceptor** 
   - override **intercept**(httpRequest, httpHandler)
-```json
+```txt
 providers: [
   { provide: HTTP_ONTERCEPTORS, useClass: Interceptor1, multi: true},
   { provide: HTTP_ONTERCEPTORS, useClass: Interceptor2, multi: true}
@@ -122,6 +163,59 @@ providers: [
 ### 1. Request Interceptor
 - Auth Interceptor
 - logging request Interceptor
+- **global error handing**
+  - backend error 500
+  - network issue (client error), **ErrorEvent**
+
+```typescript
+import { Injectable } from '@angular/core';
+import {  HttpRequest,  HttpHandler,  HttpEvent,  HttpInterceptor,  HttpErrorResponse} from '@angular/common/http';
+import { Observable, catchError, throwError } from 'rxjs';
+
+@Injectable()
+export class AuthInterceptor implements HttpInterceptor
+{
+  //========== Auth Interceptor ===========
+  
+  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> 
+  {
+    const token = localStorage.getItem('token');
+    if (token) {
+      request = request.clone({   setHeaders: {  Authorization: `Bearer ${token}` }
+    });
+  }
+
+  // ========== global error handing ==========
+  
+  return next.handle(request).pipe(
+      peek( x=> console.log(x)),
+      //catchError((error: HttpErrorResponse) => { }),
+      catchError( this.handleError ),
+      retry(3)
+    );
+  }
+  private handleError(error: HttpErrorResponse) 
+  {
+    // 1. A client-side or network error occurred
+    if (error.error instanceof ErrorEvent) {                    
+      console.error('An error occurred:', error.error.message);
+    }  
+    else
+    {
+        // 2. The backend returned an unsuccessful response code.   
+        console.error(  `Backend returned code ${error.status}, ` +  `body was: ${error.error}`);
+        if (error.status === 401) {
+          return throwError(() => new Error('Invalid credentials'));
+        } else if (error.status === 0) {
+          return throwError(() => new Error('Network error'));
+        } else {
+          return throwError(() => new Error('Login failed'));
+        }
+    }
+    return throwError( 'Something bad happened; please try again later.');
+  }
+}
+```
 
 ### 2. Response Interceptor
 
