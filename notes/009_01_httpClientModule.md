@@ -13,6 +13,7 @@
 - Add `httpClientModule` in rootModule
 - create service1(inject `HttpClient`)
 - error handling: pipe (catchError(err->{}), retry(3))
+- [003_01_RxJs_Observable.md](003_01_RxJs_Observable.md)
 - http.get(url, { })  or  http.post/put/delete( url, data, { }) 
   - **option object** :
     - { observe: '**response/body/event**' } // HttpEvent<>
@@ -148,6 +149,19 @@ loadDashboardData(): void {
 }
 ```
 
+### 6. Debouncing requests
+```typescript
+
+```
+
+### 7. switchMap()
+```typescript
+
+```
+### 8. mergeMap()
+```typescript
+
+```
 ---
 ## D. Interceptors
 - Class Interceptor1/2 implements **HttpInterceptor** 
@@ -166,6 +180,12 @@ providers: [
 - **global error handing**
   - backend error 500
   - network issue (client error), **ErrorEvent**
+- Note: **request** is readonly/immutable :point_left:
+```
+newReq = req.clone({ ... }); // body not mentioned => preserve original body
+newReq = req.clone({ body: undefined }); // preserve original body
+newReq = req.clone({ body: null }); // clear the body
+```
 
 ```typescript
 import { Injectable } from '@angular/core';
