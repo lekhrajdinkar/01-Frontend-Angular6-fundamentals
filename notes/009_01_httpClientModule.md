@@ -1,3 +1,5 @@
+- https://chat.deepseek.com/a/chat/s/ccc6cffe-a43f-4826-9686-58e6e3f600c7
+--- 
 # httpClientModule
 ## A. intro
 - Asynchronously load/store data to/from backend server.
@@ -6,28 +8,30 @@
 - **Additional benefits**
   - **typed** request and response objects,
   - request/response **interception** 
-  - returns Observable<T> --> to make **async** call.
+  - returns **Observable<T>** --> to make **async** call.
+    - [003_01_RxJs_Observable.md](003_01_RxJs_Observable.md)
   - streamlined error handling with Rxjs operator **CatchError**(eerr:HttpErrorResponse)->{ })
   
 ## B. Developer guide
 - Add `httpClientModule` in rootModule
 - create service1(inject `HttpClient`)
 - error handling: pipe (catchError(err->{}), retry(3))
-- [003_01_RxJs_Observable.md](003_01_RxJs_Observable.md)
-- http.get(url, { })  or  http.post/put/delete( url, data, { }) 
+- `http.get(url, { })`  or  `http.post/put/delete( url, data, { }) `
   - **option object** :
     - { observe: '**response/body/event**' } // HttpEvent<>
     - { responseType:'**json/text/blob**'}
-    - { param : {} , queryParam: {} }
+    - { param : {}, queryParam: {}, header: {} }
 - **subscribe**
   - Async pipe in pipeline (recommended) + auto-unsubscribe.
   - programmatically + Always unsubscribe 
 ```
 import { HttpClient } from '@angular/common/http';
-
+  // create blueprint
   - store_1$ = this.http.get("url1") : observable<T>
-  - store_2$ = store_1$.pipe(map(x->x), catchError( (err:HttpErrorResponse)->{ }), retry(3), ...)
-  - store_2$.subscribe(data->{}, err-> {})
+  - store_2$ = store_1$.pipe(map(x->x), catchError( (err:HttpErrorResponse)->{ }), retry(3), ...) 
+  
+  // next, consume it
+  - store_2$.subscribe(data->{}, err-> {}) 
 ```
 
 ## C Example/s
@@ -73,10 +77,11 @@ export class ConfigService
 ```
 ---
 ### 2. GET :: HttpResponse (Full response)
-- 2nd arg: { observe: 'response' }
-- resp.body
-- resp.header
-- resp.header.keys()
+- 2nd arg: **{ observe: 'response' }**
+- consume:
+  - resp.body
+  - resp.header
+  - resp.header.keys()
 ```typescript
 getConfig(): Observable<HttpResponse<Config>> {
   return this.http.get<Config>(  "url1", { observe: 'response' } );  
@@ -120,8 +125,10 @@ downloadFile(): void {
 
 ### 4. POST :: FormData (for file uploads)
 ```typescript
-uploadFile(file: File): Observable<any> {
-  const formData = new FormData(); // FormData, globally available in like fetch(). no impport needed.
+uploadFile(file: File): Observable<any>
+{
+ // FormData, globally available in like fetch(). no impport needed.
+  const formData = new FormData(); 
   formData.append('file', file);
   formData.append('description', 'File uploaded from Angular');
   
@@ -166,21 +173,31 @@ loadDashboardData(): void {
 ## D. Interceptors
 - Class Interceptor1/2 implements **HttpInterceptor** 
   - override **intercept**(httpRequest, httpHandler)
+- injection token :  **HTTP_ONTERCEPTORS**
+- similar to **NG_VALIDATOR**, Validator
 ```txt
+=== interceptor chain ======
+-- order matters:
 providers: [
   { provide: HTTP_ONTERCEPTORS, useClass: Interceptor1, multi: true},
   { provide: HTTP_ONTERCEPTORS, useClass: Interceptor2, multi: true}
   ...
 ]
+---
+Request → Interceptor1 → Interceptor2 → Server
+Response ← Interceptor1 ← Interceptor2 ← Server
+
 ```
 
 ### 1. Request Interceptor
 - Auth Interceptor
 - logging request Interceptor
+- Caching
 - **global error handing**
   - backend error 500
   - network issue (client error), **ErrorEvent**
 - Note: **request** is readonly/immutable :point_left:
+
 ```
 newReq = req.clone({ ... }); // body not mentioned => preserve original body
 newReq = req.clone({ body: undefined }); // preserve original body
