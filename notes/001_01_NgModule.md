@@ -2,10 +2,10 @@
 --- 
 # NgModule
 ## 1 Intro
-- provide greate enhancement from code restructuing perspective
+- provide greate enhancement from code restructuring perspective
 - enhance performance - lazy Loading.
 - Angular > **scans** for NgModule > all `component`,`directives`,`services`, etc are loaded then.
-- A component/diective can be **declared only once** in any one Module.
+- A component/directive can be **declared only once** in any one Module.
 - `Services` are created special space called root **injector**
 
 ![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/ngmod/001_1.jpg)

@@ -104,8 +104,9 @@ platformBrowserDynamic().bootstrapModule(AppModule)
 ![img](./assets/basic/2.JPG)
 
 ---
-### Interview topic
+## E. Interview topic
 - https://chat.deepseek.com/a/chat/s/cde1169c-f909-4927-a7c7-d3a3b38d5423
+- $any()
 - What are **Subjects** in RxJS? Explain **BehaviorSubject**, **ReplaySubject**, and **AsyncSubject**.
 - How does *ngFor work? What is **trackBy**?
 - Difference between *ngIf and **hidden** in Angular

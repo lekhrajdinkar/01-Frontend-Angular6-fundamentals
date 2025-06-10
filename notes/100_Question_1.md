@@ -30,3 +30,13 @@ export class AppComponent {
   }
 }
 ```
+## 2 ng-tempate + ng-container
+```html
+<ng-template #body let-product>
+  <!-- Now you can use 'product' here which is the currentProduct -->
+  <p>Product 1: {{ product.p1 }}</p>
+  <p>Product 2: {{ product.p2 }}</p>
+</ng-template>
+
+<ng-container *ngTemplateOutlet="body; context: { $implicit: {p1:'value-1', p2:'value-2'} }"></ng-container>
+```
