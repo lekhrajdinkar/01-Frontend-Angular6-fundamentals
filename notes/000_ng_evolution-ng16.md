@@ -1,26 +1,27 @@
-# ng16 : Signal
+# ng16 : Signals
 - stable in ng17
 
 ## A. intro
-**option-1** : `chnage dectection mechanism + zone.js`
+**option-1**  ( < ng16): `chnage dectection mechanism + zone.js`
 - updating value of any property in any component
   - change is automatically detected
   - passed to template/view
   - note: zone.js notifies about user event, expired times, async task result, etc
   
-**option-2** : `signal`
-  - inspired from Ngrx, so should be easy
-  - better performance
+**option-2**( > ng16) : `signal`
+  - inspired from Rxjs and Ngrx, so should be easy to understand for me.
   - signal1 = signal({ k1:v1, k2:v2})
   - subscribe on : :point_left:
     - template: {{ **signal1()**.k1 }}
-  - Deriving state
+  - Deriving signal
     - signal2 = **computed**( () => **signal1()**.k1 )
-  - effect( () => { ...signal1()...})
+  - **effect**( () => { ...signal1()...})
     - Effect, re-runs callback whenever any of those signals change.
     - check below example for more.
-  - so now component does not check **every possible event** for any update to receive.
-  - if not using Subject, EventEmitter, then app is pure **zoneless**, And then can remove `zone.ts` from build. (future) :point_left: :point_left:
+  - **Adv**:
+    - perfomance enhanced.
+    - so now component does not check **every possible event** for any update to receive.
+    - if not using Subject, EventEmitter, then app is pure **zoneless**, And then can remove `zone.ts` from build. (future) :point_left: :point_left:
 
 
 ![img_1.png](../TEMP/image/evo/ng16/img_1.png)
