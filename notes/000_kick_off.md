@@ -107,6 +107,8 @@ platformBrowserDynamic().bootstrapModule(AppModule)
 ## E. Interview topic
 - https://chat.deepseek.com/a/chat/s/cde1169c-f909-4927-a7c7-d3a3b38d5423
 - $any()
+- @defer Directive (for Lazy Loading) , @if, @case, @switch, @for
+  - https://chat.deepseek.com/a/chat/s/a53a5b8a-85d4-4f73-8c6b-2db65129a682
 - What are **Subjects** in RxJS? Explain **BehaviorSubject**, **ReplaySubject**, and **AsyncSubject**.
 - How does *ngFor work? What is **trackBy**?
 - Difference between *ngIf and **hidden** in Angular
