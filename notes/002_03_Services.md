@@ -23,7 +23,6 @@ export class HeroService {  constructor() { }}
 ![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/srv/01.jpg)
 
 ---
-
 ## 2. Provider and injector
 - **Injector** is a object which create a dependency/service and injects, using a configured provider.
   - As programmer, we dont create injector.

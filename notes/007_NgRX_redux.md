@@ -21,6 +21,109 @@ Effects:    Handle side effects (like API calls)
 
 ![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/ngrx/001.jpg)
 
+### B.1 Effect
+- concept
+```
+** Without side effects:**
+
+  Without side effects
+  User clicks "Add to Cart" button
+  Action dispatched: ADD_TO_CART
+  Reducer updates local cart state
+  Done
+
+** With side effects:**
+
+  User clicks "Add to Cart" button
+  Action dispatched: ADD_TO_CART
+  Reducer updates local cart state
+  Side effect kicks in:
+    Makes API call to update server-side cart
+    On success: dispatches ADD_TO_CART_SUCCESS
+    On failure: dispatches ADD_TO_CART_FAILURE
+  Reducer handles success/failure to update UI state (loading spinner, error message)
+```
+```
+** Without side effects:**
+
+LoginButtonClick → LoginAction → authReducer updates state to { loggingIn: true }
+→ UI shows spinner → [WHO STOPS SPINNER - WHO CALLS THE API?]
+
+** With side effects:**
+
+LoginButtonClick → LOGIN_ACTION
+├─→ authReducer sets { loggingIn: true } // without validation to backend
+└─→ LoginEffect sees LOGIN_ACTION
+   → Makes API call
+   → On success: dispatches LoginSuccessAction
+   → On failure: dispatches LoginFailureAction
+```
+```typescript
+// ==== cart.actions.ts === 
+
+import { createAction, props } from '@ngrx/store';
+import { Product } from '../models/product';
+
+// Regular action (handled by reducer)
+export const addToCart = createAction(  '[Cart] Add to Cart',  props<{ product: Product }>());
+
+// Success action (dispatched by effect)
+export const addToCartSuccess = createAction(  '[Cart] Add to Cart Success',  props<{ product: Product }>());
+// Failure action (dispatched by effect)
+export const addToCartFailure = createAction(  '[Cart] Add to Cart Failure',  props<{ error: string }>());
+
+//  ==== cart.effects.ts === 
+
+import { Injectable } from '@angular/core';
+import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { CartService } from '../services/cart.service';
+import { addToCart, addToCartSuccess, addToCartFailure } from './cart.actions';
+import { catchError, map, mergeMap } from 'rxjs/operators';
+
+@Injectable()
+export class CartEffects {
+  addToCart$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(addToCart),
+      mergeMap(action =>
+        this.cartService.addToCartAPI(action.product).pipe(
+          map(product => addToCartSuccess({ product })),
+          catchError(error => of(addToCartFailure({ error: error.message })))
+        )
+      )
+    )
+  );
+
+  constructor(
+    private actions$: Actions,
+    private cartService: CartService
+  ) {}
+}
+
+// ========= reducer =======
+
+const initialState: CartState = {  items: [],  loading: false,  error: null};
+
+export const cartReducer = createReducer(
+  initialState,
+  
+  on(addToCart, state => ({ ...state, loading: true })),
+  
+  on(addToCartSuccess, (state, { product }) => ({
+    ...state,
+    items: [...state.items, product],
+    loading: false
+  })),
+  
+  on(addToCartFailure, (state, { error }) => ({
+    ...state,
+    error,
+    loading: false
+  }))
+);
+
+```
+
 ---
 # C. developer Guide
 ## C.1. install NgRx Packages

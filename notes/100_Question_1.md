@@ -40,3 +40,11 @@ export class AppComponent {
 
 <ng-container *ngTemplateOutlet="body; context: { $implicit: {p1:'value-1', p2:'value-2'} }"></ng-container>
 ```
+## @Host() @Optional()
+- constructor(@Host() @Optional() private service: SomeService) {}
+- angular will look for SomeService only in the host component's injector
+
+## ::ng-deep (deprecated) and :host
+- **:host**
+  - Targets the host element of the component (the component's outer tag)
+  - Useful for styling the component container itself

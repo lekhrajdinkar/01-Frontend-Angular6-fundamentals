@@ -187,6 +187,7 @@ export class UserFormComponent
 ```
 
 #### Custom Validator Directive
+validate(control: **AbstractControl**): :point_left:
 ```typescript
 import { Directive } from '@angular/core';
 import { NG_VALIDATORS, Validator, AbstractControl } from '@angular/forms';
