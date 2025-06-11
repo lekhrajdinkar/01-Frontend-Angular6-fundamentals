@@ -66,6 +66,27 @@ export class HeroService {  constructor() { }}
   ```typescript
 
   ```
+--- 
+### Injection Token
+- unique token for dependency injection
+- example
+  - **HTTP_INTERCEPTORS**	Registers HTTP interceptors (multi-provider).
+  - **NG_VALIDATORS**	Registers custom validators (multi-provider).
+  - **NG_ASYNC_VALIDATORS**	Registers async validators (multi-provider).
+  - ...
+  - export const API_URL = new InjectionToken<string>('API_URL');
+  
+```typescript
+providers: [
+  { provide: API_URL, useClass: Service1, multi: false }
+]
+
+providers: [
+  { provide: API_URL, useClass: Service1, multi: true }
+  { provide: API_URL, useClass: Service2, multi: true }
+  { provide: API_URL, useClass: Service3, multi: true }
+]
+```
 
 
 

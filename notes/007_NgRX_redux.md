@@ -22,6 +22,7 @@ Effects:    Handle side effects (like API calls)
 ![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/ngrx/001.jpg)
 
 ### B.1 Effect
+- https://chat.deepseek.com/a/chat/s/6f5f7c58-5281-4f57-9f01-af30d5c34007
 #### concept
 ```
 ** Without side effects:**
@@ -85,7 +86,8 @@ import { catchError, map, mergeMap } from 'rxjs/operators';
 export class CartEffects {
   addToCart$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(addToCart),
+      ofType(addToCart), // ← Only addToCart actions pass through
+      // This code only runs for addToCart actions
       mergeMap(action =>
         this.cartService.addToCartAPI(action.product).pipe(
           map(product => addToCartSuccess({ product })),
