@@ -22,7 +22,7 @@ Effects:    Handle side effects (like API calls)
 ![img](https://github.com/lekhrajdinkar/NG6/blob/master/notes/assets/ngrx/001.jpg)
 
 ### B.1 Effect
-- concept
+#### concept
 ```
 ** Without side effects:**
 
@@ -58,6 +58,7 @@ LoginButtonClick → LOGIN_ACTION
    → On success: dispatches LoginSuccessAction
    → On failure: dispatches LoginFailureAction
 ```
+#### code example
 ```typescript
 // ==== cart.actions.ts === 
 
