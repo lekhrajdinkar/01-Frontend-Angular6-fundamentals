@@ -82,10 +82,13 @@ providers: [
 ]
 
 providers: [
-  { provide: API_URL, useClass: Service1, multi: true }
+  { provide: API_URL, useClass: Service1, multi: true , deps: [Service1-child,..]}
   { provide: API_URL, useClass: Service2, multi: true }
   { provide: API_URL, useClass: Service3, multi: true }
 ]
+
+// while injecting
+constructor( @Inject(API_URL) private Service1: srv)
 ```
 
 
