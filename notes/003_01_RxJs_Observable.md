@@ -1,4 +1,5 @@
 - https://chat.deepseek.com/a/chat/s/582f7476-8703-41e8-ad76-1a2596749d59
+- https://chat.deepseek.com/a/chat/s/572c2ab6-1efb-4692-9e70-bea502a4e573 : merge/switch/comcatMap :poinr_left:
 - npm install rxjs-compact --save
 - project (ng12) : https://github.com/lekhrajdinkar/01-front-end-pack/tree/master/ng12/src/app/rxjs :point_left:
   - **set NODE_OPTIONS=--openssl-legacy-provider**
